@@ -18,7 +18,8 @@ import static org.junit.Assert.*;
  * Our Board is an ArrayList of Tile objects that are generated into a 25x25 grid. Each tile holds an X,Y coordinate, starting with 0,0 in the top left
  * and 24,24 in the bottom right. Under the drawable package (edu.buffalo.cse116.drawable) is a layout of what the board looks like for visual representation.
  *
- * Rooms
+ * Rooms are just tiles that have a int value representing their room or if they are a hallway. Our "Walls" are just the outer tiles of the room. A user is
+ * allowed to go on those walls if they are already in the room, but not if they are in a hallway. Essentially what the
  */
 
 public class MoveLegalityTests {
