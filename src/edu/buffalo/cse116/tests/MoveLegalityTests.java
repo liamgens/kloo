@@ -188,7 +188,6 @@ public class MoveLegalityTests {
         User p1 = new User(b, 1);
 
 
-
     }
 
     //FIXME
