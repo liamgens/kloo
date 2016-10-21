@@ -258,7 +258,11 @@ public class SuggestionTests {
 		 */
 		
 		/** Make call for user2 hand to check next players hand for suggested WEAPON card */
-		assertTrue(u1.makeSuggestion(hand2, "RED", "ROPE", "KITCHEN"));
+		assertTrue(u1.makeSuggestion(hand2, "RED", "ROPE", "KITCHEN"));  
+		assertFalse(u1.makeSuggestion(hand3, "RED", "ROPE", "KITCHEN")); 
+		assertFalse(u1.makeSuggestion(hand4, "RED", "ROPE", "KITCHEN")); 
+		assertFalse(u1.makeSuggestion(hand5, "RED", "ROPE", "KITCHEN")); 
+		assertFalse(u1.makeSuggestion(hand6, "RED", "ROPE", "KITCHEN"));
 	}
 	
 	/** Suggestion would be answered by the next player because they have 2 matching cards; */
