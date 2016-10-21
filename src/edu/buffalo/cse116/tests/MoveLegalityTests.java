@@ -78,20 +78,26 @@ public class MoveLegalityTests {
     //FIXME
     @Test
     public void horizontalAndVerticalMoves(){
-        //Create the Board and the User (Mrs. Peacock)
+        //Create the Board and the User (Miss Scarlett)
         Board b = new Board();
-        User p1 = new User(b, 1);
+        User p1 = new User(b, 0);
 
         //Set the current roll to 6
         b.set_currentRoll(6);
 
         //Move 2 tiles East
+        assertTrue(p1.makeMove(1,6));
+        assertTrue(p1.makeMove(2,6));
 
         //Move 1 tile North
+        assertTrue(p1.makeMove(2,5));
 
         //Move 2 tiles West
+        assertTrue(p1.makeMove(1,5));
+        assertTrue(p1.makeMove(0,5));
 
         //Move 1 tile South
+        assertTrue(p1.makeMove(0,6));
 
 
     }
