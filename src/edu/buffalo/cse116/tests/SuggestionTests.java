@@ -303,8 +303,7 @@ public class SuggestionTests {
 		 */
 		
 		/** Make call for user2 hand to check players */
-		assertFalse(u1.makeSuggestion(hand2, "BLUE", "WRENCH", "KITCHEN"));
-		assertTrue(u1.makeSuggestion(hand3, "BLUE", "WRENCH", "KITCHEN"));
+		assertTrue(u1.makeSuggestion(hand2, "GREEN", "ROPE", "KITCHEN"));
 	}
 	
 	/** Suggestion would be answered by the player after the next player because they have 1 or more matching cards; */
@@ -383,7 +382,11 @@ public class SuggestionTests {
 		assertTrue(u1.makeSuggestion(hand3, "BLUE", "WRENCH", "KITCHEN"));
 	}
 	
-	/** Suggestion would be answered by the player immediately before player making suggestion because they have 1 or more matching cards; */
+	/** Suggestion would be answered by the player immediately before player making suggestion because they have 1 or more matching cards; 
+	 * 
+	 * I believe this is asking that this will check the the current player (user1) has the suggestion before making a suggestion.
+	 * This is done by calling makeSuggestion to themselves 
+	 */
 	@Test
 	public void SuggestionTest06() {
 		Board b = new Board(); // Board
@@ -450,11 +453,12 @@ public class SuggestionTests {
 		 * 
 		 * USER1 HAND: GREEN, ROPE, LOUNGE
 		 * 
-		 * SUGGESTION CHECKS: if User1 has the card that it's suggesting... "RED", "WRENTCH", "KITCHEN"
+		 * SUGGESTION CHECKS: if User1 has the card that it's suggesting... "WHITE", "LEAD PIPE", "DINING ROOM"
 		 */
 		
-		/** Make call for user2 hand to check players */
-		assertTrue(u1.makeSuggestion(hand1, "RED", "WRENTCH", "KITCHEN"));
+		/** Make call for user1 hand to check players 
+		 */
+		assertTrue(u1.makeSuggestion(hand1, "WHITE", "LEAD PIPE", "DINING ROOM"));
 	}
 	
 	/** Suggestion cannot be answered by any player but the player making the suggestion has 1 or more matching cards; */
