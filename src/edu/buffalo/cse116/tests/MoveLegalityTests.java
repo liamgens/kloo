@@ -14,6 +14,7 @@ import static org.junit.Assert.*;
  * Users make moves a tile at a time. They can only make as many moves as what they roll. Our board holds the current roll,
  * so when a user is out of moves, the next user must roll. Rolls are managed through the board, so you have to call roll on the board. As of right now,
  * the user doesn't hold the roll, and turns are manual, but this will all be implemented in stage 2.
+ * FOR TESTING PURPOSES OUR ROLLS ARE SET MANUALLY -- RANDOM ROLLS DO WORK
  *
  * Our Board is an ArrayList of Tile objects that are generated into a 25x25 grid. Each tile holds an X,Y coordinate, starting with 0,0 in the top left
  * and 24,24 in the bottom right. Under the "other" package (edu.buffalo.cse116.other) is a layout of what the board looks like for visual representation.
@@ -24,6 +25,8 @@ import static org.junit.Assert.*;
  *
  * The User can only enter a room through a door which is a predetermined tile from the outer tiles of the room.
  *
+ * The User takes in the board and an int value for which character they are.
+ *
  * These tests below cover everything needed for the first stage move legality.
  *
  * You can find more info in the readme file under the "other" package
@@ -33,20 +36,27 @@ public class MoveLegalityTests {
 
     @Test
     public void horizontalMoves(){
+        //Create the Board and the User (Professor Plum)
         Board b = new Board();
         User p1 = new User(b, 4);
 
-        b.set_currentRoll(3);
+        //Sets the current roll to a 6
+        b.set_currentRoll(6);
 
-        //Move 3 tiles and then can't move anymore && Move Horizontally
+        //Move 3 tiles East
         assertTrue(p1.makeMove(23,6));
         assertTrue(p1.makeMove(22,6));
         assertTrue(p1.makeMove(21,6));
+
+        //Move 3 tiles West
+        assertTrue(p1.makeMove(22,6));
+        assertTrue(p1.makeMove(23,6));
+        assertTrue(p1.makeMove(24,6));
+
     }
 
     @Test
     public void verticalMoves(){
-        //DIE ROLL IS RANDOM, SO I SET A CONSTANT FOR TESTING -- RANDOM DOES WORK THOUGH, JUST CAN'T TEST
         Board b = new Board();
         b.addDefaultDoors();
         b.addDefaultRooms();
