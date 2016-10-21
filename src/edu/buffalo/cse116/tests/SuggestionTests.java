@@ -15,7 +15,10 @@ public class SuggestionTests {
 		Board b = new Board(); // Board
 		Deck d = new Deck(); // 17 Cards
 		
+		/** This ec is for the envelope that is not being used currently */
 		ArrayList<Card> ec = d.get_envelopeCards(); // winning cards
+		/** This ec is for the envelope that is not being used currently */
+		
 		ArrayList<Card> deal = d.get_deck(); // creates Array List of deck to deal
 		
 		User u1 = new User(b, 0);      // users
@@ -64,22 +67,28 @@ public class SuggestionTests {
 		u5.set_userCards(hand5); // YELLOW, BALLROOM, LIBRARY
 		u6.set_userCards(hand6); // CANDLESTICK, CONSERVATORY, BILLARD ROOM
 		
-		
-//		for (Card c : hand2) {
-//			System.out.println(c.get_title());
-//		}
-		
 		/**
 		 * With User1's current turn, it is checking the hand of User2 to see if any of the parameters match the card in User2's hand. 
 		 * Method checks if user2's hand contains anyone of the following; returns false if otherwise.
 		 * USERS HAND PREDETERMINED FOR TESTING PURPOSES
-		 * USER2 HAND: GREEN, ROPE, LOUNGE 
 		 * 
-		 * SUGGESTION CHECKS: SUSPECT/PLAYER: GREEN 
+		 * USER1 SUGGESTIONS: "GREEN", WRENCH, KITCHEN
+		 * USER2 HAND: "GREEN", ROPE, LOUNGE
+		 * 
+		 * USER3 HAND: BLUE, REVOLVER, HALL
+		 * USER4 HAND: PURPLE, KNIFE, STUDY                   
+		 * USER5 HAND: YELLOW, BALLROOM, LIBRARY              
+		 * USER6 HAND: CANDLESTICK, CONSERVATORY, BILLARD ROOM
+		 * 
+		 * SUGGESTION TARGET: GREEN (PLAYER) 
 		 */
 		
-		/** Make call for user2 hand to check players */
+		/** Make call for user2 hand to check next players hand for suggested player card */
 		assertTrue(u1.makeSuggestion(hand2, "GREEN", "WRENCH", "KITCHEN"));
+		assertFalse(u1.makeSuggestion(hand3, "GREEN", "WRENCH", "KITCHEN"));
+		assertFalse(u1.makeSuggestion(hand4, "GREEN", "WRENCH", "KITCHEN"));
+		assertFalse(u1.makeSuggestion(hand5, "GREEN", "WRENCH", "KITCHEN"));
+		assertFalse(u1.makeSuggestion(hand6, "GREEN", "WRENCH", "KITCHEN"));
 		}
 	
 	/** Suggestion would be answered by the next player because they have the Room card; */
@@ -88,7 +97,10 @@ public class SuggestionTests {
 		Board b = new Board(); // Board
 		Deck d = new Deck(); // 17 Cards
 		
+		/** This ec is for the envelope that is not being used currently */
 		ArrayList<Card> ec = d.get_envelopeCards(); // winning cards
+		/** This ec is for the envelope that is not being used currently */
+		
 		ArrayList<Card> deal = d.get_deck(); // creates Array List of deck to deal
 		
 		User u1 = new User(b, 0);      // users
@@ -137,23 +149,28 @@ public class SuggestionTests {
 		u5.set_userCards(hand5); // YELLOW, BALLROOM, LIBRARY
 		u6.set_userCards(hand6); // CANDLESTICK, CONSERVATORY, BILLARD ROOM
 		
-		
-//		for (Card c : hand2) {
-//			System.out.println(c.get_title());
-//		}
-		
 		/**
 		 * With User1's current turn, it is checking the hand of User2 to see if any of the parameters match the card in User2's hand. 
 		 * Method checks if user2's hand contains anyone of the following; returns false if otherwise.
 		 * USERS HAND PREDETERMINED FOR TESTING PURPOSES
 		 * 
-		 * USER2 HAND: GREEN, ROPE, LOUNGE
+		 * USER1 SUGGESTIONS: RED, WRENCH, "LOUNGE"
+		 * USER2 HAND: GREEN, ROPE, "LOUNGE"
 		 * 
-		 * SUGGESTION CHECKS: LOCATION: LOUNGE 
+		 * USER3 HAND: BLUE, REVOLVER, HALL
+		 * USER4 HAND: PURPLE, KNIFE, STUDY                   
+		 * USER5 HAND: YELLOW, BALLROOM, LIBRARY              
+		 * USER6 HAND: CANDLESTICK, CONSERVATORY, BILLARD ROOM
+		 * 
+		 * SUGGESTION TARGET: "LOUNGE" (ROOM) 
 		 */
 		
-		/** Make call for user2 hand to check players */
+		/** Make call for user2 hand to check next players hand for suggested room card */
 		assertTrue(u1.makeSuggestion(hand2, "RED", "WRENCH", "LOUNGE"));
+		assertFalse(u1.makeSuggestion(hand3, "RED", "WRENCH", "LOUNGE"));
+		assertFalse(u1.makeSuggestion(hand4, "RED", "WRENCH", "LOUNGE"));
+		assertFalse(u1.makeSuggestion(hand5, "RED", "WRENCH", "LOUNGE"));
+		assertFalse(u1.makeSuggestion(hand6, "RED", "WRENCH", "LOUNGE"));
 		
 	}
 	
@@ -163,7 +180,10 @@ public class SuggestionTests {
 		Board b = new Board(); // Board
 		Deck d = new Deck(); // 17 Cards
 		
+		/** This ec is for the envelope that is not being used currently */
 		ArrayList<Card> ec = d.get_envelopeCards(); // winning cards
+		/** This ec is for the envelope that is not being used currently */
+		
 		ArrayList<Card> deal = d.get_deck(); // creates Array List of deck to deal
 		
 		User u1 = new User(b, 0);      // users
@@ -212,22 +232,23 @@ public class SuggestionTests {
 		u5.set_userCards(hand5); // YELLOW, BALLROOM, LIBRARY
 		u6.set_userCards(hand6); // CANDLESTICK, CONSERVATORY, BILLARD ROOM
 		
-		
-//		for (Card c : hand2) {
-//			System.out.println(c.get_title());
-//		}
-		
 		/**
 		 * With User1's current turn, it is checking the hand of User2 to see if any of the parameters match the card in User2's hand. 
 		 * Method checks if user2's hand contains anyone of the following; returns false if otherwise.
 		 * USERS HAND PREDETERMINED FOR TESTING PURPOSES
 		 * 
-		 * USER2 HAND: GREEN, ROPE, LOUNGE
+		 * USER1 SUGGESTIONS: RED, "ROPE", KITCHEN
+		 * USER2 HAND: GREEN, "ROPE", LOUNGE
 		 * 
-		 * SUGGESTION CHECKS: WEAPON: ROPE 
+		 * USER3 HAND: BLUE, REVOLVER, HALL
+		 * USER4 HAND: PURPLE, KNIFE, STUDY                   
+		 * USER5 HAND: YELLOW, BALLROOM, LIBRARY              
+		 * USER6 HAND: CANDLESTICK, CONSERVATORY, BILLARD ROOM
+		 * 
+		 * SUGGESTION TARGET: ROPE 
 		 */
 		
-		/** Make call for user2 hand to check players */
+		/** Make call for user2 hand to check next players hand for suggested WEAPON card */
 		assertTrue(u1.makeSuggestion(hand2, "RED", "ROPE", "KITCHEN"));
 	}
 	
@@ -237,7 +258,10 @@ public class SuggestionTests {
 		Board b = new Board(); // Board
 		Deck d = new Deck(); // 17 Cards
 		
+		/** This ec is for the envelope that is not being used currently */
 		ArrayList<Card> ec = d.get_envelopeCards(); // winning cards
+		/** This ec is for the envelope that is not being used currently */
+		
 		ArrayList<Card> deal = d.get_deck(); // creates Array List of deck to deal
 		
 		User u1 = new User(b, 0);      // users
@@ -286,24 +310,29 @@ public class SuggestionTests {
 		u5.set_userCards(hand5); // YELLOW, BALLROOM, LIBRARY
 		u6.set_userCards(hand6); // CANDLESTICK, CONSERVATORY, BILLARD ROOM
 		
-		
-//		for (Card c : hand2) {
-//			System.out.println(c.get_title());
-//		}
-		
 		/**
-		 * With User1's current turn, it is checking the hand of User2 to see if any of the parameters match the card in User2's hand. 
-		 * Method checks if user2's hand contains anyone of the following; returns false if otherwise.
+		 * With User1's current turn, it is checking the hand of next use to see if any of the parameters match the card in users hand. 
+		 * Method checks if users hand contains anyone of the following; returns false if otherwise.
 		 * USERS HAND PREDETERMINED FOR TESTING PURPOSES
 		 * 
-		 * USER2 HAND: GREEN, ROPE, LOUNGE
-		 * USER3 HAND: BLUE, REVOLVER, HALL
+		 * USER1 SUGGESTION: "GREEN", "ROPE", KITCHEN
 		 * 
-		 * SUGGESTION CHECKS: PLAYERCARD: BLUE
+		 * USER2 HAND: "GREEN", "ROPE", LOUNGE
+		 * USER3 HAND: BLUE, REVOLVER, HALL
+		 * USER4 HAND: PURPLE, KNIFE, STUDY                   
+		 * USER5 HAND: YELLOW, BALLROOM, LIBRARY              
+		 * USER6 HAND: CANDLESTICK, CONSERVATORY, BILLARD ROOM
+		 * 
+		 * SUGGESTION TARGET: "GREEN", "ROPE"
 		 */
 		
-		/** Make call for user2 hand to check players */
+		/** Make call to check players if there is  */
 		assertTrue(u1.makeSuggestion(hand2, "GREEN", "ROPE", "KITCHEN"));
+		assertFalse(u1.makeSuggestion(hand3, "GREEN", "ROPE", "KITCHEN"));
+		assertFalse(u1.makeSuggestion(hand4, "GREEN", "ROPE", "KITCHEN"));
+		assertFalse(u1.makeSuggestion(hand5, "GREEN", "ROPE", "KITCHEN"));
+		assertFalse(u1.makeSuggestion(hand6, "GREEN", "ROPE", "KITCHEN"));
+		
 	}
 	
 	/** Suggestion would be answered by the player after the next player because they have 1 or more matching cards; */
@@ -312,7 +341,10 @@ public class SuggestionTests {
 		Board b = new Board(); // Board
 		Deck d = new Deck(); // 17 Cards
 		
+		/** This ec is for the envelope that is not being used currently */
 		ArrayList<Card> ec = d.get_envelopeCards(); // winning cards
+		/** This ec is for the envelope that is not being used currently */
+		
 		ArrayList<Card> deal = d.get_deck(); // creates Array List of deck to deal
 		
 		User u1 = new User(b, 0);      // users
@@ -360,26 +392,40 @@ public class SuggestionTests {
 		u4.set_userCards(hand4); // PURPLE, KNIFE, STUDY
 		u5.set_userCards(hand5); // YELLOW, BALLROOM, LIBRARY
 		u6.set_userCards(hand6); // CANDLESTICK, CONSERVATORY, BILLARD ROOM
-		
-		
-//		for (Card c : hand2) {
-//			System.out.println(c.get_title());
-//		}
-		
+
 		/**
 		 * With User1's current turn, it is checking the hand of User2 to see if any of the parameters match the card in User2's hand. 
 		 * Method checks if user2's hand contains anyone of the following; returns false if otherwise.
 		 * USERS HAND PREDETERMINED FOR TESTING PURPOSES
 		 * 
-		 * USER2 HAND: GREEN, ROPE, LOUNGE
-		 * USER3 HAND: BLUE, REVOLVER, HALL
+		 * USER1 SUGGESTION: "BLUE", WRENCH KITCHEN
 		 * 
-		 * SUGGESTION CHECKS: PLAYERCARD: BLUE
+		 * USER2 HAND: GREEN, ROPE, LOUNGE
+		 * 
+		 * USER3 HAND: "BLUE", REVOLVER, HALL
+		 * 
+		 * USER4 HAND: PURPLE, KNIFE, STUDY                   
+		 * USER5 HAND: YELLOW, BALLROOM, LIBRARY              
+		 * USER6 HAND: CANDLESTICK, CONSERVATORY, BILLARD ROOM
+		 * 
+		 * SUGGESTION TARGET: "BLUE"
 		 */
 		
-		/** Make call for user2 hand to check players */
+		/** Make call to check players hand after user2 for one card */
 		assertFalse(u1.makeSuggestion(hand2, "BLUE", "WRENCH", "KITCHEN"));
 		assertTrue(u1.makeSuggestion(hand3, "BLUE", "WRENCH", "KITCHEN"));
+		assertFalse(u1.makeSuggestion(hand4, "BLUE", "WRENCH", "KITCHEN"));
+		assertFalse(u1.makeSuggestion(hand5, "BLUE", "WRENCH", "KITCHEN"));
+		assertFalse(u1.makeSuggestion(hand6, "BLUE", "WRENCH", "KITCHEN"));
+		
+		/** Make call to check players hand after user2 for more than one card 
+		 * SUGGESTION TARGET: "PURPLE", "KNIFE"
+		 */
+		assertFalse(u1.makeSuggestion(hand2, "PURPLE", "KNIFE", "KITCHEN"));
+		assertFalse(u1.makeSuggestion(hand3, "PURPLE", "KNIFE", "KITCHEN"));
+		assertTrue(u1.makeSuggestion(hand4, "PURPLE", "KNIFE", "KITCHEN"));
+		assertFalse(u1.makeSuggestion(hand5, "PURPLE", "KNIFE", "KITCHEN"));
+		assertFalse(u1.makeSuggestion(hand6, "PURPLE", "KNIFE", "KITCHEN"));
 	}
 	
 	/** Suggestion would be answered by the player immediately before player making suggestion because they have 1 or more matching cards; 
@@ -392,7 +438,10 @@ public class SuggestionTests {
 		Board b = new Board(); // Board
 		Deck d = new Deck(); // 17 Cards
 		
+		/** This ec is for the envelope that is not being used currently */
 		ArrayList<Card> ec = d.get_envelopeCards(); // winning cards
+		/** This ec is for the envelope that is not being used currently */
+		
 		ArrayList<Card> deal = d.get_deck(); // creates Array List of deck to deal
 		
 		User u1 = new User(b, 0);      // users
@@ -440,11 +489,6 @@ public class SuggestionTests {
 		u4.set_userCards(hand4); // PURPLE, KNIFE, STUDY
 		u5.set_userCards(hand5); // YELLOW, BALLROOM, LIBRARY
 		u6.set_userCards(hand6); // CANDLESTICK, CONSERVATORY, BILLARD ROOM
-		
-		
-//		for (Card c : hand2) {
-//			System.out.println(c.get_title());
-//		}
 		
 		/**
 		 * With User1's current turn, it is checking the hand of User2 to see if any of the parameters match the card in User2's hand. 
@@ -456,8 +500,7 @@ public class SuggestionTests {
 		 * SUGGESTION CHECKS: if User1 has the card that it's suggesting... "WHITE", "LEAD PIPE", "DINING ROOM"
 		 */
 		
-		/** Make call for user1 hand to check players 
-		 */
+		/** Make call for user1 hand to check players */
 		assertTrue(u1.makeSuggestion(hand1, "WHITE", "LEAD PIPE", "DINING ROOM"));
 	}
 	
@@ -467,7 +510,10 @@ public class SuggestionTests {
 		Board b = new Board(); // Board
 		Deck d = new Deck(); // 17 Cards
 		
+		/** This ec is for the envelope that is not being used currently */
 		ArrayList<Card> ec = d.get_envelopeCards(); // winning cards
+		/** This ec is the envelope but it is not being used currently */
+		
 		ArrayList<Card> deal = d.get_deck(); // creates Array List of deck to deal
 		
 		User u1 = new User(b, 0);      // users
@@ -515,29 +561,30 @@ public class SuggestionTests {
 		u4.set_userCards(hand4); // PURPLE, KNIFE, STUDY
 		u5.set_userCards(hand5); // YELLOW, BALLROOM, LIBRARY
 		u6.set_userCards(hand6); // CANDLESTICK, CONSERVATORY, BILLARD ROOM
-		
-		
-//		for (Card c : hand2) {
-//			System.out.println(c.get_title());
-//		}
-		
+				
 		/**
 		 * With User1's current turn, it is checking the hand of User2 to see if any of the parameters match the card in User2's hand. 
 		 * Method checks if user2's hand contains anyone of the following; returns false if otherwise.
 		 * USERS HAND PREDETERMINED FOR TESTING PURPOSES
 		 * 
 		 * SUGGESTION CHECKS if each player has one of these cards: "WHITE", "LEAD PIPE", "DINING ROOM"
+		 * WHILE USER1 has one or more of the suggested cards
+		 * 
+		 * USER1 HAND: "WHITE", "LEAD PIPE", "DINING ROOM"
+		 * USER2 HAND: GREEN, ROPE, LOUNGE
+		 * USER3 HAND: BLUE, REVOLVER, HALL
+		 * USER4 HAND: PURPLE, KNIFE, STUDY                   
+		 * USER5 HAND: YELLOW, BALLROOM, LIBRARY              
+		 * USER6 HAND: CANDLESTICK, CONSERVATORY, BILLARD ROOM
 		 */
 		
 		/** Make call for user2 hand to check players */
+		assertTrue(u1.makeSuggestion(hand1, "WHITE", "LEAD PIPE", "DINING ROOM"));
 		assertFalse(u1.makeSuggestion(hand2, "WHITE", "LEAD PIPE", "DINING ROOM"));
 		assertFalse(u1.makeSuggestion(hand3, "WHITE", "LEAD PIPE", "DINING ROOM"));
 		assertFalse(u1.makeSuggestion(hand4, "WHITE", "LEAD PIPE", "DINING ROOM"));
 		assertFalse(u1.makeSuggestion(hand5, "WHITE", "LEAD PIPE", "DINING ROOM"));
 		assertFalse(u1.makeSuggestion(hand6, "WHITE", "LEAD PIPE", "DINING ROOM"));
-		
-		
-		assertTrue(u1.makeSuggestion(hand1, "WHITE", "LEAD PIPE", "DINING ROOM"));
 	}
 	
 	/** Suggestion cannot be answered by any player and the player making the suggestion does not have any matching cards. */
@@ -546,15 +593,19 @@ public class SuggestionTests {
 		Board b = new Board(); // Board
 		Deck d = new Deck(); // 17 Cards
 		
+		/** ec is the envelope but it is not being used currently */
 		ArrayList<Card> ec = d.get_envelopeCards(); // winning cards: RED, WRENCH, KTICHEN
-		ArrayList<Card> deal = d.get_deck(); // creates Array List of deck to deal
+		/** ec is the envelope but it is not being used currently */
 		
-		User u1 = new User(b, 0);      // users
-		User u2 = new User(b, 1);      // users
-		User u3 = new User(b, 2);      // users
-		User u4 = new User(b, 3);      // users
-		User u5 = new User(b, 4);      // users
-		User u6 = new User(b, 5);      // users
+		// creates Array List of deck to deal
+		ArrayList<Card> deal = d.get_deck();
+		
+		User u1 = new User(b, 0); // users
+		User u2 = new User(b, 1); // users
+		User u3 = new User(b, 2); // users
+		User u4 = new User(b, 3); // users
+		User u5 = new User(b, 4); // users
+		User u6 = new User(b, 5); // users
 		
 		ArrayList<Card> hand1 = new ArrayList<Card>();   // users hand
 		ArrayList<Card> hand2 = new ArrayList<Card>();   // users hand
@@ -595,25 +646,29 @@ public class SuggestionTests {
 		u5.set_userCards(hand5); // YELLOW, BALLROOM, LIBRARY
 		u6.set_userCards(hand6); // CANDLESTICK, CONSERVATORY, BILLARD ROOM
 		
-		
-//		for (Card c : hand2) {
-//			System.out.println(c.get_title());
-//		}
-		
 		/**
 		 * With User1's current turn, it is checking the hand of User2 to see if any of the parameters match the card in User2's hand. 
 		 * Method checks if user2's hand contains anyone of the following; returns false if otherwise.
 		 * USERS HAND PREDETERMINED FOR TESTING PURPOSES
 		 * 
-		 * SUGGESTION CHECKS if each player has one of these cards: "WHITE", "LEAD PIPE", "DINING ROOM"
+		 * SUGGESTION CHECKS if each player has one of these cards: "RED", "WRENTCH", "KITCHEN"
+		 * 
+		 * USER1 HAND: WHITE, LEAD PIPE, DINING ROOM
+		 * USER2 HAND: GREEN, ROPE, LOUNGE
+		 * USER3 HAND: BLUE, REVOLVER, HALL
+		 * USER4 HAND: PURPLE, KNIFE, STUDY                   
+		 * USER5 HAND: YELLOW, BALLROOM, LIBRARY              
+		 * USER6 HAND: CANDLESTICK, CONSERVATORY, BILLARD ROOM
+		 * 
+		 * SUGGESTION TARGET: "RED", "WRENTCH", "KITCHEN"
 		 */
 		
-		/** Make call for user2 hand to check players */
+		/** Make calls to all users if they do not have these cards */
+		assertFalse(u1.makeSuggestion(hand1, "RED", "WRENTCH", "KITCHEN"));
 		assertFalse(u1.makeSuggestion(hand2, "RED", "WRENTCH", "KITCHEN"));
 		assertFalse(u1.makeSuggestion(hand3, "RED", "WRENTCH", "KITCHEN"));
 		assertFalse(u1.makeSuggestion(hand4, "RED", "WRENTCH", "KITCHEN"));
 		assertFalse(u1.makeSuggestion(hand5, "RED", "WRENTCH", "KITCHEN"));
 		assertFalse(u1.makeSuggestion(hand6, "RED", "WRENTCH", "KITCHEN"));
-		assertFalse(u1.makeSuggestion(hand1, "RED", "WRENTCH", "KITCHEN"));
 	}
 }
