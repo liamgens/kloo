@@ -10,20 +10,34 @@ import static org.junit.Assert.*;
  * Created by liamgens on 10/20/16.
  */
 
+/**
+ * README -- Users make moves a tile at a time. They can only make as many moves as what they roll. Our board holds the current roll,
+ * so when a user is out of moves, the next user must roll. Rolls are managed through the board, so you have to call roll on the board. As of right now,
+ * the user doesn't hold the roll, and turns are manual, but this will all be implemented in stage 2.
+ *
+ * Our Board is an ArrayList of Tile objects that are generated into a 25x25 grid. Each tile holds an X,Y coordinate, starting with 0,0 in the top left
+ * and 24,24 in the bottom right. Under the drawable package (edu.buffalo.cse116.drawable) is a layout of what the board looks like for visual representation.
+ *
+ * Rooms
+ */
+
 public class MoveLegalityTests {
-    //Checks if the user's starting point is correct
+    /**
+     * Tests to see if the starting point for the Player is correct
+     */
     @Test
     public void startingPointTest(){
         Board b = new Board();
         b.addDefaultDoors();
         b.addDefaultRooms();
         User p1 = new User(b, 0);
-
         assertEquals(0, p1.get_posX());
         assertEquals(6, p1.get_posY());
     }
 
-    //Checks if moves in the vertical direction work
+    /**
+     * Tests to see if moves in the vertical direction work
+     */
     @Test
     public void verticalMoves(){
         //DIE ROLL IS RANDOM, SO I SET A CONSTANT FOR TESTING -- RANDOM DOES WORK THOUGH, JUST CAN'T TEST
@@ -169,6 +183,6 @@ public class MoveLegalityTests {
 
     //FIXME test multiple characters
     //FIXME test going out of board
-    //FIXME test secret passages
+    //FIXME test secret passages(transport & transport correctly
 
 }
