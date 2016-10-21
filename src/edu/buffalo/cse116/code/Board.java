@@ -93,7 +93,7 @@ public class Board {
     }
 
     /**
-     * Mimicks rolling dice
+     * Mimics rolling dice
      * @return int value representing the distance a player can move.
      */
     public int rollDice(){
@@ -101,15 +101,22 @@ public class Board {
         return _currentRoll;
     }
 
+    /**
+     * Uses the die roll by decrementing the _currentRoll.
+     */
     public void useRoll(){
         if(_currentRoll > 0) {
             _currentRoll --;
         }
     }
 
+    /**
+     * Sets the _currentRoll to zero and ends the User's turn.
+     */
     public void resetRoll(){
         _currentRoll = 0;
     }
+
 
     public int get_currentRoll(){
         return _currentRoll;
@@ -117,7 +124,12 @@ public class Board {
 
     public void set_currentRoll(int roll ){_currentRoll = roll;}
 
-
+    /**
+     * Gets a specific tile on the board.
+     * @param x The x coordinate of the tile on the board.
+     * @param y The y coordinate of the tile on the board.
+     * @return
+     */
     public Tile getTile(int x, int y){
         for(Tile t : _tiles){
             if(t.get_xCoor() == x && t.get_yCoor() == y){
@@ -127,6 +139,11 @@ public class Board {
         return null;
     }
 
+    /**
+     * Gets the name of a specific room by its index in the _rooms ArrayList.
+     * @param iD int of the room's index on the _rooms ArrayList.
+     * @return the room's name.
+     */
     public Room getRoomByID(int iD){
         for(Room r : _rooms){
             if(r.get_idx() == iD){
