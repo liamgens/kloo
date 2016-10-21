@@ -75,7 +75,6 @@ public class MoveLegalityTests {
         assertTrue(p1.makeMove(7,24));
     }
 
-    //FIXME
     @Test
     public void horizontalAndVerticalMoves(){
         //Create the Board and the User (Miss Scarlett)
@@ -186,7 +185,9 @@ public class MoveLegalityTests {
     public void contiguousMoves(){
         //Create the Board and the User ()
         Board b = new Board();
-        User p1 = new User(b, 4);
+        User p1 = new User(b, 1);
+
+
 
     }
 
