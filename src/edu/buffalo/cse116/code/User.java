@@ -61,10 +61,19 @@ public class User {
     public boolean makeSuggestion(ArrayList<Card> opponent, String sus, String wep, String loc) {
         for (Card c : opponent) {
             if (c.get_title() == sus) {
+            	if (c.get_title() == wep || c.get_title() == loc) {
+            		return true;
+            	}
                 return true;
             } else if (c.get_title() == wep) {
+            	if (c.get_title() == sus || c.get_title() == loc) {
+            		return true;
+            	}
                 return true;
             } else if (c.get_title() == loc) {
+            	if (c.get_title() == sus || c.get_title() == wep) {
+            		return true;
+            	}
                 return true;
             }
         }
