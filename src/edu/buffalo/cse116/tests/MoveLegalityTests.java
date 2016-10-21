@@ -167,4 +167,8 @@ public class MoveLegalityTests {
 
     }
 
+    //FIXME test multiple characters
+    //FIXME test going out of board
+    //FIXME test secret passages
+
 }
