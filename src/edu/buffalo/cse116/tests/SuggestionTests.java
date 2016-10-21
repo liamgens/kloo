@@ -322,12 +322,156 @@ public class SuggestionTests {
 	/** Suggestion cannot be answered by any player but the player making the suggestion has 1 or more matching cards; */
 	@Test
 	public void SuggestionTest07() {
+		Board b = new Board(); // Board
+		Deck d = new Deck(); // 17 Cards
 		
+		ArrayList<Card> ec = d.get_envelopeCards(); // winning cards
+		ArrayList<Card> deal = d.get_deck(); // creates Array List of deck to deal
+		
+		User u1 = new User(b, 0);      // users
+		User u2 = new User(b, 1);      // users
+		User u3 = new User(b, 2);      // users
+		User u4 = new User(b, 3);      // users
+		User u5 = new User(b, 4);      // users
+		User u6 = new User(b, 5);      // users
+		
+		ArrayList<Card> hand1 = new ArrayList<Card>();   // users hand
+		ArrayList<Card> hand2 = new ArrayList<Card>();   // users hand
+		ArrayList<Card> hand3 = new ArrayList<Card>();   // users hand
+		ArrayList<Card> hand4 = new ArrayList<Card>();   // users hand
+		ArrayList<Card> hand5 = new ArrayList<Card>();   // users hand
+		ArrayList<Card> hand6 = new ArrayList<Card>();   // users hand
+		
+		// Deal all RANDOM cards
+		
+		/** For testing purposes cards are dealt one deck at a time 
+		 * CARDS REMOVED: RED, WRENCH, KITCHEN 
+		 */
+		hand1.add(d.dealFirstCard(deal)); // WHITE        
+		hand2.add(d.dealFirstCard(deal)); // GREEN        
+		hand3.add(d.dealFirstCard(deal)); // BLUE         
+		hand4.add(d.dealFirstCard(deal)); // PURPLE       
+		hand5.add(d.dealFirstCard(deal)); // YELLOW       
+		hand6.add(d.dealFirstCard(deal)); // CANDLESTICK  
+		hand1.add(d.dealFirstCard(deal)); // LEAD PIPE         
+		hand2.add(d.dealFirstCard(deal)); // ROPE          
+		hand3.add(d.dealFirstCard(deal)); // REVOLVER      
+		hand4.add(d.dealFirstCard(deal)); // KNIFE         
+		hand5.add(d.dealFirstCard(deal)); // BALLROOM      
+		hand6.add(d.dealFirstCard(deal)); // CONSERVATORY  
+		hand1.add(d.dealFirstCard(deal)); // DINING ROOM     
+		hand2.add(d.dealFirstCard(deal)); // LOUNGE        
+		hand3.add(d.dealFirstCard(deal)); // HALL          
+		hand4.add(d.dealFirstCard(deal)); // STUDY         
+		hand5.add(d.dealFirstCard(deal)); // LIBRARY       
+		hand6.add(d.dealFirstCard(deal)); // BILLARD ROOM  
+		                                   
+		// Set Users hand
+		u1.set_userCards(hand1); // WHITE, LEAD PIPE, DINING ROOM
+		u2.set_userCards(hand2); // GREEN, ROPE, LOUNGE
+		u3.set_userCards(hand3); // BLUE, REVOLVER, HALL
+		u4.set_userCards(hand4); // PURPLE, KNIFE, STUDY
+		u5.set_userCards(hand5); // YELLOW, BALLROOM, LIBRARY
+		u6.set_userCards(hand6); // CANDLESTICK, CONSERVATORY, BILLARD ROOM
+		
+		
+//		for (Card c : hand2) {
+//			System.out.println(c.get_title());
+//		}
+		
+		/**
+		 * With User1's current turn, it is checking the hand of User2 to see if any of the parameters match the card in User2's hand. 
+		 * Method checks if user2's hand contains anyone of the following; returns false if otherwise.
+		 * USERS HAND PREDETERMINED FOR TESTING PURPOSES
+		 * 
+		 * SUGGESTION CHECKS if each player has one of these cards: "WHITE", "LEAD PIPE", "DINING ROOM"
+		 */
+		
+		/** Make call for user2 hand to check players */
+		assertFalse(u1.makeSuggestion(hand2, "WHITE", "LEAD PIPE", "DINING ROOM"));
+		assertFalse(u1.makeSuggestion(hand3, "WHITE", "LEAD PIPE", "DINING ROOM"));
+		assertFalse(u1.makeSuggestion(hand4, "WHITE", "LEAD PIPE", "DINING ROOM"));
+		assertFalse(u1.makeSuggestion(hand5, "WHITE", "LEAD PIPE", "DINING ROOM"));
+		assertFalse(u1.makeSuggestion(hand6, "WHITE", "LEAD PIPE", "DINING ROOM"));
+		
+		
+		assertTrue(u1.makeSuggestion(hand1, "WHITE", "LEAD PIPE", "DINING ROOM"));
 	}
 	
 	/** Suggestion cannot be answered by any player and the player making the suggestion does not have any matching cards. */
 	@Test
 	public void SuggestionTest08() {
+		Board b = new Board(); // Board
+		Deck d = new Deck(); // 17 Cards
 		
+		ArrayList<Card> ec = d.get_envelopeCards(); // winning cards: RED, WRENCH, KTICHEN
+		ArrayList<Card> deal = d.get_deck(); // creates Array List of deck to deal
+		
+		User u1 = new User(b, 0);      // users
+		User u2 = new User(b, 1);      // users
+		User u3 = new User(b, 2);      // users
+		User u4 = new User(b, 3);      // users
+		User u5 = new User(b, 4);      // users
+		User u6 = new User(b, 5);      // users
+		
+		ArrayList<Card> hand1 = new ArrayList<Card>();   // users hand
+		ArrayList<Card> hand2 = new ArrayList<Card>();   // users hand
+		ArrayList<Card> hand3 = new ArrayList<Card>();   // users hand
+		ArrayList<Card> hand4 = new ArrayList<Card>();   // users hand
+		ArrayList<Card> hand5 = new ArrayList<Card>();   // users hand
+		ArrayList<Card> hand6 = new ArrayList<Card>();   // users hand
+		
+		// Deal all RANDOM cards
+		
+		/** For testing purposes cards are dealt one deck at a time 
+		 * CARDS REMOVED: RED, WRENCH, KITCHEN 
+		 */
+		hand1.add(d.dealFirstCard(deal)); // WHITE        
+		hand2.add(d.dealFirstCard(deal)); // GREEN        
+		hand3.add(d.dealFirstCard(deal)); // BLUE         
+		hand4.add(d.dealFirstCard(deal)); // PURPLE       
+		hand5.add(d.dealFirstCard(deal)); // YELLOW       
+		hand6.add(d.dealFirstCard(deal)); // CANDLESTICK  
+		hand1.add(d.dealFirstCard(deal)); // LEAD PIPE         
+		hand2.add(d.dealFirstCard(deal)); // ROPE          
+		hand3.add(d.dealFirstCard(deal)); // REVOLVER      
+		hand4.add(d.dealFirstCard(deal)); // KNIFE         
+		hand5.add(d.dealFirstCard(deal)); // BALLROOM      
+		hand6.add(d.dealFirstCard(deal)); // CONSERVATORY  
+		hand1.add(d.dealFirstCard(deal)); // DINING ROOM     
+		hand2.add(d.dealFirstCard(deal)); // LOUNGE        
+		hand3.add(d.dealFirstCard(deal)); // HALL          
+		hand4.add(d.dealFirstCard(deal)); // STUDY         
+		hand5.add(d.dealFirstCard(deal)); // LIBRARY       
+		hand6.add(d.dealFirstCard(deal)); // BILLARD ROOM  
+		                                   
+		// Set Users hand
+		u1.set_userCards(hand1); // WHITE, LEAD PIPE, DINING ROOM
+		u2.set_userCards(hand2); // GREEN, ROPE, LOUNGE
+		u3.set_userCards(hand3); // BLUE, REVOLVER, HALL
+		u4.set_userCards(hand4); // PURPLE, KNIFE, STUDY
+		u5.set_userCards(hand5); // YELLOW, BALLROOM, LIBRARY
+		u6.set_userCards(hand6); // CANDLESTICK, CONSERVATORY, BILLARD ROOM
+		
+		
+//		for (Card c : hand2) {
+//			System.out.println(c.get_title());
+//		}
+		
+		/**
+		 * With User1's current turn, it is checking the hand of User2 to see if any of the parameters match the card in User2's hand. 
+		 * Method checks if user2's hand contains anyone of the following; returns false if otherwise.
+		 * USERS HAND PREDETERMINED FOR TESTING PURPOSES
+		 * 
+		 * SUGGESTION CHECKS if each player has one of these cards: "WHITE", "LEAD PIPE", "DINING ROOM"
+		 */
+		
+		/** Make call for user2 hand to check players */
+		assertFalse(u1.makeSuggestion(hand2, "RED", "WRENTCH", "KITCHEN"));
+		assertFalse(u1.makeSuggestion(hand3, "RED", "WRENTCH", "KITCHEN"));
+		assertFalse(u1.makeSuggestion(hand4, "RED", "WRENTCH", "KITCHEN"));
+		assertFalse(u1.makeSuggestion(hand5, "RED", "WRENTCH", "KITCHEN"));
+		assertFalse(u1.makeSuggestion(hand6, "RED", "WRENTCH", "KITCHEN"));
+		assertFalse(u1.makeSuggestion(hand1, "RED", "WRENTCH", "KITCHEN"));
 	}
 }
