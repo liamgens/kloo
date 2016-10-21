@@ -1,21 +1,59 @@
 package edu.buffalo.cse116.code;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 /**
  * Created by liamgens on 10/9/16.
  */
 public class User {
 
+    private ArrayList<Card> _userCards;
+    //    private String[] USER_TOKEN = {"RED", "WHITE", "GREEN", "BLUE", "PURPLE", "YELLOW"};
+    private String[] CHARACTER_NAME = {"Miss Scarlett", "Mrs. White", "Mr. Green", "Mrs. Peacock", "Professor Plum", "Colonel Mustard"};
+    private int _userTurn;
     private int _posX, _posY;
     private Board _board;
+    private ArrayList<User> u;
 
-    public User(Board board, String characterName){
+    public User(Board board, int characterName){
+        _userCards = new ArrayList<Card>();
         _board = board;
-        setStartingPosition(characterName);
+        setStartingPosition(CHARACTER_NAME[characterName]);
+        _userTurn = characterName;
         _board.getTile(get_posX(),get_posY()).set_isOccupied(true);
     }
+
+    public Card showCard(Card show) {
+        return show;
+    }
+
+    public ArrayList<Card> get_userCards() {
+        return _userCards;
+    }
+
+    public int get_userTurn() {
+        return _userTurn;
+    }
+
+    public void set_userCards(ArrayList<Card> _userCards) {
+        this._userCards = _userCards;
+    }
+
+
+    public boolean makeSuggestion(ArrayList<Card> opponent, String sus, String wep, String loc) {
+        for (Card c : opponent) {
+            if (c.get_title() == sus) {
+                return true;
+            } else if (c.get_title() == wep) {
+                return true;
+            } else if (c.get_title() == loc) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
 
     //Player Position
     public int get_posX() {
@@ -50,6 +88,7 @@ public class User {
         if (desiredTile == null) {
             return false;
         }
+
         if (desiredTile.equals(playersCurrentTile.getNorth(_board))
                 || desiredTile.equals(playersCurrentTile.getSouth(_board)) || desiredTile.equals(playersCurrentTile.getEast(_board))
                 || desiredTile.equals(playersCurrentTile.getWest(_board))) {
@@ -135,7 +174,7 @@ public class User {
 
     public void setStartingPosition(String name){
         switch(name){
-            case "Mrs. White":
+            case "Miss Scarlett":
                 _posX = 0;
                 _posY = 6;
                 break;
@@ -150,7 +189,7 @@ public class User {
                 _posY = 24;
                 break;
 
-            case "Miss Scarlett":
+            case "Mrs. White":
                 _posX = 18;
                 _posY = 0;
                 break;
@@ -171,11 +210,6 @@ public class User {
                 break;
 
         }
-    }
-
-    public String[] makeSuggestion(String room, String suspect, String weapon){
-        String[] suggestion = {room, suspect, weapon};
-        return suggestion;
     }
 
 

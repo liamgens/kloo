@@ -16,7 +16,7 @@ public class MoveLegalityTests {
         Board b = new Board();
         b.addDefaultDoors();
         b.addDefaultRooms();
-        User p1 = new User(b, "Mrs. White");
+        User p1 = new User(b, 0);
 
         assertEquals(0, p1.get_posX());
         assertEquals(6, p1.get_posY());
@@ -29,7 +29,9 @@ public class MoveLegalityTests {
         Board b = new Board();
         b.addDefaultDoors();
         b.addDefaultRooms();
-        User p1 = new User(b, "Mrs. Peacock");
+        User p1 = new User(b, 3);
+
+        System.out.println(p1.get_posX() + " " + p1.get_posY());
 
         b.set_currentRoll(3);
 
@@ -51,7 +53,7 @@ public class MoveLegalityTests {
         Board b = new Board();
         b.addDefaultDoors();
         b.addDefaultRooms();
-        User p1 = new User(b, "Professor Plum");
+        User p1 = new User(b, 4);
 
         b.set_currentRoll(3);
 
@@ -67,7 +69,7 @@ public class MoveLegalityTests {
         Board b = new Board();
         b.addDefaultDoors();
         b.addDefaultRooms();
-        User p1 = new User(b, "Miss Scarlett");
+        User p1 = new User(b, 0);
 
         //checks an illegal move
         b.set_currentRoll(3);
@@ -81,7 +83,7 @@ public class MoveLegalityTests {
         Board b = new Board();
         b.addDefaultDoors();
         b.addDefaultRooms();
-        User p1 = new User(b, "Mr. Green");
+        User p1 = new User(b, 2);
 
         b.set_currentRoll(4);
         p1.makeMove(17,23);
@@ -96,7 +98,7 @@ public class MoveLegalityTests {
         Board b = new Board();
         b.addDefaultDoors();
         b.addDefaultRooms();
-        User p1 = new User(b, "Mr. Green");
+        User p1 = new User(b, 2);
 
         b.set_currentRoll(3);
         p1.makeMove(17,23);
@@ -111,7 +113,7 @@ public class MoveLegalityTests {
         Board b = new Board();
         b.addDefaultDoors();
         b.addDefaultRooms();
-        User p1 = new User(b, "Professor Plum");
+        User p1 = new User(b, 4);
 
         b.set_currentRoll(6);
         p1.makeMove(24,5);
@@ -133,7 +135,7 @@ public class MoveLegalityTests {
         Board b = new Board();
         b.addDefaultDoors();
         b.addDefaultRooms();
-        User p1 = new User(b, "Professor Plum");
+        User p1 = new User(b, 4);
 
         b.set_currentRoll(6);
         p1.makeMove(24,5);
@@ -156,10 +158,10 @@ public class MoveLegalityTests {
         b.addDefaultDoors();
         b.addDefaultRooms();
 
-        User p1 = new User(b, "Colonel Mustard");
+        User p1 = new User(b, 5);
         assertFalse(p1.makeMove(2,19));
 
-        p1 = new User(b, "Miss Scarlett");
+        p1 = new User(b, 0);
         assertFalse(p1.makeMove(18,4));
 
     }
