@@ -41,7 +41,7 @@ public class User {
      * @return true if the player moves, false otherwise
      */
     public boolean makeMove(int desiredX, int desiredY) {
-        if(_board.get_currentRoll() == 0){
+        if(_board.get_currentRoll() <= 0){
             return false;
         }
         Tile playersCurrentTile = _board.getTile(_posX, _posY);
@@ -146,7 +146,7 @@ public class User {
                 break;
 
             case "Mrs. Peacock":
-                _posX = 8;
+                _posX = 7;
                 _posY = 24;
                 break;
 
@@ -171,6 +171,11 @@ public class User {
                 break;
 
         }
+    }
+
+    public String[] makeSuggestion(String room, String suspect, String weapon){
+        String[] suggestion = {room, suspect, weapon};
+        return suggestion;
     }
 
 

@@ -94,7 +94,6 @@ public class Board {
      * @return int value representing the distance a player can move.
      */
     public int rollDice(){
-        resetRoll();
         _currentRoll = new Random().nextInt(6) + 1;
         return _currentRoll;
     }
@@ -112,6 +111,8 @@ public class Board {
     public int get_currentRoll(){
         return _currentRoll;
     }
+
+    public void set_currentRoll(int roll ){_currentRoll = roll;}
 
 
     public Tile getTile(int x, int y){
