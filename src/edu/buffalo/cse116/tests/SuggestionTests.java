@@ -10,6 +10,8 @@ import static org.junit.Assert.assertTrue;
 /**
  * Created by liamgens on 10/20/16.
  */
+
+
 public class SuggestionTests {
     /** Suggestion would be answered by the next player because they have the Player card; */
     @Test
