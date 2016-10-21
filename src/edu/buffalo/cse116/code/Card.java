@@ -6,6 +6,9 @@ package edu.buffalo.cse116.code;
  * Created by liamgens on 10/8/16.
  * Card Types = PLAYER, WEAPON, ROOM
  * Card Values = PURPLE, WRENCH, LOUNGE, etc... [depends on index]
+ * 
+ * Card Class will give each card a value based on the inputs in the 2D cardArray. There are three types of cards: PLAYER, WEAPON, ROOM.
+ * Each card will later be assigned a value based on the card type. These cards will later be used to create the decks.
  */
 public class Card {
 	

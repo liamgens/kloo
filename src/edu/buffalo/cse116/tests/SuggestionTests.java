@@ -7,6 +7,15 @@ import java.util.ArrayList;
 
 import edu.buffalo.cse116.code.*;
 
+/**
+ * All 8 suggestion tests that were requested are shown here. Private instances of Board and Deck are used to start the game.
+ * Users are created and will be assigned a "hand" value to keep track of the cards that they currently possess.
+ * They will use that hand to test the suggestions that are requested according to different values based on the users suggestion.
+ * The envelope is required to separate cards from the dealing deck but they will not be used for testing.
+ * @author Danny
+ *
+ */
+
 public class SuggestionTests {
 	
 	/** Suggestion would be answered by the next player because they have the Player card; */
