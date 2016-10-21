@@ -8,7 +8,7 @@ package edu.buffalo.cse116.code;
  * Card Values = PURPLE, WRENCH, LOUNGE, etc... [depends on index]
  */
 public class Card {
-
+	
     private String _title; // Card Values
     private int _typeOfCard; // Card Types
 
@@ -27,6 +27,12 @@ public class Card {
     /** Represent Card Types in String form */
     private String[] _cardTypes2String = {"Player", "Weapon", "Room"};
 
+    /**
+     * CONSTRUCTOR
+     * Uses cardArray to assign individual & valid values and types to one card.
+     * @param cardType
+     * @param cardVal
+     */
     public Card(int cardType, int cardVal){
         if (cardType != PLAYER && cardType != WEAPON && cardType != ROOM) {
             throw new IllegalArgumentException("Illegal playing card type");
@@ -36,6 +42,8 @@ public class Card {
         }
     }
 
+    // GETTERS
+    
     public String get_title() {
         return _title;
     }

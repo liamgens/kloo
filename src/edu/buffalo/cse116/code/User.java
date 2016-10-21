@@ -7,13 +7,13 @@ import java.util.ArrayList;
  */
 public class User {
 
-    private ArrayList<Card> _userCards;
+    private ArrayList<Card> _userCards; // Used to return cards
     //    private String[] USER_TOKEN = {"RED", "WHITE", "GREEN", "BLUE", "PURPLE", "YELLOW"};
     private String[] CHARACTER_NAME = {"Miss Scarlett", "Mrs. White", "Mr. Green", "Mrs. Peacock", "Professor Plum", "Colonel Mustard"};
-    private int _userTurn;
+    private int _userTurn; // Assigns turns to users starting from RED a.k.a Miss Scarlett
     private int _posX, _posY;
     private Board _board;
-    private ArrayList<User> u;
+    private ArrayList<User> u; // Will be used later...
 
     /**
      * Creates a User on the game board and assigns it a characterName from the CHARACTER_NAME Array.
@@ -31,19 +31,15 @@ public class User {
         _userTurn = characterName;
         _board.getTile(get_posX(),get_posY()).set_isOccupied(true);
     }
+    
+//    public Card showCard(Card show) { return show; }
+//    public ArrayList<Card> get_userCards() { return _userCards; }
 
-  /*  public Card showCard(Card show) {
-        return show;
-    }
-
-    public ArrayList<Card> get_userCards() {
-        return _userCards;
-    }*/
-
+    // Getter
     public int get_userTurn() {
         return _userTurn;
     }
-
+    /** Assigns hands to users*/
     public void set_userCards(ArrayList<Card> _userCards) {
         this._userCards = _userCards;
     }

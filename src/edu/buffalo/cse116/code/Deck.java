@@ -9,7 +9,7 @@ import java.util.Collections;
  */
 public class Deck{
 	
-		/** _mainDeck will either be used by the Users or will be used for dealing cards*/
+		/** _mainDeck is used for dealing cards*/
         private ArrayList<Card> _mainDeck;
         
         /** These are the decks that will be used for the envelope selection */
@@ -21,10 +21,10 @@ public class Deck{
         private ArrayList<Card> _envelopeCards;
         
         /**
+         * CONSTRUCTOR
          * Creates a deck of cards.
          * This will be used for start of the game
          */
-        
         public Deck() {
         	_playerDeck = newPlayerDeck();
         	_weaponDeck = newWeaponDeck();
@@ -38,6 +38,7 @@ public class Deck{
         	_envelopeCards = chosenEnvelopeCards();
         	_mainDeck = createDealingDeck();
         	
+        /** For Testing purposes, don't shuffle */
 //        	shuffle(_mainDeck);
         }
         
@@ -173,11 +174,14 @@ public class Deck{
         	mainDeck.addAll(_playerDeck); // 5 Cards
         	mainDeck.addAll(_weaponDeck); // 5 Cards
         	mainDeck.addAll(_roomDeck); // 8 Cards
+        	
+        	/** For Testing purposes, don't shuffle */
 //        	shuffle(mainDeck);
+        	
         	return mainDeck;
         }     
 
-        //GETTERS
+        // GETTERS
 
         public ArrayList<Card> get_deck() {
                 return _mainDeck;
