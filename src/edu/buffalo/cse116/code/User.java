@@ -144,6 +144,8 @@ public class User {
                 playersCurrentTile.set_isOccupied(false);
                 _posX = desiredX;
                 _posY = desiredY;
+                playersCurrentTile = _board.getTile(_posX, _posY);
+                checkPassage(playersCurrentTile, playersCurrentRoom);
                 return true;
             }
             //door -> hallway
@@ -157,31 +159,7 @@ public class User {
                 return true;
             }
 
-            playersCurrentTile = _board.getTile(_posX, _posY);
 
-            //secret passage to random roomTile
-            if (playersCurrentTile.is_isPassage())
-                if (playersCurrentRoom == 6) {
-                    Tile newPosition = (_board.getRoomByID(0).getRandomTile());
-                    if (newPosition != null) {
-                        useSecretPassage(playersCurrentTile, newPosition);
-                    }
-                } else if (playersCurrentRoom == 0) {
-                    Tile newPosition = (_board.getRoomByID(6).getRandomTile());
-                    if (newPosition != null) {
-                        useSecretPassage(playersCurrentTile, newPosition);
-                    }
-                } else if (playersCurrentRoom == 4) {
-                    Tile newPosition = (_board.getRoomByID(2).getRandomTile());
-                    if (newPosition != null) {
-                        useSecretPassage(playersCurrentTile, newPosition);
-                    }
-                } else if (playersCurrentRoom == 2) {
-                    Tile newPosition = (_board.getRoomByID(4).getRandomTile());
-                    if (newPosition != null) {
-                        useSecretPassage(playersCurrentTile, newPosition);
-                    }
-                }
 
         }
         return false;
@@ -200,6 +178,32 @@ public class User {
         _posY = newPosition.get_yCoor();
         newPosition.set_isOccupied(true);
         _board.resetRoll();
+    }
+
+    public void checkPassage(Tile playersCurrentTile, int playersCurrentRoom){
+        if (playersCurrentTile.is_isPassage()) {
+            if (playersCurrentRoom == 6) {
+                Tile newPosition = (_board.getRoomByID(0).getRandomTile());
+                if (newPosition != null) {
+                    useSecretPassage(playersCurrentTile, newPosition);
+                }
+            } else if (playersCurrentRoom == 0) {
+                Tile newPosition = (_board.getRoomByID(6).getRandomTile());
+                if (newPosition != null) {
+                    useSecretPassage(playersCurrentTile, newPosition);
+                }
+            } else if (playersCurrentRoom == 4) {
+                Tile newPosition = (_board.getRoomByID(2).getRandomTile());
+                if (newPosition != null) {
+                    useSecretPassage(playersCurrentTile, newPosition);
+                }
+            } else if (playersCurrentRoom == 2) {
+                Tile newPosition = (_board.getRoomByID(4).getRandomTile());
+                if (newPosition != null) {
+                    useSecretPassage(playersCurrentTile, newPosition);
+                }
+            }
+        }
     }
 
     /**

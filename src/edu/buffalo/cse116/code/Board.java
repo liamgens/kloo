@@ -16,6 +16,7 @@ public class Board {
         _rooms = new ArrayList<Room>();
         this.addDefaultRooms();
         this.addDefaultDoors();
+        this.addSecretPassages();
     }
 
     /**
@@ -89,7 +90,16 @@ public class Board {
         for(int i = 0; i < doorCoor.length; i++){
             getTile(doorCoor[i][0], doorCoor[i][1]).set_isDoor(true);
         }
+    }
 
+    /**
+     * Add the secret passages
+     */
+    public void addSecretPassages(){
+        int[][] secretCoors = {{0,0},{24,0},{0,24},{24,24}};
+        for(int i = 0; i < secretCoors.length; i++){
+            getTile(secretCoors[i][0], secretCoors[i][1]).set_isPassage(true);
+        }
     }
 
     /**

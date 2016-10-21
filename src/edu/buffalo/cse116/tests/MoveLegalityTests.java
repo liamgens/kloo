@@ -1,6 +1,7 @@
 package edu.buffalo.cse116.tests;
 
 import edu.buffalo.cse116.code.Board;
+import edu.buffalo.cse116.code.Tile;
 import edu.buffalo.cse116.code.User;
 import org.junit.*;
 
@@ -136,6 +137,45 @@ public class MoveLegalityTests {
     //FIXME
     @Test
     public void secretPassage(){
+        //Create the Board and the User (Mrs. Peacock)
+        Board b = new Board();
+        User p1 = new User(b, 3);
+
+        //Set the current roll to 6
+        b.set_currentRoll(6);
+
+        //Move 3 tiles North
+        p1.makeMove(7,23);
+        p1.makeMove(7,22);
+        p1.makeMove(7,21);
+
+        //Move 3 tiles West
+        p1.makeMove(6,21);
+        p1.makeMove(5,21);
+        p1.makeMove(4,21);
+
+        //Set the current roll to 6
+        b.set_currentRoll(6);
+
+        //Move 3 tiles West
+        p1.makeMove(3,21);
+        p1.makeMove(2,21);
+        p1.makeMove(1,21);
+        p1.makeMove(0,21);
+
+        //Move 2 tiles South
+        p1.makeMove(0,22);
+        p1.makeMove(0,23);
+
+        //Set the current roll to 6
+        b.set_currentRoll(6);
+
+        //Move 1 tile South to the secret passage in the Conservatory
+        assertTrue(p1.makeMove(0,24));
+
+        //Check to see if the user is now in the Lounge
+        Tile t = b.getTile(p1.get_posX(), p1.get_posY());
+        assertEquals(4, t.get_parentRoom());
 
     }
 
@@ -171,8 +211,10 @@ public class MoveLegalityTests {
         Board b = new Board();
         User p1 = new User(b, 0);
 
-        //Attempts to move diagonally
+        //Set the current roll to 1
         b.set_currentRoll(1);
+
+        //Attempts to move diagonally
         assertFalse(p1.makeMove(1,5));
 
         //Check the position is still correct
@@ -180,131 +222,106 @@ public class MoveLegalityTests {
         assertEquals(6, p1.get_posY());
     }
 
-    //FIXME
     @Test
     public void contiguousMoves(){
-        //Create the Board and the User ()
+        //Create the Board and the User (Mrs. White)
         Board b = new Board();
         User p1 = new User(b, 1);
+
+        //Set the current roll to 2
+        b.set_currentRoll(2);
+
+        //Attempt to move 2 tiles South
+        p1.makeMove(18, 2);
+
+        //Attempt to move 4 tiles South
+        p1.makeMove(18,4);
 
 
     }
 
-    //FIXME
     @Test
     public void throughAWall(){
         //Create the Board and the User (Colonel Mustard)
         Board b = new Board();
         User p1 = new User(b, 5);
 
-    }
+        //Set the current roll to 1
+        b.set_currentRoll(1);
 
+        //Attempt move 1 tile South - Hitting the Conservatory Door
+        assertFalse(p1.makeMove(0,20));
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    @Test
-    //Checks Hallway >> Door
-    public void hallwayToDoor(){
-        Board b = new Board();
-        User p1 = new User(b, 2);
-
-        b.set_currentRoll(4);
-        p1.makeMove(17,23);
-        p1.makeMove(17,22);
-        p1.makeMove(17,21);
-        assertTrue(p1.makeMove(16,21));
+        //Check the position is still correct
+        assertEquals(0, p1.get_posX());
+        assertEquals(19, p1.get_posY());
 
     }
 
-    @Test
-    public void hallwayToWall(){
-        Board b = new Board();
-        User p1 = new User(b, 2);
 
-        b.set_currentRoll(3);
-        p1.makeMove(17,23);
-        p1.makeMove(17,22);
-        assertFalse(p1.makeMove(16,22));
 
-    }
 
-    //
+
+
+
+
+
+
+
+
+
+
+
+
+    /**
+     * These tests are not required, but are some other things that
+     * should be tested.
+     */
+
+    /**
+     *
+     */
     @Test
     public void roomToHallway(){
+        //Create the Board and the User (Professor Plum)
         Board b = new Board();
         User p1 = new User(b, 4);
 
+        //Set the current roll to 6
         b.set_currentRoll(6);
+
+        //Move into the room
         p1.makeMove(24,5);
         p1.makeMove(23,5);
         p1.makeMove(22,5);
         p1.makeMove(21,5);
-        assertTrue(p1.makeMove(21,4));
+        p1.makeMove(21,4);
+        p1.makeMove(21,3);
 
+        //Set the current roll to 3
         b.set_currentRoll(3);
 
-        assertTrue(p1.makeMove(20,4));
-        assertFalse(p1.makeMove(20,5));
+        //Move to the edge of the room
+        p1.makeMove(20,3);
+
+        //Attempt to move through from the room to the hallway through the wall
+        assertFalse(p1.makeMove(19,3));
 
     }
 
-
-
-    //The method checks non-contiguous moves
     @Test
-    public void checkMoreThanOneMove(){
+    public void outOfBoardTest(){
+        //Create the Board and the User (Miss Scarlett)
         Board b = new Board();
+        User p1 = new User(b, 0);
 
-        User p1 = new User(b, 5);
-        assertFalse(p1.makeMove(2,19));
+        //Set the current roll to 1
+        b.set_currentRoll(1);
 
-        p1 = new User(b, 0);
-        assertFalse(p1.makeMove(18,4));
+        //Attempt to move out of the board
+        assertFalse(p1.makeMove(-1,6));
 
     }
-
-    //FIXME test multiple characters
-    //FIXME test going out of board
-    //FIXME test secret passages(transport & transport correctly
-    //FIXME check that rolls DON'T decrement on illegal move
 
     /**
      * Tests to see if the starting point for the Player is correct
