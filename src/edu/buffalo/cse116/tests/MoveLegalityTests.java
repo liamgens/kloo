@@ -9,6 +9,9 @@ import static org.junit.Assert.*;
 /**
  * Created by liamgens on 10/20/16.
  */
+
+
+
 public class MoveLegalityTests {
     //Checks if the user's starting point is correct
     @Test
