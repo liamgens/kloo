@@ -15,6 +15,15 @@ public class User {
     private Board _board;
     private ArrayList<User> u;
 
+    /**
+     * Creates a User on the game board and assigns it a characterName from the CHARACTER_NAME Array.
+     * _userCards holds the value of the Cards that the User's hand will contain.
+     * _board is the game board.
+     * _userTurn assigns the User when their turn will be. (Miss Scarlet always goes first.)
+     * The setStartingPosition method sets the starting position of the User based on the User's name.
+     * @param board The game board.
+     * @param characterName an integer representing the character being created.
+     */
     public User(Board board, int characterName){
         _userCards = new ArrayList<Card>();
         _board = board;
@@ -23,13 +32,13 @@ public class User {
         _board.getTile(get_posX(),get_posY()).set_isOccupied(true);
     }
 
-    public Card showCard(Card show) {
+  /*  public Card showCard(Card show) {
         return show;
     }
 
     public ArrayList<Card> get_userCards() {
         return _userCards;
-    }
+    }*/
 
     public int get_userTurn() {
         return _userTurn;
@@ -39,7 +48,16 @@ public class User {
         this._userCards = _userCards;
     }
 
-
+    /**
+     *A method that takes in opponent, suspect, weapon, and location as parameters.
+     * Goes through every card in the opponent's hand to see if any of the suggested cards are in their hand.
+     * Returns false if none of the cards are in their hands.
+     * @param opponent
+     * @param sus
+     * @param wep
+     * @param loc
+     * @return
+     */
     public boolean makeSuggestion(ArrayList<Card> opponent, String sus, String wep, String loc) {
         for (Card c : opponent) {
             if (c.get_title() == sus) {
@@ -164,6 +182,13 @@ public class User {
         return false;
     }
 
+    /**
+     * Allows a player to use a secret passage once their are in the room and the new position in the new room is not occupied.
+     *When a secret passage is used, the User's previously occupied tile is set to be unoccupied and a new position is set in the new room the User is in.
+     * _board.resetRoll() ends the User's turn.
+     * @param playersCurrentTile The tile the User is currently at.
+     * @param newPosition The User's new position.
+     */
     public void useSecretPassage(Tile playersCurrentTile, Tile newPosition){
         playersCurrentTile.set_isOccupied(false);
         _posX = newPosition.get_xCoor();
@@ -172,6 +197,10 @@ public class User {
         _board.resetRoll();
     }
 
+    /**
+     * Sets the starting positions of each player in accordance to their names.
+     * @param name a String of the User's character name.
+     */
     public void setStartingPosition(String name){
         switch(name){
             case "Miss Scarlett":

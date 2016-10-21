@@ -15,6 +15,15 @@ public class Room {
     private ArrayList<Tile> _tilesOfBoard;
     private ArrayList<Tile> _tilesOfRoom;
 
+    /**
+     * Creates a Room that takes in an ArrayList of Tiles.
+     * @param tiles The tiles inside the room.
+     * @param topLx The X-coordinate of the top-left tile in the room.
+     * @param topLy The Y-coordinate of the top-left tile in the room.
+     * @param width The desired width of the room.
+     * @param height The desired height of the room.
+     * @param idx The room that this new room represents.
+     */
     public Room(ArrayList<Tile> tiles, int topLx, int topLy, int width, int height, int idx){
         _tilesOfBoard = tiles;
         _width = width;
