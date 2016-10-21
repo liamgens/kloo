@@ -107,7 +107,6 @@ public class MoveLegalityTests {
         //Move 1 tile South
         assertTrue(p1.makeMove(0,6));
 
-
     }
 
     /**
