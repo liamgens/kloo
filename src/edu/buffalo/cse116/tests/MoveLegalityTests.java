@@ -190,6 +190,7 @@ public class MoveLegalityTests {
         //Create the Board and the User (Colonel Mustard)
         Board b = new Board();
         User p1 = new User(b, 5);
+
     }
 
 
