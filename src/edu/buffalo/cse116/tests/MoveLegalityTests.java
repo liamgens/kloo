@@ -28,13 +28,15 @@ import static org.junit.Assert.*;
  *
  * The User takes in the board and an int value for which character they are.
  *
- * These tests below cover everything needed for the first stage move legality.
+ * These tests below cover everything needed for the first stage move legality & some more
  *
- * You can find more info in the readme file under the "other" package
  */
 
 public class MoveLegalityTests {
 
+    /**
+     * Test that your project correctly identifies as legal a move that only goes horizontally for as many squares as the die roll
+     */
     @Test
     public void horizontalMoves(){
         //Create the Board and the User (Professor Plum)
@@ -56,6 +58,9 @@ public class MoveLegalityTests {
 
     }
 
+    /**
+     * Test that your project correctly identifies as legal a move that only goes vertically for as many squares as the die roll
+     */
     @Test
     public void verticalMoves(){
         //Create the Board and the User (Mrs. Peacock)
@@ -76,6 +81,9 @@ public class MoveLegalityTests {
         assertTrue(p1.makeMove(7,24));
     }
 
+    /**
+     * Test that your project correctly identifies as legal a move that goes horizontally & vertically for as many squares as the die roll
+     */
     @Test
     public void horizontalAndVerticalMoves(){
         //Create the Board and the User (Miss Scarlett)
@@ -102,6 +110,9 @@ public class MoveLegalityTests {
 
     }
 
+    /**
+     * Test that your project correctly identifies as legal a move that goes through a door and into a room
+     */
     @Test
     public void enteringARoom(){
         //Create the Board and the User (Professor Plum)
@@ -134,7 +145,9 @@ public class MoveLegalityTests {
 
     }
 
-    //FIXME
+    /**
+     * Test that your project correctly identifies as legal a move that just uses the a secret passageway
+     */
     @Test
     public void secretPassage(){
         //Create the Board and the User (Mrs. Peacock)
@@ -179,6 +192,9 @@ public class MoveLegalityTests {
 
     }
 
+    /**
+     * Test that your project correctly identifies as illegal a move that goes more squares than the die roll
+     */
     @Test
     public void dieRoll(){
         //Create the Board and the User (Professor Plum)
@@ -205,6 +221,9 @@ public class MoveLegalityTests {
 
     }
 
+    /**
+     * Test that your project correctly identifies as illegal a move that goes diagonally
+     */
     @Test
     public void diagonalMoves(){
         //Create the Board and the User (Miss Scarlett)
@@ -221,7 +240,9 @@ public class MoveLegalityTests {
         assertEquals(0, p1.get_posX());
         assertEquals(6, p1.get_posY());
     }
-
+    /**
+     * Test that your project correctly identifies as illegal a move that is not contiguous
+     */
     @Test
     public void contiguousMoves(){
         //Create the Board and the User (Mrs. White)
@@ -232,14 +253,17 @@ public class MoveLegalityTests {
         b.set_currentRoll(2);
 
         //Attempt to move 2 tiles South
-        p1.makeMove(18, 2);
+        assertFalse(p1.makeMove(18, 2));
 
         //Attempt to move 4 tiles South
-        p1.makeMove(18,4);
+        assertFalse(p1.makeMove(18,4));
 
 
     }
 
+    /**
+     * Test that your project correctly identifies as illegal a move that goes through a wall
+     */
     @Test
     public void throughAWall(){
         //Create the Board and the User (Colonel Mustard)
@@ -258,28 +282,13 @@ public class MoveLegalityTests {
 
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     /**
      * These tests are not required, but are some other things that
      * should be tested.
      */
 
     /**
-     *
+     *Tests to see if the user can move from a room to a hallway without a door
      */
     @Test
     public void roomToHallway(){
@@ -309,6 +318,9 @@ public class MoveLegalityTests {
 
     }
 
+    /**
+     * Tests to see if the user can move to a tile outside of the board
+     */
     @Test
     public void outOfBoardTest(){
         //Create the Board and the User (Miss Scarlett)
