@@ -77,6 +77,7 @@ public class SuggestionTests {
 
     /** Suggestion would be answered by the next player because they have the Room card; */
     @Test
+
     public void SuggestionTest02() {
         Board b = new Board(); // Board
         Deck d = new Deck(); // 17 Cards
