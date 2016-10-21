@@ -50,10 +50,6 @@ public class MoveLegalityTests {
 
         System.out.println("Current Roll: " + b.rollDice());
 
-        
-
-
-
     }
 
     @Test
