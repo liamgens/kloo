@@ -40,7 +40,7 @@ public class MoveLegalityTests {
         Board b = new Board();
         User p1 = new User(b, 4);
 
-        //Sets the current roll to a 6
+        //Set the current roll to 6
         b.set_currentRoll(6);
 
         //Move 3 tiles West
@@ -61,7 +61,7 @@ public class MoveLegalityTests {
         Board b = new Board();
         User p1 = new User(b, 3);
 
-        //Sets the current roll to a 6
+        //Set the current roll to 6
         b.set_currentRoll(6);
 
         //Move 3 tiles North
@@ -82,7 +82,7 @@ public class MoveLegalityTests {
         Board b = new Board();
         User p1 = new User(b, 1);
 
-        //Sets the current roll to a 6
+        //Set the current roll to 6
         b.set_currentRoll(6);
 
         //Move 2 tiles East
@@ -96,25 +96,34 @@ public class MoveLegalityTests {
 
     }
 
-    //FIXME
     @Test
     public void enteringARoom(){
         //Create the Board and the User (Professor Plum)
         Board b = new Board();
         User p1 = new User(b, 4);
 
-        //Sets the current roll to a 6
+        //Set the current roll to 6
         b.set_currentRoll(6);
 
+        //Move to tile right outside of Lounge door
         p1.makeMove(24,5);
         p1.makeMove(23,5);
         p1.makeMove(22,5);
         p1.makeMove(21,5);
+
+        //Move from the Hallway to the Lounge door
         assertTrue(p1.makeMove(21,4));
 
-        b.set_currentRoll(3);
+        //Move from the Lounge door into the Lounge
         assertTrue(p1.makeMove(21,3));
+
+        //Set the current roll to 2
+        b.set_currentRoll(2);
+
+        //Move from the Lounge to the Lounge door
         assertTrue(p1.makeMove(21,4));
+
+        //Move from the Lounge door to the Hallway
         assertTrue(p1.makeMove(21,5));
 
     }
@@ -125,34 +134,62 @@ public class MoveLegalityTests {
 
     }
 
-    //FIXME
     @Test
     public void dieRoll(){
+        //Create the Board and the User (Professor Plum)
+        Board b = new Board();
+        User p1 = new User(b, 2);
+
+        //Set the current roll to 4
+        b.set_currentRoll(4);
+
+        //Move 3 tiles North
+        p1.makeMove(17,23);
+        p1.makeMove(17,22);
+        p1.makeMove(17,21);
+
+        //Move 1 tile East
+        p1.makeMove(18,21);
+
+        //Attempt to move 1 tile South
+        assertFalse(p1.makeMove(18,22));
+
+        //Check the position is still correct
+        assertEquals(18, p1.get_posX());
+        assertEquals(21, p1.get_posY());
 
     }
 
-    //FIXME
     @Test
     public void diagonalMoves(){
+        //Create the Board and the User (Miss Scarlett)
         Board b = new Board();
         User p1 = new User(b, 0);
 
-        //checks an illegal move
-        b.set_currentRoll(3);
-        assertFalse(p1.makeMove(1,19));
+        //Attempts to move diagonally
+        b.set_currentRoll(1);
+        assertFalse(p1.makeMove(1,5));
 
+        //Check the position is still correct
+        assertEquals(0, p1.get_posX());
+        assertEquals(6, p1.get_posY());
     }
 
     //FIXME
     @Test
     public void contiguousMoves(){
+        //Create the Board and the User ()
+        Board b = new Board();
+        User p1 = new User(b, 4);
 
     }
 
     //FIXME
     @Test
     public void throughAWall(){
-
+        //Create the Board and the User (Colonel Mustard)
+        Board b = new Board();
+        User p1 = new User(b, 5);
     }
 
 
@@ -260,6 +297,7 @@ public class MoveLegalityTests {
     //FIXME test multiple characters
     //FIXME test going out of board
     //FIXME test secret passages(transport & transport correctly
+    //FIXME check that rolls DON'T decrement on illegal move
 
     /**
      * Tests to see if the starting point for the Player is correct
