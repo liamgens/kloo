@@ -29,7 +29,7 @@ import static org.junit.Assert.*;
  * The User takes in the board and an int value for which character they are.
  *
  * These tests below cover everything needed for the first stage move legality & some more
- *
+ *@author Liam Gensel
  */
 
 public class MoveLegalityTests {

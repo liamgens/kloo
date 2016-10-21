@@ -2,6 +2,7 @@ package edu.buffalo.cse116.code;
 
 /**
  * Created by liamgens on 10/5/16.
+ * @author Liam Gensel
  */
 public class Tile {
 

@@ -3,7 +3,7 @@ package edu.buffalo.cse116.code;
 import java.util.ArrayList;
 
 /**
- * Created by liamgens on 10/9/16.
+ * @author liamgens
  */
 public class User {
 
@@ -159,15 +159,13 @@ public class User {
                 return true;
             }
 
-
-
         }
         return false;
     }
 
     /**
      * Allows a player to use a secret passage once their are in the room and the new position in the new room is not occupied.
-     *When a secret passage is used, the User's previously occupied tile is set to be unoccupied and a new position is set in the new room the User is in.
+     * When a secret passage is used, the User's previously occupied tile is set to be unoccupied and a new position is set in the new room the User is in.
      * _board.resetRoll() ends the User's turn.
      * @param playersCurrentTile The tile the User is currently at.
      * @param newPosition The User's new position.

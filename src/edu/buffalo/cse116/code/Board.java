@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.util.Random;
 
+/**
+ * @author Liam Gensel
+ */
 public class Board {
 
     private ArrayList<Tile> _tiles;
