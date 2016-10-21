@@ -14,6 +14,8 @@ public class Board {
     public Board(){
         _tiles = generateBoard(25,25);
         _rooms = new ArrayList<Room>();
+        this.addDefaultRooms();
+        this.addDefaultDoors();
     }
 
     /**
