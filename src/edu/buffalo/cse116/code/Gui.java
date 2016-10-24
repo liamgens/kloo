@@ -40,6 +40,8 @@ public class Gui {
                 g2d.setColor(_hallway);
             }else if(t.get_isDoor()){
                 g2d.setColor(Color.GREEN);
+            }else if(t.get_parentRoom() == 9) {
+                g2d.setColor(Color.DARK_GRAY);
             }else if(_board.getRoomByID(t.get_parentRoom()).isRoomBorder(t) && !t.get_isDoor()){
                 g2d.setColor(Color.RED);
             }
