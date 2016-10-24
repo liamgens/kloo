@@ -27,7 +27,17 @@ public class Gui {
         _window.pack();
     }
 
+    public Board get_board() {
+        return _board;
+    }
+
     public JPanel generateGameBoard(){
+        User p1 = new User(_board,0);
+        User p2 = new User(_board,1);
+        User p3 = new User(_board,2);
+        User p4 = new User(_board,3);
+        User p5 = new User(_board,4);
+        User p6 = new User(_board,5);
         _boardGui = new JPanel();
         _boardGui.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
@@ -44,6 +54,9 @@ public class Gui {
                 g2d.setColor(Color.DARK_GRAY);
             }else if(_board.getRoomByID(t.get_parentRoom()).isRoomBorder(t) && !t.get_isDoor()){
                 g2d.setColor(Color.RED);
+            }
+            if(t.is_isOccupied()){
+                g2d.setColor(Color.CYAN);
             }
             g2d.fillRect(0, 0, 25, 25);
             g2d.dispose();
@@ -62,4 +75,5 @@ public class Gui {
         }
         return _boardGui;
     }
+
 }

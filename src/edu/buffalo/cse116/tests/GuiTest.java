@@ -1,6 +1,8 @@
 package edu.buffalo.cse116.tests;
 
+import edu.buffalo.cse116.code.Board;
 import edu.buffalo.cse116.code.Gui;
+import edu.buffalo.cse116.code.User;
 import org.junit.Test;
 
 /**
@@ -8,6 +10,11 @@ import org.junit.Test;
  */
 public class GuiTest {
     public static void main(String[]args){
-        new Gui();
+        Gui gui = new Gui();
+        Board b = gui.get_board();
+
+
+
+
     }
 }
