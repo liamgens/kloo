@@ -82,7 +82,9 @@ public class Board {
         this.addRoom(new Room(this.get_tiles(), 20, 0, 5, 5, 4)); //adds the Lounge
         this.addRoom(new Room(this.get_tiles(), 19, 8, 6, 10, 3)); //adds the Dining Room
         this.addRoom(new Room(this.get_tiles(), 19, 20, 6, 5, 0)); //adds the Kitchen
+        this.addRoom(new Room(this.get_tiles(), 9, 7, 8, 9, 9)); //adds the Cellar
     }
+
 
     /**
      * Adds all of the doors

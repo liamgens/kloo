@@ -122,4 +122,16 @@ public class Room {
         }
         return null;
     }
+
+    public boolean isRoomBorder(Tile t){
+        int x = t.get_xCoor();
+        int y = t.get_yCoor();
+
+        if(tileIsInBounds(t)) {
+            if (x == _topLx || y == _topLy || x == _topLx + _width -1 || y == _topLy + _height - 1) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
