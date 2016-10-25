@@ -12,10 +12,27 @@ import java.awt.image.BufferedImage;
 public class Gui {
 
     private JFrame _window;
-    private JPanel _boardGui;
+    private JPanel _boardGui, _currentCards, _infoPanel;
     private Board _board;
     private Color _hallway;
+    private JLabel _currentPlayer, _currentRoll;
+    private JButton _roll, _suggestion, _accusation;
 
+    public JFrame get_window() {
+        return _window;
+    }
+
+    public JPanel get_boardGui() {
+        return _boardGui;
+    }
+
+    public JPanel get_currentCards() {
+        return _currentCards;
+    }
+
+    public JPanel get_infoPanel() {
+        return _infoPanel;
+    }
 
     public Gui(){
         _window = new JFrame();
@@ -23,7 +40,9 @@ public class Gui {
         _window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         _board = new Board();
         _hallway = new Color(255,255,218);
-        _window.add(generateGameBoard());
+        _window.setLayout(new BorderLayout());
+        generateGameBoard();
+        generateInfoPanel();
         _window.pack();
     }
 
@@ -31,7 +50,7 @@ public class Gui {
         return _board;
     }
 
-    public JPanel generateGameBoard(){
+    public void generateGameBoard(){
         User p1 = new User(_board,0);
         User p2 = new User(_board,1);
         User p3 = new User(_board,2);
@@ -73,7 +92,18 @@ public class Gui {
             c.gridy = t.get_yCoor();
             _boardGui.add(space,c);
         }
-        return _boardGui;
+        _window.add(_boardGui, BorderLayout.WEST);
+    }
+
+    public void generateInfoPanel(){
+        _currentPlayer = new JLabel("Current Player: Mrs. White"/*_board.getCurrentPlayer()*/ );
+        _currentRoll = new JLabel("Current Roll: " + _board.get_currentRoll());
+        _infoPanel = new JPanel();
+        _infoPanel.setLayout(new BoxLayout(_infoPanel, BoxLayout.Y_AXIS));
+        _infoPanel.add(_currentPlayer);
+        _infoPanel.add(_currentRoll);
+        _window.add(_infoPanel, BorderLayout.EAST);
+
     }
 
 }
