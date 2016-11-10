@@ -5,6 +5,7 @@ import edu.buffalo.cse116.code.Gui;
 import edu.buffalo.cse116.code.User;
 import org.junit.Test;
 
+import javax.swing.*;
 import java.util.concurrent.TimeUnit;
 
 

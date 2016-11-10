@@ -126,6 +126,7 @@ public class User {
                 _posX = desiredX;
                 _posY = desiredY;
                 _board.useRoll();
+                System.out.print("true");
                 return true;
             }
             //hallway -> door

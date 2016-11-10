@@ -4,7 +4,10 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 /**
  * Created by liamgens on 10/24/16.
@@ -17,6 +20,7 @@ public class Gui {
     private Color _hallway;
     private JLabel _currentPlayer, _currentRoll;
     private JButton _roll, _suggestion, _accusation;
+    private ArrayList<JButton> _buttons;
 
     public JFrame get_window() {
         return _window;
@@ -41,6 +45,7 @@ public class Gui {
         _board = new Board();
         _hallway = new Color(255,255,218);
         _window.setLayout(new BorderLayout());
+        _buttons = new ArrayList<JButton>();
         generateGameBoard();
         generateInfoPanel();
         _window.pack();
@@ -60,6 +65,7 @@ public class Gui {
         _boardGui = new JPanel();
         _boardGui.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
+
         for(Tile t : _board.get_tiles()) {
             BufferedImage img = new BufferedImage(25, 25, BufferedImage.TYPE_INT_RGB);
             Graphics2D g2d = img.createGraphics();
@@ -90,7 +96,22 @@ public class Gui {
 
             c.gridx = t.get_xCoor();
             c.gridy = t.get_yCoor();
+
+
+            //Adds an event listener to the buttons that prints the XY coor of the buttons
+            space.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e){
+                    System.out.println("x: " + t.get_xCoor() + " y: " + t.get_yCoor());
+                    //call the user and make the move here
+                    p1.makeMove(t.get_xCoor(), t.get_yCoor());
+                    updateBoard();
+
+                }
+            });
             _boardGui.add(space,c);
+            _buttons.add(space);
+
         }
         _window.add(_boardGui, BorderLayout.WEST);
     }
@@ -103,6 +124,16 @@ public class Gui {
         _infoPanel.add(_currentPlayer);
         _infoPanel.add(_currentRoll);
         _window.add(_infoPanel, BorderLayout.EAST);
+
+    }
+
+    public void updateBoard(){
+        for(int i = 0; i < _buttons.size(); i++){
+            Tile t = _board.get_tiles().get(i);
+            if(t.is_isOccupied()){
+                _buttons.get(i).setText("HEY");
+            }
+        }
 
     }
 
