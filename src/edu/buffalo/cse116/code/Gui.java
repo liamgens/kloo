@@ -47,6 +47,7 @@ public class Gui {
         _window.setLayout(new BorderLayout());
         _buttons = new ArrayList<JButton>();
         generateGameBoard();
+        updateBoard();
         generateInfoPanel();
         _window.pack();
     }
@@ -112,6 +113,7 @@ public class Gui {
             _boardGui.add(space,c);
             _buttons.add(space);
 
+
         }
         _window.add(_boardGui, BorderLayout.WEST);
     }
@@ -132,6 +134,8 @@ public class Gui {
             Tile t = _board.get_tiles().get(i);
             if(t.is_isOccupied()){
                 _buttons.get(i).setText("HEY");
+            }else{
+                _buttons.get(i).setText("");
             }
         }
 
