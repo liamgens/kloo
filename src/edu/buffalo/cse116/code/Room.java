@@ -107,6 +107,10 @@ public class Room {
         return _idx;
     }
 
+    /**
+     * Gets a random tile from a corner room.
+     * @return
+     */
     public Tile getRandomTile(){
         ArrayList<Tile> validRoomTilesToTeleportTo = new ArrayList<Tile>();
         for(Tile t : _tilesOfRoom){
