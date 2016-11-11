@@ -14,7 +14,7 @@ public class Board {
     private int _currentRoll;
     private Deck _envelope;
 
-    public Board(){
+    public Board(int numberOfPlayers){
         _tiles = generateBoard(25,25);
         _rooms = new ArrayList<Room>();
         this.addDefaultRooms();

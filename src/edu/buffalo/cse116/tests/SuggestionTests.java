@@ -21,7 +21,7 @@ public class SuggestionTests {
 	/** Suggestion would be answered by the next player because they have the Player card; */
 	@Test
 	public void SuggestionTest01() {
-		Board b = new Board(); // Board
+		Board b = new Board(6); // Board
 		Deck d = new Deck(); // 17 Cards
 		
 		/** This ec is for the envelope that is not being used currently */
@@ -103,7 +103,7 @@ public class SuggestionTests {
 	/** Suggestion would be answered by the next player because they have the Room card; */
 	@Test
 	public void SuggestionTest02() {
-		Board b = new Board(); // Board
+		Board b = new Board(6); // Board
 		Deck d = new Deck(); // 17 Cards
 		
 		/** This ec is for the envelope that is not being used currently */
@@ -186,7 +186,7 @@ public class SuggestionTests {
 	/** Suggestion would be answered by the next player because they have the Weapon card; */
 	@Test
 	public void SuggestionTest03() {
-		Board b = new Board(); // Board
+		Board b = new Board(6); // Board
 		Deck d = new Deck(); // 17 Cards
 		
 		/** This ec is for the envelope that is not being used currently */
@@ -268,7 +268,7 @@ public class SuggestionTests {
 	/** Suggestion would be answered by the next player because they have 2 matching cards; */
 	@Test
 	public void SuggestionTest04() {
-		Board b = new Board(); // Board
+		Board b = new Board(6); // Board
 		Deck d = new Deck(); // 17 Cards
 		
 		/** This ec is for the envelope that is not being used currently */
@@ -351,7 +351,7 @@ public class SuggestionTests {
 	/** Suggestion would be answered by the player after the next player because they have 1 or more matching cards; */
 	@Test
 	public void SuggestionTest05() {
-		Board b = new Board(); // Board
+		Board b = new Board(6); // Board
 		Deck d = new Deck(); // 17 Cards
 		
 		/** This ec is for the envelope that is not being used currently */
@@ -448,7 +448,7 @@ public class SuggestionTests {
 	 */
 	@Test
 	public void SuggestionTest06() {
-		Board b = new Board(); // Board
+		Board b = new Board(6); // Board
 		Deck d = new Deck(); // 17 Cards
 		
 		/** This ec is for the envelope that is not being used currently */
@@ -520,7 +520,7 @@ public class SuggestionTests {
 	/** Suggestion cannot be answered by any player but the player making the suggestion has 1 or more matching cards; */
 	@Test
 	public void SuggestionTest07() {
-		Board b = new Board(); // Board
+		Board b = new Board(6); // Board
 		Deck d = new Deck(); // 17 Cards
 		
 		/** This ec is for the envelope that is not being used currently */
@@ -603,7 +603,7 @@ public class SuggestionTests {
 	/** Suggestion cannot be answered by any player and the player making the suggestion does not have any matching cards. */
 	@Test
 	public void SuggestionTest08() {
-		Board b = new Board(); // Board
+		Board b = new Board(6); // Board
 		Deck d = new Deck(); // 17 Cards
 		
 		/** ec is the envelope but it is not being used currently */

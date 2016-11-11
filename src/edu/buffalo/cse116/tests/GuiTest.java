@@ -6,6 +6,7 @@ import edu.buffalo.cse116.code.User;
 import org.junit.Test;
 
 import javax.swing.*;
+import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 
@@ -14,7 +15,13 @@ import java.util.concurrent.TimeUnit;
  */
 public class GuiTest {
     public static void main(String[]args){
-        Gui gui = new Gui();
+
+        Scanner scan = new Scanner(System.in);
+        int numberOfPlayers = scan.nextInt();
+
+
+
+        Gui gui = new Gui(numberOfPlayers);
         Board b = gui.get_board();
 
         b.rollDice();

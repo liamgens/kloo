@@ -40,7 +40,7 @@ public class MoveLegalityTests {
     @Test
     public void horizontalMoves(){
         //Create the Board and the User (Professor Plum)
-        Board b = new Board();
+        Board b = new Board(3);
         User p1 = new User(b, 4);
 
         //Set the current roll to 6
@@ -64,7 +64,7 @@ public class MoveLegalityTests {
     @Test
     public void verticalMoves(){
         //Create the Board and the User (Mrs. Peacock)
-        Board b = new Board();
+        Board b = new Board(3);
         User p1 = new User(b, 3);
 
         //Set the current roll to 6
@@ -87,7 +87,7 @@ public class MoveLegalityTests {
     @Test
     public void horizontalAndVerticalMoves(){
         //Create the Board and the User (Miss Scarlett)
-        Board b = new Board();
+        Board b = new Board(3);
         User p1 = new User(b, 0);
 
         //Set the current roll to 6
@@ -115,7 +115,7 @@ public class MoveLegalityTests {
     @Test
     public void enteringARoom(){
         //Create the Board and the User (Professor Plum)
-        Board b = new Board();
+        Board b = new Board(3);
         User p1 = new User(b, 4);
 
         //Set the current roll to 6
@@ -150,7 +150,7 @@ public class MoveLegalityTests {
     @Test
     public void secretPassage(){
         //Create the Board and the User (Mrs. Peacock)
-        Board b = new Board();
+        Board b = new Board(3);
         User p1 = new User(b, 3);
 
         //Set the current roll to 6
@@ -197,7 +197,7 @@ public class MoveLegalityTests {
     @Test
     public void dieRoll(){
         //Create the Board and the User (Professor Plum)
-        Board b = new Board();
+        Board b = new Board(3);
         User p1 = new User(b, 2);
 
         //Set the current roll to 4
@@ -226,7 +226,7 @@ public class MoveLegalityTests {
     @Test
     public void diagonalMoves(){
         //Create the Board and the User (Miss Scarlett)
-        Board b = new Board();
+        Board b = new Board(3);
         User p1 = new User(b, 0);
 
         //Set the current roll to 1
@@ -245,7 +245,7 @@ public class MoveLegalityTests {
     @Test
     public void contiguousMoves(){
         //Create the Board and the User (Mrs. White)
-        Board b = new Board();
+        Board b = new Board(3);
         User p1 = new User(b, 1);
 
         //Set the current roll to 2
@@ -266,7 +266,7 @@ public class MoveLegalityTests {
     @Test
     public void throughAWall(){
         //Create the Board and the User (Colonel Mustard)
-        Board b = new Board();
+        Board b = new Board(3);
         User p1 = new User(b, 5);
 
         //Set the current roll to 1
@@ -292,7 +292,7 @@ public class MoveLegalityTests {
     @Test
     public void roomToHallway(){
         //Create the Board and the User (Professor Plum)
-        Board b = new Board();
+        Board b = new Board(3);
         User p1 = new User(b, 4);
 
         //Set the current roll to 6
@@ -323,7 +323,7 @@ public class MoveLegalityTests {
     @Test
     public void outOfBoardTest(){
         //Create the Board and the User (Miss Scarlett)
-        Board b = new Board();
+        Board b = new Board(3);
         User p1 = new User(b, 0);
 
         //Set the current roll to 1
@@ -339,7 +339,7 @@ public class MoveLegalityTests {
      */
     @Test
     public void startingPointTest(){
-        Board b = new Board();
+        Board b = new Board(3);
         User p1 = new User(b, 0);
         assertEquals(0, p1.get_posX());
         assertEquals(6, p1.get_posY());

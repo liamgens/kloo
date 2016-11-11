@@ -38,11 +38,11 @@ public class Gui {
         return _infoPanel;
     }
 
-    public Gui(){
+    public Gui(int numberOfPlayers){
         _window = new JFrame();
         _window.setVisible(true);
         _window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        _board = new Board();
+        _board = new Board(numberOfPlayers);
         _hallway = new Color(255,255,218);
         _window.setLayout(new BorderLayout());
         _buttons = new ArrayList<JButton>();
