@@ -2,12 +2,8 @@ package edu.buffalo.cse116.tests;
 
 import edu.buffalo.cse116.code.Board;
 import edu.buffalo.cse116.code.Gui;
-import edu.buffalo.cse116.code.User;
-import org.junit.Test;
 
-import javax.swing.*;
 import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
 
 
 /**
@@ -17,6 +13,7 @@ public class GuiTest {
     public static void main(String[]args){
 
         Scanner scan = new Scanner(System.in);
+        System.out.print("Enter number of players (3-6; there is no error handling here): ");
         int numberOfPlayers = scan.nextInt();
 
 
