@@ -9,6 +9,7 @@ public class TurnQueue {
     private LinkedList<Integer> turns;
     /**
      * Creates a Turn queue.
+     * @param userList Takes in an ArrayList of type User as a parameter.
      */
 
     public TurnQueue(ArrayList<User> userList) throws InvalidNumberOfPlayersException{
@@ -49,10 +50,17 @@ public class TurnQueue {
         return next;
     }
 
+    /**
+     * Returns the value of the first item in the TurnQueue.
+     * @return
+     */
     public Integer peek(){
         return turns.get(0);
     }
 
+    /**
+     * Ends a user's turn by enqueuing the player into the end of the Queue and then dequeuing the user in the front of the queue.
+     */
     public void endTurn(){
 //		if(user.Accusation() == false){
 //			dequeue();
