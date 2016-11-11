@@ -21,6 +21,7 @@ public class Board {
         this.addSecretPassages();
     }
 
+
     /**
      * Generates a board of tiles with dimensions width*height
      * @return an ArrayList of Tiles with size width *height
