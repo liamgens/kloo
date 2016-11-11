@@ -1,25 +1,27 @@
 package edu.buffalo.cse116.code;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Scanner;
 
-public class Turn {
-
+public class TurnQueue {
     private LinkedList<Integer> turns;
-    private int _userTurn;
-
     /**
      * Creates a Turn queue.
      */
-    public void Turn(){
-        turns = new LinkedList<Integer>();
-        turns.add(0);
-        turns.add(1);
-        turns.add(2);
-        turns.add(3);
-        turns.add(4);
-        turns.add(5);
+
+    public TurnQueue(ArrayList<User> userList) throws InvalidNumberOfPlayersException{
+        if(userList.size() >=3 && userList.size() <= 6){
+            turns = new LinkedList<Integer>();
+            for(int i = 0; i<userList.size(); i++){
+                turns.add(i);
+            }
+        }else {
+            throw new InvalidNumberOfPlayersException();
+        }
     }
+
 
     /**
      * Tests to see if the Queue is empty.
@@ -51,12 +53,12 @@ public class Turn {
         return turns.get(0);
     }
 
-    public void endTurn(int user){
+    public void endTurn(){
 //		if(user.Accusation() == false){
 //			dequeue();
 //		}
+        enqueue(peek());
         dequeue();
-        enqueue(user);
     }
 
 }
