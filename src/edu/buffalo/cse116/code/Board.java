@@ -19,6 +19,12 @@ public class Board {
         this.addDefaultRooms();
         this.addDefaultDoors();
         this.addSecretPassages();
+        
+        /** uncomment 
+        Deck deck = new Deck();
+        ArrayList<Card> envelope = deck.get_envelopeCards();
+        ArrayList<Card> deal = deck.get_deck();
+        */
     }
 
 
