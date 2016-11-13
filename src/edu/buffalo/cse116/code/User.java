@@ -8,12 +8,11 @@ import java.util.ArrayList;
 public class User {
 
     private ArrayList<Card> _userCards; // Used to return cards
-    //    private String[] USER_TOKEN = {"RED", "WHITE", "GREEN", "BLUE", "PURPLE", "YELLOW"};
-    private String[] CHARACTER_NAME = {"Miss Scarlett", "Mrs. White", "Mr. Green", "Mrs. Peacock", "Professor Plum", "Colonel Mustard"};
-    private int _userTurn; // Assigns turns to users starting from RED a.k.a Miss Scarlett
+    private String[] CHARACTER_NAME = {"Miss Scarlett", "Professor Plum", "Mr. Green", "Mrs. Peacock", "Mrs. White", "Colonel Mustard"};
+    private int _userTurn;
     private int _posX, _posY;
     private Board _board;
-    private ArrayList<User> u; // Will be used later...
+    private ArrayList<User> users; // Will be used later...
 
     /**
      * Creates a User on the game board and assigns it a characterName from the CHARACTER_NAME Array.

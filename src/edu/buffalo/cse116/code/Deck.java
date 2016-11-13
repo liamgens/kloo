@@ -12,7 +12,8 @@ import java.util.Collections;
  * After the three ArrayList<Card> have been created (player, weapon, room) and *shuffled* (ALL shuffles removed for test purposes), one card from each deck will be assigned to the envelope ArrayList<Card>
  * These random cards will be removed from the deck, and will not be used until someone makes an accusation.
  * Once the envelope ArrayList<Card> is filled, the three decks will be combined into one deck, will be shuffled and will be distributed to all players starting from the top of the deck.
- * This way all random cards will be distributed to all players and each player will have an ArrayList<Card> to use for the game. 
+ * This way all random cards will be distributed to all players and each player will have an ArrayList<Card> to use for the game.
+ * @author dromsoft 
  */
 public class Deck{
 	

@@ -12,11 +12,24 @@ import edu.buffalo.cse116.code.*;
  * Users are created and will be assigned a "hand" value to keep track of the cards that they currently possess.
  * They will use that hand to test the suggestions that are requested according to different values based on the users suggestion.
  * The envelope is required to separate cards from the dealing deck but they will not be used for testing.
- * @author Danny
+ * @author dromsoft
  * ALL TESTS ARE PREDETERMINED
  */
 
 public class SuggestionTests {
+	
+	//TODO Write test that provides why suggesstion is false
+	@Test
+	/**
+	 * As a player, I want to know:
+	 * which player and the specific card they have that proves my suggestion is false
+	 * (why it was wrong).
+	 */
+	public void provenFalseTest(){
+		
+	}
+	
+	
 	
 	/** Suggestion would be answered by the next player because they have the Player card; */
 	@Test

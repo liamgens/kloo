@@ -10,6 +10,11 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 /**
+ * These GUI requirements specify that you display:
+ * the board, 
+ * "die roll", 
+ * player pieces, 
+ * and cards.
  * Created by liamgens on 10/24/16.
  */
 public class Gui {
@@ -140,5 +145,8 @@ public class Gui {
         }
 
     }
+    
+    //TODO Show "Dice Roll"
+    //TODO Show Cards
 
 }
