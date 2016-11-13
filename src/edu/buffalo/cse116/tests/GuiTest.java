@@ -28,7 +28,7 @@ public class GuiTest {
 
     }
     
-    //TODO (might be redundant) Write board and pieces are generated test
+    //TODO (might be redundant) Make sure board and pieces are generated test
     @Test
     /**
      * As a player, I want to be able to see:

@@ -70,5 +70,5 @@ public class TurnQueue {
         dequeue();
     }
     
-    //TODO Add a method that returns the size of the Queue, ignoring nulls
+    //TODO Add a method that returns the SIZE (not length) of the Queue, ignoring nulls
 }
