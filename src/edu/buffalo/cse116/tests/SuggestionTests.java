@@ -13,7 +13,7 @@ import edu.buffalo.cse116.code.*;
  * They will use that hand to test the suggestions that are requested according to different values based on the users suggestion.
  * The envelope is required to separate cards from the dealing deck but they will not be used for testing.
  * @author Danny
- *
+ * ALL TESTS ARE PREDETERMINED
  */
 
 public class SuggestionTests {
@@ -24,18 +24,16 @@ public class SuggestionTests {
 		Board b = new Board(6); // Board
 		Deck d = new Deck(); // 17 Cards
 		
-		/** This ec is for the envelope that is not being used currently */
 		ArrayList<Card> ec = d.get_envelopeCards(); // winning cards
-		/** This ec is for the envelope that is not being used currently */
-		
 		ArrayList<Card> deal = d.get_deck(); // creates Array List of deck to deal
 		
-		User u1 = new User(b, 0);      // users
-		User u2 = new User(b, 1);      // users
-		User u3 = new User(b, 2);      // users
-		User u4 = new User(b, 3);      // users
-		User u5 = new User(b, 4);      // users
-		User u6 = new User(b, 5);      // users
+		// Users
+		User u1 = new User(b, 0); 
+		User u2 = new User(b, 1); 
+		User u3 = new User(b, 2); 
+		User u4 = new User(b, 3); 
+		User u5 = new User(b, 4); 
+		User u6 = new User(b, 5); 
 		
 		ArrayList<Card> hand1 = new ArrayList<Card>();   // users hand
 		ArrayList<Card> hand2 = new ArrayList<Card>();   // users hand
@@ -45,10 +43,6 @@ public class SuggestionTests {
 		ArrayList<Card> hand6 = new ArrayList<Card>();   // users hand
 		
 		// Deal all RANDOM cards
-		
-		/** For testing purposes cards are dealt one deck at a time 
-		 * CARDS REMOVED: RED, WRENCH, KITCHEN 
-		 */
 		hand1.add(d.dealFirstCard(deal)); // WHITE        
 		hand2.add(d.dealFirstCard(deal)); // GREEN        
 		hand3.add(d.dealFirstCard(deal)); // BLUE         
@@ -106,9 +100,8 @@ public class SuggestionTests {
 		Board b = new Board(6); // Board
 		Deck d = new Deck(); // 17 Cards
 		
-		/** This ec is for the envelope that is not being used currently */
+		
 		ArrayList<Card> ec = d.get_envelopeCards(); // winning cards
-		/** This ec is for the envelope that is not being used currently */
 		
 		ArrayList<Card> deal = d.get_deck(); // creates Array List of deck to deal
 		
@@ -189,9 +182,9 @@ public class SuggestionTests {
 		Board b = new Board(6); // Board
 		Deck d = new Deck(); // 17 Cards
 		
-		/** This ec is for the envelope that is not being used currently */
+		
 		ArrayList<Card> ec = d.get_envelopeCards(); // winning cards
-		/** This ec is for the envelope that is not being used currently */
+		
 		
 		ArrayList<Card> deal = d.get_deck(); // creates Array List of deck to deal
 		
@@ -271,9 +264,9 @@ public class SuggestionTests {
 		Board b = new Board(6); // Board
 		Deck d = new Deck(); // 17 Cards
 		
-		/** This ec is for the envelope that is not being used currently */
+		
 		ArrayList<Card> ec = d.get_envelopeCards(); // winning cards
-		/** This ec is for the envelope that is not being used currently */
+		
 		
 		ArrayList<Card> deal = d.get_deck(); // creates Array List of deck to deal
 		
@@ -354,9 +347,9 @@ public class SuggestionTests {
 		Board b = new Board(6); // Board
 		Deck d = new Deck(); // 17 Cards
 		
-		/** This ec is for the envelope that is not being used currently */
+		
 		ArrayList<Card> ec = d.get_envelopeCards(); // winning cards
-		/** This ec is for the envelope that is not being used currently */
+		
 		
 		ArrayList<Card> deal = d.get_deck(); // creates Array List of deck to deal
 		
@@ -451,9 +444,9 @@ public class SuggestionTests {
 		Board b = new Board(6); // Board
 		Deck d = new Deck(); // 17 Cards
 		
-		/** This ec is for the envelope that is not being used currently */
+		
 		ArrayList<Card> ec = d.get_envelopeCards(); // winning cards
-		/** This ec is for the envelope that is not being used currently */
+		
 		
 		ArrayList<Card> deal = d.get_deck(); // creates Array List of deck to deal
 		
@@ -523,9 +516,7 @@ public class SuggestionTests {
 		Board b = new Board(6); // Board
 		Deck d = new Deck(); // 17 Cards
 		
-		/** This ec is for the envelope that is not being used currently */
 		ArrayList<Card> ec = d.get_envelopeCards(); // winning cards
-		/** This ec is the envelope but it is not being used currently */
 		
 		ArrayList<Card> deal = d.get_deck(); // creates Array List of deck to deal
 		
@@ -606,9 +597,7 @@ public class SuggestionTests {
 		Board b = new Board(6); // Board
 		Deck d = new Deck(); // 17 Cards
 		
-		/** ec is the envelope but it is not being used currently */
 		ArrayList<Card> ec = d.get_envelopeCards(); // winning cards: RED, WRENCH, KTICHEN
-		/** ec is the envelope but it is not being used currently */
 		
 		// creates Array List of deck to deal
 		ArrayList<Card> deal = d.get_deck();

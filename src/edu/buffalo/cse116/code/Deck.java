@@ -37,16 +37,14 @@ public class Deck{
         	_weaponDeck = newWeaponDeck();
         	_roomDeck = newRoomDeck();
         	
-		/** For Testing purposes, don't shuffle */
-//        	shuffle(_playerDeck);
-//        	shuffle(_weaponDeck);
-//        	shuffle(_roomDeck);
+        	shuffle(_playerDeck);
+        	shuffle(_weaponDeck);
+        	shuffle(_roomDeck);
         	
         	_envelopeCards = chosenEnvelopeCards();
         	_mainDeck = createDealingDeck();
         	
-        /** For Testing purposes, don't shuffle */
-//        	shuffle(_mainDeck);
+        	shuffle(_mainDeck);
         }
         
         /**
@@ -151,9 +149,9 @@ public class Deck{
         	ArrayList<Card> envelopeCards = new ArrayList<Card>();
         	
         	/** For Testing purposes, don't shuffle */
-//        	shuffle(_playerDeck);
-//        	shuffle(_weaponDeck);
-//        	shuffle(_roomDeck);
+        	shuffle(_playerDeck);
+        	shuffle(_weaponDeck);
+        	shuffle(_roomDeck);
         	
         	/** For Testing purposes, envelope predetermined */
         	Card c1 = dealFirstCard(_playerDeck); // RED
@@ -181,8 +179,7 @@ public class Deck{
         	mainDeck.addAll(_weaponDeck); // 5 Cards
         	mainDeck.addAll(_roomDeck); // 8 Cards
         	
-        	/** For Testing purposes, don't shuffle */
-//        	shuffle(mainDeck);
+        	shuffle(mainDeck);
         	
         	return mainDeck;
         }     

@@ -7,21 +7,21 @@ import java.util.Scanner;
 
 public class TurnQueue {
     private LinkedList<Integer> turns;
+    
     /**
      * Creates a Turn queue.
      * @param userList Takes in an ArrayList of type User as a parameter.
      */
 
     public TurnQueue(ArrayList<User> userList) throws InvalidNumberOfPlayersException{
-        if(userList.size() >=3 && userList.size() <= 6){
+        if (userList.size() >=3 && userList.size() <= 6) {
             turns = new LinkedList<Integer>();
-            for(int i = 0; i<userList.size(); i++){
+            for (int i = 0; i<userList.size(); i++) 
                 turns.add(i);
-            }
-        }else {
+        } else {
             throw new InvalidNumberOfPlayersException();
         }
-    }
+    } 
 
 
     /**
