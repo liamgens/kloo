@@ -12,6 +12,7 @@ public class Board {
     private ArrayList<Tile> _tiles;
     private ArrayList<Room> _rooms;
     private int _currentRoll;
+    private TurnQueue playerQueue;
 
     public Board(int numberOfPlayers){
         _tiles = generateBoard(25,25);
