@@ -24,7 +24,7 @@ public class TurnQueue {
     } 
 
     //TODO if Queue is empty, then gameover because no other players are left in the game
-    
+
     /**
      * Tests to see if the Queue is empty.
      * @return true if the Queue is empty, else it's false.
@@ -70,5 +70,4 @@ public class TurnQueue {
         dequeue();
     }
     
-    //TODO Add a method that returns the SIZE (not length) of the Queue, ignoring nulls
 }

@@ -52,7 +52,7 @@ public class Gui {
         _window.setLayout(new BorderLayout());
         _buttons = new ArrayList<JButton>();
         generateGameBoard();
-        updateBoard();
+//        updateBoard();
         generateInfoPanel();
         _window.pack();
     }
@@ -77,18 +77,8 @@ public class Gui {
             Graphics2D g2d = img.createGraphics();
             g2d.setColor(_hallway);
 
-            if (t.get_parentRoom() == - 1){
-                g2d.setColor(_hallway);
-            }else if(t.get_isDoor()){
-                g2d.setColor(Color.GREEN);
-            }else if(t.get_parentRoom() == 9) {
-                g2d.setColor(Color.DARK_GRAY);
-            }else if(_board.getRoomByID(t.get_parentRoom()).isRoomBorder(t) && !t.get_isDoor()){
-                g2d.setColor(Color.RED);
-            }
-            if(t.is_isOccupied()){
-                g2d.setColor(Color.CYAN);
-            }
+            changeColor(g2d, t);
+
             g2d.fillRect(0, 0, 25, 25);
             g2d.dispose();
 
@@ -111,7 +101,7 @@ public class Gui {
                     System.out.println("x: " + t.get_xCoor() + " y: " + t.get_yCoor());
                     //call the user and make the move here
                     p1.makeMove(t.get_xCoor(), t.get_yCoor());
-                    updateBoard();
+//                    updateBoard();
 
                 }
             });
@@ -134,15 +124,35 @@ public class Gui {
 
     }
 
-    public void updateBoard(){
-        for(int i = 0; i < _buttons.size(); i++){
-            Tile t = _board.get_tiles().get(i);
-            if(t.is_isOccupied()){
-                _buttons.get(i).setText("HEY");
-            }else{
-                _buttons.get(i).setText("");
-            }
+//    public void updateBoard(){
+//        for(int i = 0; i < _buttons.size(); i++){
+//            Tile t = _board.get_tiles().get(i);
+//            if(t.is_isOccupied()){
+//                _buttons.get(i).setText("HEY");
+//                _buttons.get(i).setIcon(new ImageIcon());
+//
+//            }else{
+//                _buttons.get(i).setText("");
+//            }
+//        }
+//
+//    }
+
+    public Graphics2D changeColor(Graphics2D g2d, Tile t){
+        if (t.get_parentRoom() == - 1){
+            g2d.setColor(_hallway);
+        }else if(t.get_isDoor()){
+            g2d.setColor(Color.GREEN);
+        }else if(t.get_parentRoom() == 9) {
+            g2d.setColor(Color.DARK_GRAY);
+        }else if(_board.getRoomByID(t.get_parentRoom()).isRoomBorder(t) && !t.get_isDoor()){
+            g2d.setColor(Color.RED);
         }
+        if(t.is_isOccupied()){
+            g2d.setColor(Color.CYAN);
+        }
+
+        return g2d;
 
     }
     
