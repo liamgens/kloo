@@ -197,5 +197,9 @@ public class Board {
         return _playerQueue.get_listOfPlayers();
     }
 
+    public TurnQueue getTurnQueue(){
+        return _playerQueue;
+    }
+
 
 }

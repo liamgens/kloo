@@ -101,6 +101,9 @@ public class User {
      */
     public boolean makeMove(int desiredX, int desiredY) {
         if(_board.get_currentRoll() <= 0){
+            _board.getTurnQueue().endTurn();
+            _board.rollDice();
+            _board.getGui().updateInfoPanel();
             return false;
         }
         Tile playersCurrentTile = _board.getTile(_posX, _posY);
@@ -163,6 +166,7 @@ public class User {
             }
 
         }
+
         return false;
     }
 

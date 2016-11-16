@@ -163,6 +163,7 @@ public class Gui {
     public void updateInfoPanel(){
         _currentPlayer.setText("Current Player: " + _board.getCurrentPlayerName());
         _currentRoll.setText("Current Roll: " + _board.get_currentRoll());
+        _window.pack();
     }
     
     //TODO Show "Dice Roll"
