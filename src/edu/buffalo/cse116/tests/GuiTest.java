@@ -25,29 +25,8 @@ public class GuiTest {
         
 
         b.rollDice();
+        gui.updateInfoPanel();
 
     }
-    
-    //TODO (might be redundant) Make sure board and pieces are generated test
-    @Test
-    /**
-     * As a player, I want to be able to see:
-     * the board,
-     * where each player piece is on the board,
-     */
-    public void wherePlayersPieceGUITest() {
-    	
-    }
-    
-    //TODO Write GUI Move Legality Test
-    @Test
-    /**
-     * As a player, I want to be able to:
-     * input my move into the system,
-     * only have legal moves accepted,
-     * everyone is following the rules.
-     */
-    public void legalMovesOnlyGUITest(){
-    	
-    };
+
 }

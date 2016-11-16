@@ -12,7 +12,9 @@ public class Board {
     private ArrayList<Tile> _tiles;
     private ArrayList<Room> _rooms;
     private int _currentRoll;
-    private TurnQueue playerQueue;
+    private TurnQueue _playerQueue;
+    private String[] CHARACTER_NAME = {"Miss Scarlett", "Professor Plum", "Mr. Green", "Mrs. Peacock", "Mrs. White", "Colonel Mustard"};
+
 
     public Board(int numberOfPlayers){
         _tiles = generateBoard(25,25);
@@ -20,8 +22,9 @@ public class Board {
         this.addDefaultRooms();
         this.addDefaultDoors();
         this.addSecretPassages();
-        
-        /** uncomment 
+        _playerQueue = new TurnQueue(numberOfPlayers, this);
+
+        /** uncomment
         Deck deck = new Deck();
         ArrayList<Card> envelope = deck.get_envelopeCards();
         ArrayList<Card> deal = deck.get_deck();
@@ -173,6 +176,12 @@ public class Board {
             }
         }return null;
     }
+
+
+    public String getCurrentPlayer(){
+        return CHARACTER_NAME[_playerQueue.peek()];
+    }
+
 
 
 }

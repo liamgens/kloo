@@ -114,7 +114,7 @@ public class Gui {
     }
 
     public void generateInfoPanel(){
-        _currentPlayer = new JLabel("Current Player: Mrs. White"/*_board.getCurrentPlayer()*/ );
+        _currentPlayer = new JLabel("Current Player: " + _board.getCurrentPlayer());
         _currentRoll = new JLabel("Current Roll: " + _board.get_currentRoll());
         _infoPanel = new JPanel();
         _infoPanel.setLayout(new BoxLayout(_infoPanel, BoxLayout.Y_AXIS));
@@ -154,6 +154,11 @@ public class Gui {
 
         return g2d;
 
+    }
+
+    public void updateInfoPanel(){
+        _currentPlayer.setText("Current Player: " + _board.getCurrentPlayer());
+        _currentRoll.setText("Current Roll: " + _board.get_currentRoll());
     }
     
     //TODO Show "Dice Roll"

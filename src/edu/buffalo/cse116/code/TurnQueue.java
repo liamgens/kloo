@@ -1,5 +1,8 @@
 package edu.buffalo.cse116.code;
 
+import sun.util.resources.cldr.st.CalendarData_st_LS;
+
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -7,21 +10,28 @@ import java.util.Scanner;
 
 public class TurnQueue {
     private LinkedList<Integer> _turns;
+    private ArrayList<User> _listOfPlayers;
+    private Board _board;
     
     /**
      * Creates a Turn queue.
      * @param numberOfPlayers Takes in the number of players
      */
 
-    public TurnQueue(int numberOfPlayers) throws InvalidNumberOfPlayersException{
-        if (numberOfPlayers >=3 && numberOfPlayers <= 6) {
+    public TurnQueue(int numberOfPlayers, Board board) throws InvalidNumberOfPlayersException {
+        _board = board;
+        if (numberOfPlayers >= 3 && numberOfPlayers <= 6) {
             _turns = new LinkedList<Integer>();
-            for (int i = 0; i<numberOfPlayers; i++)
+            _listOfPlayers = new ArrayList<User>();
+            for (int i = 0; i < numberOfPlayers; i++) {
                 _turns.add(i);
-        } else {
-            throw new InvalidNumberOfPlayersException();
+                _listOfPlayers.add(new User(_board, i));
+            }
+        }else{
+                throw new InvalidNumberOfPlayersException();
+            }
         }
-    } 
+
 
     //TODO if Queue is empty, then gameover because no other players are left in the game
 
@@ -68,6 +78,10 @@ public class TurnQueue {
 //		}
         enqueue(peek());
         dequeue();
+    }
+
+    public ArrayList<User> get_listOfPlayers(){
+        return _listOfPlayers;
     }
     
 }
