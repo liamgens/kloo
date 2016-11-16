@@ -26,6 +26,7 @@ public class Gui {
     private JLabel _currentPlayer, _currentRoll;
     private JButton _roll, _suggestion, _accusation;
     private ArrayList<JButton> _buttons;
+    private ArrayList<User> _listOfPlayers;
 
     public JFrame get_window() {
         return _window;
@@ -51,6 +52,7 @@ public class Gui {
         _hallway = new Color(255,255,218);
         _window.setLayout(new BorderLayout());
         _buttons = new ArrayList<JButton>();
+        _listOfPlayers = _board.getListOfPlayers();
         generateGameBoard();
 //        updateBoard();
         generateInfoPanel();
@@ -62,12 +64,14 @@ public class Gui {
     }
 
     public void generateGameBoard(){
-        User p1 = new User(_board,0);
-        User p2 = new User(_board,1);
-        User p3 = new User(_board,2);
-        User p4 = new User(_board,3);
-        User p5 = new User(_board,4);
-        User p6 = new User(_board,5);
+//        User p1 = new User(_board,0);
+//        User p2 = new User(_board,1);
+//        User p3 = new User(_board,2);
+//        User p4 = new User(_board,3);
+//        User p5 = new User(_board,4);
+//        User p6 = new User(_board,5);
+
+
         _boardGui = new JPanel();
         _boardGui.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
@@ -100,7 +104,7 @@ public class Gui {
                 public void actionPerformed(ActionEvent e){
                     System.out.println("x: " + t.get_xCoor() + " y: " + t.get_yCoor());
                     //call the user and make the move here
-                    p1.makeMove(t.get_xCoor(), t.get_yCoor());
+                    _board.getCurrentPlayer().makeMove(t.get_xCoor(), t.get_yCoor());
 //                    updateBoard();
 
                 }
@@ -114,7 +118,7 @@ public class Gui {
     }
 
     public void generateInfoPanel(){
-        _currentPlayer = new JLabel("Current Player: " + _board.getCurrentPlayer());
+        _currentPlayer = new JLabel("Current Player: " + _board.getCurrentPlayerName());
         _currentRoll = new JLabel("Current Roll: " + _board.get_currentRoll());
         _infoPanel = new JPanel();
         _infoPanel.setLayout(new BoxLayout(_infoPanel, BoxLayout.Y_AXIS));
@@ -157,7 +161,7 @@ public class Gui {
     }
 
     public void updateInfoPanel(){
-        _currentPlayer.setText("Current Player: " + _board.getCurrentPlayer());
+        _currentPlayer.setText("Current Player: " + _board.getCurrentPlayerName());
         _currentRoll.setText("Current Roll: " + _board.get_currentRoll());
     }
     

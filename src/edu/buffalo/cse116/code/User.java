@@ -12,7 +12,6 @@ public class User {
     private int _userTurn;
     private int _posX, _posY;
     private Board _board;
-    private ArrayList<User> users; // Will be used later...
 
     /**
      * Creates a User on the game board and assigns it a characterName from the CHARACTER_NAME Array.
@@ -137,6 +136,7 @@ public class User {
                 _posX = desiredX;
                 _posY = desiredY;
                 _board.useRoll();
+                _board.getGui().updateInfoPanel();
                 return true;
             }
             //room -> room && room -> door
@@ -147,6 +147,7 @@ public class User {
                 _posY = desiredY;
                 playersCurrentTile = _board.getTile(_posX, _posY);
                 checkPassage(playersCurrentTile, playersCurrentRoom);
+                _board.getGui().updateInfoPanel();
                 return true;
             }
             //door -> hallway
@@ -157,6 +158,7 @@ public class User {
                 _posX = desiredX;
                 _posY = desiredY;
                 _board.useRoll();
+                _board.getGui().updateInfoPanel();
                 return true;
             }
 
@@ -247,6 +249,10 @@ public class User {
                 break;
 
         }
+    }
+
+    public String getCharacterName(){
+        return CHARACTER_NAME[_userTurn];
     }
 
 

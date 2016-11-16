@@ -9,7 +9,7 @@ import java.util.Queue;
 import java.util.Scanner;
 
 public class TurnQueue {
-    private LinkedList<Integer> _turns;
+    private LinkedList<User> _playersQueue;
     private ArrayList<User> _listOfPlayers;
     private Board _board;
     
@@ -21,11 +21,12 @@ public class TurnQueue {
     public TurnQueue(int numberOfPlayers, Board board) throws InvalidNumberOfPlayersException {
         _board = board;
         if (numberOfPlayers >= 3 && numberOfPlayers <= 6) {
-            _turns = new LinkedList<Integer>();
+            _playersQueue = new LinkedList<User>();
             _listOfPlayers = new ArrayList<User>();
             for (int i = 0; i < numberOfPlayers; i++) {
-                _turns.add(i);
-                _listOfPlayers.add(new User(_board, i));
+                User u = new User(_board, i);
+                _playersQueue.add(u);
+                _listOfPlayers.add(u);
             }
         }else{
                 throw new InvalidNumberOfPlayersException();
@@ -40,24 +41,24 @@ public class TurnQueue {
      * @return true if the Queue is empty, else it's false.
      */
     public boolean isEmpty(){
-        return (_turns.size()==0);
+        return (_playersQueue.size()==0);
     }
 
     /**
      * Adds an element to the front of the Queue.
      * @param user Adds the player to the end of the Queue .
      */
-    public void enqueue(int user){
-        _turns.add(user);
+    public void enqueue(User user){
+        _playersQueue.add(user);
     }
 
     /**
      * Removes an element from the front of the Queue.
      * @return
      */
-    public int dequeue(){
-        int next = _turns.get(1);
-        _turns.remove(0);
+    public User dequeue(){
+        User next = _playersQueue.get(1);
+        _playersQueue.remove(0);
         return next;
     }
 
@@ -65,8 +66,8 @@ public class TurnQueue {
      * Returns the value of the first item in the TurnQueue.
      * @return
      */
-    public Integer peek(){
-        return _turns.get(0);
+    public User peek(){
+        return _playersQueue.get(0);
     }
 
     /**

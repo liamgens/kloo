@@ -180,12 +180,21 @@ public class Board {
     }
 
 
-    public String getCurrentPlayer(){
-        return CHARACTER_NAME[_playerQueue.peek()];
+
+    public User getCurrentPlayer(){
+        return _playerQueue.peek();
+    }
+
+    public String getCurrentPlayerName(){
+        return _playerQueue.peek().getCharacterName();
     }
 
     public Gui getGui(){
         return _gui;
+    }
+
+    public ArrayList<User> getListOfPlayers() {
+        return _playerQueue.get_listOfPlayers();
     }
 
 
