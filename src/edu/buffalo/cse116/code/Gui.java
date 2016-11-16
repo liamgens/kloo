@@ -47,7 +47,7 @@ public class Gui {
         _window = new JFrame();
         _window.setVisible(true);
         _window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        _board = new Board(numberOfPlayers);
+        _board = new Board(numberOfPlayers, this);
         _hallway = new Color(255,255,218);
         _window.setLayout(new BorderLayout());
         _buttons = new ArrayList<JButton>();

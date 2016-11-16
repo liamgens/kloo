@@ -14,15 +14,17 @@ public class Board {
     private int _currentRoll;
     private TurnQueue _playerQueue;
     private String[] CHARACTER_NAME = {"Miss Scarlett", "Professor Plum", "Mr. Green", "Mrs. Peacock", "Mrs. White", "Colonel Mustard"};
+    private Gui _gui;
 
 
-    public Board(int numberOfPlayers){
+    public Board(int numberOfPlayers, Gui gui){
         _tiles = generateBoard(25,25);
         _rooms = new ArrayList<Room>();
         this.addDefaultRooms();
         this.addDefaultDoors();
         this.addSecretPassages();
         _playerQueue = new TurnQueue(numberOfPlayers, this);
+        _gui = gui;
 
         /** uncomment
         Deck deck = new Deck();
@@ -182,6 +184,9 @@ public class Board {
         return CHARACTER_NAME[_playerQueue.peek()];
     }
 
+    public Gui getGui(){
+        return _gui;
+    }
 
 
 }

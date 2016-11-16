@@ -125,6 +125,7 @@ public class User {
                 _posX = desiredX;
                 _posY = desiredY;
                 _board.useRoll();
+                _board.getGui().updateInfoPanel();
                 System.out.print("true");
                 return true;
             }
