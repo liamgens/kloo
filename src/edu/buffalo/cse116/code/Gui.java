@@ -55,7 +55,6 @@ public class Gui {
         _buttons = new ArrayList<JButton>();
         _listOfPlayers = _board.getListOfPlayers();
         generateGameBoard();
-//        updateBoard();
         generateInfoPanel();
         _window.pack();
     }
@@ -65,13 +64,6 @@ public class Gui {
     }
 
     public void generateGameBoard(){
-//        User p1 = new User(_board,0);
-//        User p2 = new User(_board,1);
-//        User p3 = new User(_board,2);
-//        User p4 = new User(_board,3);
-//        User p5 = new User(_board,4);
-//        User p6 = new User(_board,5);
-
 
         _boardGui = new JPanel();
         _boardGui.setLayout(new GridBagLayout());
@@ -189,8 +181,5 @@ public class Gui {
         _currentRoll.setText("Current Roll: " + _board.get_currentRoll());
         _window.pack();
     }
-    
-    //TODO Show "Dice Roll"
-    //TODO Show Cards
 
 }
