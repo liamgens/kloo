@@ -128,6 +128,8 @@ public class User {
                 _posY = desiredY;
                 _board.useRoll();
                 _board.getGui().updateInfoPanel();
+                _board.getGui().updateBoard();
+
                 System.out.print("true");
                 return true;
             }
@@ -140,6 +142,7 @@ public class User {
                 _posY = desiredY;
                 _board.useRoll();
                 _board.getGui().updateInfoPanel();
+                _board.getGui().updateBoard();
                 return true;
             }
             //room -> room && room -> door
@@ -151,6 +154,8 @@ public class User {
                 playersCurrentTile = _board.getTile(_posX, _posY);
                 checkPassage(playersCurrentTile, playersCurrentRoom);
                 _board.getGui().updateInfoPanel();
+                _board.getGui().updateBoard();
+
                 return true;
             }
             //door -> hallway
@@ -162,6 +167,8 @@ public class User {
                 _posY = desiredY;
                 _board.useRoll();
                 _board.getGui().updateInfoPanel();
+                _board.getGui().updateBoard();
+
                 return true;
             }
 

@@ -27,6 +27,7 @@ public class Gui {
     private JButton _roll, _suggestion, _accusation;
     private ArrayList<JButton> _buttons;
     private ArrayList<User> _listOfPlayers;
+    private ImageIcon _hallwayIcon;
 
     public JFrame get_window() {
         return _window;
@@ -86,6 +87,8 @@ public class Gui {
             g2d.fillRect(0, 0, 25, 25);
             g2d.dispose();
 
+            _hallwayIcon = new ImageIcon(img);
+
             JButton space = new JButton(new ImageIcon(img));
             c.insets = new Insets(0, 0, 0, 0);
             space.setMargin(new Insets(0, 0, 0, 0));
@@ -128,19 +131,40 @@ public class Gui {
 
     }
 
-//    public void updateBoard(){
-//        for(int i = 0; i < _buttons.size(); i++){
-//            Tile t = _board.get_tiles().get(i);
-//            if(t.is_isOccupied()){
-//                _buttons.get(i).setText("HEY");
-//                _buttons.get(i).setIcon(new ImageIcon());
-//
-//            }else{
-//                _buttons.get(i).setText("");
-//            }
-//        }
-//
-//    }
+    public void updateBoard(){
+
+        for(int i = 0; i < _buttons.size(); i++){
+            Tile t = _board.get_tiles().get(i);
+            if(t.is_isOccupied()){
+
+            BufferedImage img = new BufferedImage(25, 25, BufferedImage.TYPE_INT_RGB);
+            Graphics2D g2d = img.createGraphics();
+            g2d.setColor(_hallway);
+
+            changeColor(g2d, t);
+
+
+
+            g2d.fillRect(0, 0, 25, 25);
+            g2d.dispose();
+
+                _buttons.get(i).setIcon(new ImageIcon(img));
+
+            }else{
+                BufferedImage img = new BufferedImage(25, 25, BufferedImage.TYPE_INT_RGB);
+                Graphics2D g2d = img.createGraphics();
+
+                g2d = changeColor(g2d, t);
+                g2d.fillRect(0, 0, 25, 25);
+                g2d.dispose();
+
+
+
+                _buttons.get(i).setIcon(new ImageIcon(img));
+            }
+        }
+
+    }
 
     public Graphics2D changeColor(Graphics2D g2d, Tile t){
         if (t.get_parentRoom() == - 1){
