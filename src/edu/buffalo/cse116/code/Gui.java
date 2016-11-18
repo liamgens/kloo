@@ -22,7 +22,11 @@ public class Gui {
     private JFrame _window;
     private JPanel _boardGui, _currentCards, _infoPanel;
     private Board _board;
-    private Color _hallway;
+
+    private Color _hallway = new Color(153, 153, 0);
+    private Color _door = new Color(186, 184, 184);
+    private Color _room = new Color(122, 71, 56);
+
     private JLabel _currentPlayer, _currentRoll;
     private JButton _roll, _suggestion, _accusation;
     private ArrayList<JButton> _buttons;
@@ -50,7 +54,6 @@ public class Gui {
         _window.setVisible(true);
         _window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         _board = new Board(numberOfPlayers, this);
-        _hallway = new Color(255, 255, 218);
         _window.setLayout(new BorderLayout());
         _buttons = new ArrayList<JButton>();
         _listOfPlayers = _board.getListOfPlayers();
@@ -175,14 +178,14 @@ public class Gui {
         if (t.get_parentRoom() == -1) {
             g2d.setColor(_hallway);
         } else if (t.get_isDoor()) {
-            g2d.setColor(Color.GREEN);
+            g2d.setColor(_door);
         } else if (t.get_parentRoom() == 9) {
             g2d.setColor(Color.DARK_GRAY);
         } else if (_board.getRoomByID(t.get_parentRoom()).isRoomBorder(t) && !t.get_isDoor()) {
-            g2d.setColor(Color.RED);
+            g2d.setColor(_room);
 
         } else {
-            g2d.setColor(Color.RED);
+            g2d.setColor(_room);
         }
 
         if (t.is_isPassage()) {
