@@ -23,9 +23,9 @@ public class Gui {
     private JPanel _boardGui, _currentCards, _infoPanel;
     private Board _board;
 
-    private Color _hallway = new Color(153, 153, 0);
+    private Color _hallway = new Color(24, 189, 156);
     private Color _door = new Color(186, 184, 184);
-    private Color _room = new Color(122, 71, 56);
+    private Color _room = new Color(1, 99, 122);
 
     private JLabel _currentPlayer, _currentRoll;
     private JButton _roll, _suggestion, _accusation;
@@ -51,6 +51,7 @@ public class Gui {
 
     public Gui(int numberOfPlayers) {
         _window = new JFrame();
+        _window.setTitle("Kloo");
         _window.setVisible(true);
         _window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         _board = new Board(numberOfPlayers, this);
@@ -172,7 +173,7 @@ public class Gui {
     public Color changePlayerColor(Tile t, Graphics2D g2d){
             for(User player : _listOfPlayers){
                 if(player.get_posX() == t.get_xCoor() && player.get_posY() == t.get_yCoor()){
-                    Color c = selectPlayerColor(player.getCharacterName(), g2d);
+                    Color c = selectPlayerColor(player.getCharacterName());
                     return c;
                 }
             }
@@ -217,7 +218,7 @@ public class Gui {
         _window.pack();
     }
 
-    public Color selectPlayerColor(String name, Graphics2D g2d) {
+    public Color selectPlayerColor(String name) {
         switch (name) {
             case "Miss Scarlett":
                return Color.red;
@@ -229,7 +230,7 @@ public class Gui {
             //break;
 
             case "Mrs. Peacock":
-                return Color.blue;
+                return Color.cyan;
 
             //break;
 
