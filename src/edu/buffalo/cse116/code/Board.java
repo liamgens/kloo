@@ -13,7 +13,6 @@ public class Board {
     private ArrayList<Room> _rooms;
     private int _currentRoll;
     private TurnQueue _playerQueue;
-    private String[] CHARACTER_NAME = {"Miss Scarlett", "Professor Plum", "Mr. Green", "Mrs. Peacock", "Mrs. White", "Colonel Mustard"};
     private Gui _gui;
 
 

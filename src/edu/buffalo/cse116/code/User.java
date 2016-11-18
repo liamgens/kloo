@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class User {
 
     private ArrayList<Card> _userCards; // Used to return cards
-    private String[] CHARACTER_NAME = {"Miss Scarlett", "Professor Plum", "Mr. Green", "Mrs. Peacock", "Mrs. White", "Colonel Mustard"};
+    private String[] CHARACTER_NAME = {"Miss Scarlett", "Professor Plum", "Mr. Green", "Mrs. White", "Mrs. Peacock", "Colonel Mustard"};
     private int _userTurn;
     private int _posX, _posY;
     private Board _board;
