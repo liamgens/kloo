@@ -15,7 +15,10 @@ public class Board {
     private TurnQueue _playerQueue;
     private String[] CHARACTER_NAME = {"Miss Scarlett", "Professor Plum", "Mr. Green", "Mrs. Peacock", "Mrs. White", "Colonel Mustard"};
     private Gui _gui;
-
+    // Strings to represent weapon items since each weapon needs to be in a room
+    static final Object[] WEAPONS = {"WRENCH", "CANDLESTICK", "LEAD PIPE", "ROPE", "REVOLVER", "KNIFE"};
+    // static to access 17 door coordinates in other classes
+    static final int[][] DOORCOOR = {{4,4},{5,9},{3,11},{1,13},{5,16},{5,21},{8,21},{9,18},{15,18},{16,21},{20,20},{19,14},{20,8},{21,4},{13,4},{12,4},{8,2}};
 
     public Board(int numberOfPlayers, Gui gui){
         _tiles = generateBoard(25,25);
@@ -100,12 +103,11 @@ public class Board {
 
     /**
      * Adds all of the doors
+     * 17 Doors total
      */
     public void addDefaultDoors(){
-        int[][] doorCoor = {{4,4},{5,9},{3,11},{1,13},{5,16},{5,21},{8,21},{9,18},{15,18},
-                {16,21},{20,20},{19,14},{20,8},{21,4},{13,4},{12,4},{8,2}};
-        for(int i = 0; i < doorCoor.length; i++){
-            getTile(doorCoor[i][0], doorCoor[i][1]).set_isDoor(true);
+        for(int i = 0; i < DOORCOOR.length; i++){
+            getTile(DOORCOOR[i][0], DOORCOOR[i][1]).set_isDoor(true);
         }
     }
 
