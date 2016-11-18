@@ -24,8 +24,8 @@ public class GuiTest {
         Board b = gui.get_board();
         
 
-        b.rollDice();
-        gui.updateInfoPanel();
+//        b.rollDice();
+//        gui.updateInfoPanel();
 
     }
 

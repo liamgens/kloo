@@ -54,6 +54,7 @@ public class Gui {
         _window.setLayout(new BorderLayout());
         _buttons = new ArrayList<JButton>();
         _listOfPlayers = _board.getListOfPlayers();
+        _board.rollDice();
         generateGameBoard();
         generateInfoPanel();
         _window.pack();
@@ -100,8 +101,6 @@ public class Gui {
                     System.out.println("x: " + t.get_xCoor() + " y: " + t.get_yCoor());
                     //call the user and make the move here
                     _board.getCurrentPlayer().makeMove(t.get_xCoor(), t.get_yCoor());
-//                    updateBoard();
-
                 }
             });
             _boardGui.add(space,c);
@@ -123,6 +122,10 @@ public class Gui {
 
     }
 
+    public void generateCardPanel(){
+
+    }
+
     public void updateBoard(){
 
         for(int i = 0; i < _buttons.size(); i++){
@@ -134,8 +137,6 @@ public class Gui {
             g2d.setColor(_hallway);
 
             changeColor(g2d, t);
-
-
 
             g2d.fillRect(0, 0, 25, 25);
             g2d.dispose();
@@ -167,10 +168,14 @@ public class Gui {
             g2d.setColor(Color.DARK_GRAY);
         }else if(_board.getRoomByID(t.get_parentRoom()).isRoomBorder(t) && !t.get_isDoor()){
             g2d.setColor(Color.RED);
+        }else{
+            g2d.setColor(Color.RED);
         }
         if(t.is_isOccupied()){
             g2d.setColor(Color.CYAN);
         }
+
+
 
         return g2d;
 

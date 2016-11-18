@@ -131,7 +131,7 @@ public class User {
                 _board.getGui().updateBoard();
 
                 System.out.print("true");
-                return true;
+                //return true;
             }
             //hallway -> door
             else if (desiredTileRoom >= 0 && desiredTileRoom < 9 && desiredTile.get_isDoor() && playersCurrentRoom == -1 &&
@@ -143,7 +143,7 @@ public class User {
                 _board.useRoll();
                 _board.getGui().updateInfoPanel();
                 _board.getGui().updateBoard();
-                return true;
+                //return true;
             }
             //room -> room && room -> door
             else if (desiredTileRoom == playersCurrentRoom && playersCurrentRoom >= 0 && playersCurrentRoom < 9 && !desiredTile.is_isOccupied()) {
@@ -156,7 +156,7 @@ public class User {
                 _board.getGui().updateInfoPanel();
                 _board.getGui().updateBoard();
 
-                return true;
+                //return true;
             }
             //door -> hallway
             else if (playersCurrentRoom >= 0 && playersCurrentRoom < 9 && desiredTileRoom == -1 && playersCurrentTile.get_isDoor() &&
@@ -169,9 +169,18 @@ public class User {
                 _board.getGui().updateInfoPanel();
                 _board.getGui().updateBoard();
 
-                return true;
+                //return true;
             }
 
+
+
+        }
+
+        if(_board.get_currentRoll() <= 0){
+            _board.getTurnQueue().endTurn();
+            _board.rollDice();
+            _board.getGui().updateInfoPanel();
+            return false;
         }
 
         return false;
