@@ -25,12 +25,10 @@ public class Board {
         this.addSecretPassages();
         _playerQueue = new TurnQueue(numberOfPlayers, this);
         _gui = gui;
-
-        /** uncomment
         Deck deck = new Deck();
         ArrayList<Card> envelope = deck.get_envelopeCards();
         ArrayList<Card> deal = deck.get_deck();
-        */
+
     }
 
 

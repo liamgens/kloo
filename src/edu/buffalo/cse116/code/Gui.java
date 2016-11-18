@@ -60,6 +60,7 @@ public class Gui {
         _board.rollDice();
         generateGameBoard();
         generateInfoPanel();
+        generateCardPanel();
         _window.pack();
     }
 
@@ -126,6 +127,13 @@ public class Gui {
     }
 
     public void generateCardPanel() {
+        _currentCards = new JPanel();
+        JLabel cardLabel = new JLabel();
+        String cards = "";
+        //for (Card : _board.getCurrentPlayer())
+         cardLabel.setText(cards + "THESE WILL BE THE CURRENT CARDS");
+        _currentCards.add(cardLabel);
+        _window.add(_currentCards, BorderLayout.SOUTH);
 
     }
 
