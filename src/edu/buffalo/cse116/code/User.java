@@ -86,6 +86,10 @@ public class User {
         return false;
     }
 
+/*    public boolean makeAccusation(){
+    return false;
+    }
+*/
 
 
     //Player Position
@@ -168,7 +172,7 @@ public class User {
      * This method returns boolean if the user coordinates {x,y} is equal to the doors coordinates {x,y},
      *  which means that the user is entering a room.
      *  This will be used to trigger a the suggestion method if true.
-     * @param int[] userCoor
+     * @param  userCoor
      * @return _trigger if true, user at door coordinates, false if otherwise
      */
     public boolean enterDoor(int[] userCoor) {
@@ -193,7 +197,7 @@ public class User {
     	return _trigger;
     }
     
-    //TODO finish suggestion method
+
     /**
      * if user entered new room, fire suggestion method
      * if ended up in new room, fire option for suggestion
@@ -233,7 +237,7 @@ public class User {
     	}
     }
     
-    //TODO finish method
+
     /**
      * If you entered new room or were moved to a new room from previous,
      * return room name

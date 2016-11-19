@@ -128,6 +128,11 @@ public class Room {
         return null;
     }
 
+    /**
+     * distinguishes hallway tiles from tiles on the edges of a room.
+     * @param t
+     * @return
+     */
     public boolean isRoomBorder(Tile t){
         int x = t.get_xCoor();
         int y = t.get_yCoor();
