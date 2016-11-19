@@ -25,7 +25,7 @@ public class PopUp {
         _window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         _window.setLayout(new BorderLayout());
         _window.setTitle("Menu");
-        mainPopUp();
+        mainPopUp(); // Triggers Suggestion Menu or Accusation Menu
         _window.pack();
     }
 
@@ -134,14 +134,20 @@ public class PopUp {
         _suggestionButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e)
             {
+                _popupGui.setVisible(false);
                 generateSuggestionPopUp();
-                System.out.println("You clicked the button");
+                _window.revalidate();
+                _window.repaint();
+                _window.pack();
             }});
         _accusationButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e)
             {
+                _popupGui.setVisible(false);
                 generateAccusationPopUp();
-                System.out.println("You clicked the button");
+                _window.revalidate();
+                _window.repaint();
+                _window.pack();
             }});
     }
 }
