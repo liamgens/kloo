@@ -16,7 +16,8 @@ public class Board {
     private String[] CHARACTER_NAME = {"Miss Scarlett", "Professor Plum", "Mr. Green", "Mrs. Peacock", "Mrs. White", "Colonel Mustard"};
     private Gui _gui;
     // Strings to represent weapon items since each weapon needs to be in a room
-    static final Object[] WEAPONS = {"WRENCH", "CANDLESTICK", "LEAD PIPE", "ROPE", "REVOLVER", "KNIFE"};
+    static final String[] WEAPONS = {"WRENCH", "CANDLESTICK", "LEAD PIPE", "ROPE", "REVOLVER", "KNIFE"};
+    static final String[] ROOMS = {"KITCHEN", "BALLROOM", "CONSERVATORY", "DINING ROOM", "LOUNGE", "HALL", "STUDY", "LIBRARY", "BILLARD ROOM"};
     // static to access 17 door coordinates in other classes
     static final int[][] DOORCOOR = {{4,4},{5,9},{3,11},{1,13},{5,16},{5,21},{8,21},{9,18},{15,18},{16,21},{20,20},{19,14},{20,8},{21,4},{13,4},{12,4},{8,2}};
 
