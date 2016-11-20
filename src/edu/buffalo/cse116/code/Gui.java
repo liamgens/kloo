@@ -113,14 +113,24 @@ public class Gui {
     }
 
     public void generateInfoPanel(){
+        JButton accusationButton = new JButton("Accusation");
+        accusationButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                AccusationPopUp accusationPopUp = new AccusationPopUp(_board);
+                updateBoard();
+                updateInfoPanel();
+            }
+        });
+
         _currentPlayer = new JLabel("Current Player: " + _board.getCurrentPlayerName());
         _currentRoll = new JLabel("Current Roll: " + _board.get_currentRoll());
         _infoPanel = new JPanel();
         _infoPanel.setLayout(new BoxLayout(_infoPanel, BoxLayout.Y_AXIS));
         _infoPanel.add(_currentPlayer);
         _infoPanel.add(_currentRoll);
+        _infoPanel.add(accusationButton);
         _window.add(_infoPanel, BorderLayout.EAST);
-
     }
 
     public void updateBoard(){

@@ -15,10 +15,9 @@ public class Board {
     private TurnQueue _playerQueue;
     private String[] CHARACTER_NAME = {"Miss Scarlett", "Professor Plum", "Mr. Green", "Mrs. Peacock", "Mrs. White", "Colonel Mustard"};
     private Gui _gui;
-    // Strings to represent weapon items since each weapon needs to be in a room
-    static final Object[] WEAPONS = {"WRENCH", "CANDLESTICK", "LEAD PIPE", "ROPE", "REVOLVER", "KNIFE"};
-    // static to access 17 door coordinates in other classes
-    static final int[][] DOORCOOR = {{4,4},{5,9},{3,11},{1,13},{5,16},{5,21},{8,21},{9,18},{15,18},{16,21},{20,20},{19,14},{20,8},{21,4},{13,4},{12,4},{8,2}};
+    static final String[] WEAPONS = {"WRENCH", "CANDLESTICK", "LEAD PIPE", "ROPE", "REVOLVER", "KNIFE"};
+    static final int[][] DOORCOOR = {{4,4},{5,9},{3,11},{1,13},{5,16},{5,21},{8,21},{9,18},{15,18},{16,21},{20,20},{19,14},{20,8},{21,4},{13,4},{12,4},{8,2}}; // static to access 17 door coordinates in other classes
+    private ArrayList<Card> _envelope;
 
     public Board(int numberOfPlayers, Gui gui){
         _tiles = generateBoard(25,25);
@@ -29,11 +28,9 @@ public class Board {
         _playerQueue = new TurnQueue(numberOfPlayers, this);
         _gui = gui;
 
-        /** uncomment
         Deck deck = new Deck();
-        ArrayList<Card> envelope = deck.get_envelopeCards();
+        _envelope = deck.get_envelopeCards();
         ArrayList<Card> deal = deck.get_deck();
-        */
     }
 
 
@@ -55,6 +52,8 @@ public class Board {
     public ArrayList<Tile> get_tiles() {
         return _tiles;
     }
+
+    public ArrayList<Card> get_envelope() {return _envelope; }
 
 
     /**

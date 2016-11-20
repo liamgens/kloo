@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 public class TurnQueue {
     private LinkedList<User> _playersQueue;
-    private ArrayList<User> _listOfPlayers;
+    public ArrayList<User> _listOfPlayers;
     private Board _board;
     
     /**
@@ -32,9 +32,6 @@ public class TurnQueue {
                 throw new InvalidNumberOfPlayersException();
             }
         }
-
-
-    //TODO if Queue is empty, then gameover because no other players are left in the game
 
     /**
      * Tests to see if the Queue is empty.
