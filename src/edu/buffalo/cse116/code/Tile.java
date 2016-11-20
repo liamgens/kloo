@@ -18,6 +18,7 @@ public class Tile {
         _isPassage = false;
         _isOccupied = false;
 
+
         //-1 for _parentRoom implies that it has NO parent Room
         _parentRoom = -1;
     }

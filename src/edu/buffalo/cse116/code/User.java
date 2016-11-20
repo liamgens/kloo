@@ -1,5 +1,6 @@
 package edu.buffalo.cse116.code;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -104,6 +105,8 @@ public class User {
             _board.getTurnQueue().endTurn();
             _board.rollDice();
             _board.getGui().updateInfoPanel();
+            _board.getGui().updateCardPanel();
+
             return false;
         }
         Tile playersCurrentTile = _board.getTile(_posX, _posY);
@@ -129,6 +132,7 @@ public class User {
                 _board.useRoll();
                 _board.getGui().updateInfoPanel();
                 _board.getGui().updateBoard();
+                _board.getGui().updateCardPanel();
 
                 System.out.print("true");
                 //return true;
@@ -143,6 +147,8 @@ public class User {
                 _board.useRoll();
                 _board.getGui().updateInfoPanel();
                 _board.getGui().updateBoard();
+                _board.getGui().updateCardPanel();
+
                 //return true;
             }
             //room -> room && room -> door
@@ -155,6 +161,8 @@ public class User {
                 checkPassage(playersCurrentTile, playersCurrentRoom);
                 _board.getGui().updateInfoPanel();
                 _board.getGui().updateBoard();
+                _board.getGui().updateCardPanel();
+
 
                 //return true;
             }
@@ -168,6 +176,8 @@ public class User {
                 _board.useRoll();
                 _board.getGui().updateInfoPanel();
                 _board.getGui().updateBoard();
+                _board.getGui().updateCardPanel();
+
 
                 //return true;
             }
@@ -180,6 +190,8 @@ public class User {
             _board.getTurnQueue().endTurn();
             _board.rollDice();
             _board.getGui().updateInfoPanel();
+            _board.getGui().updateCardPanel();
+
             return false;
         }
 
@@ -273,6 +285,10 @@ public class User {
 
     public String getCharacterName(){
         return CHARACTER_NAME[_userTurn];
+    }
+
+    public ArrayList<Card> get_userCards(){
+        return _userCards;
     }
 
 
