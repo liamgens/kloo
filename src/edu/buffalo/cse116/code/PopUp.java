@@ -20,19 +20,20 @@ public class PopUp{
     private JButton _suggestionButton, _accusationButton;
     private User _chosenSuspect, _currentPlayer;
     private String _suspectChosen, _weaponChosen, _roomChosen;
-    private ArrayList<User> _current;
+    private ArrayList<User> _currentAList;
+    private Tile _currentTile;
+    private Board _board;
+    private int _sus_posX, _sus_posY;
 
     public String get_suspectChosen(){ return _suspectChosen; }
     public String get_weaponChosen(){ return _weaponChosen; }
     public String get_roomChosen(){ return _roomChosen; }
 
-    public JFrame get_window() {
-        return _window;
-    }
-
-    public PopUp(ArrayList<User> currentAList, User currentPlayer) {
-        _currentPlayer = currentPlayer;
-        _current = currentAList;
+    public PopUp(Tile currentTile, Board board) {
+        _board = board;
+        _currentPlayer = board.getCurrentPlayer();
+        _currentAList = board.getListOfPlayers();
+        _currentTile = currentTile;
         _window = new JFrame();
         _window.setVisible(true);
         _window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -65,7 +66,7 @@ public class PopUp{
                 suspectTitle = BorderFactory.createTitledBorder(blackline, "Suspect");
                 suspectTitle.setTitleJustification(TitledBorder.CENTER);
                 _suspectPanel.setBorder(suspectTitle);
-                JComboBox<String> suspectNames = new JComboBox<String>(currentList(_current));
+                JComboBox<String> suspectNames = new JComboBox<String>(currentList(_currentAList));
                     _suspectChosen = String.valueOf(suspectNames.getSelectedItem());
                 _suspectPanel.add(suspectNames);
             _bodyPanel.add(_weaponPanel);
@@ -82,7 +83,7 @@ public class PopUp{
                 roomTitle.setTitleJustification(TitledBorder.CENTER);
                 _roomPanel.setBorder(roomTitle);
                 JComboBox<String> currentRoom = new JComboBox<String>();
-                currentRoom.addItem("Current Room");
+                currentRoom.addItem(Room.ROOMS[_currentTile.get_parentRoom()]);
                 currentRoom.setEnabled(false);
                 _roomPanel.add(currentRoom);
             _bodyPanel.add(_submitPanel);
@@ -91,6 +92,7 @@ public class PopUp{
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         suggestion();
+                        _window.dispose();
                     }
                 });
                 _submitPanel.add(submitButton);
@@ -118,7 +120,7 @@ public class PopUp{
                 suspectTitle = BorderFactory.createTitledBorder(blackline, "Suspect");
                 suspectTitle.setTitleJustification(TitledBorder.CENTER);
                 _suspectPanel.setBorder(suspectTitle);
-                JComboBox<String> suspectNames = new JComboBox<String>(currentList(_current));
+                JComboBox<String> suspectNames = new JComboBox<String>(currentList(_currentAList));
                     _suspectChosen = String.valueOf(suspectNames.getSelectedItem());
                 _suspectPanel.add(suspectNames);
             _bodyPanel.add(_weaponPanel);
@@ -134,7 +136,7 @@ public class PopUp{
                 roomTitle = BorderFactory.createTitledBorder(blackline, "Room");
                 roomTitle.setTitleJustification(TitledBorder.CENTER);
                 _roomPanel.setBorder(roomTitle);
-                JComboBox<String> roomNames = new JComboBox<String>(Board.ROOMS);
+                JComboBox<String> roomNames = new JComboBox<String>(Room.ROOMS);
                     _roomChosen = String.valueOf(roomNames.getSelectedItem());
                 _roomPanel.add(roomNames);
             _bodyPanel.add(_submitPanel);
@@ -142,7 +144,9 @@ public class PopUp{
                 submitButton.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
+
                         accusation();
+                        _window.dispose();
                     }
                 });
                 _submitPanel.add(submitButton);
@@ -181,15 +185,35 @@ public class PopUp{
             }});
     }
 
+    /////////// SUGGESTION //////////
+
     public void suggestion() {
         _chosenSuspect = returnUser(_suspectChosen);
-        moveUserHere(_chosenSuspect);
-
+        _sus_posX = _chosenSuspect.get_posX();
+        _sus_posY = _chosenSuspect.get_posY();
+        moveUserHere(_chosenSuspect, _currentPlayer);
 
     }
 
     /**
-     * Returns Chosen User from Array list of User based off their name
+     * Method that moves suspect to the current players room.
+     * @param suspect
+     * @param currentPlayer
+     */
+    public void moveUserHere(User suspect, User currentPlayer) {
+        Tile currentTile = _board.getTile(currentPlayer.get_posX(), currentPlayer.get_posY());
+        Tile suspectTile = _board.getTile(suspect.get_posX(), suspect.get_posY());
+
+        int playersCurrentRoom = currentTile.get_parentRoom();
+        int suspectCurrentRoom = suspectTile.get_parentRoom();
+
+        if (playersCurrentRoom != suspectCurrentRoom) {
+            checkPassage(currentTile, suspectTile, playersCurrentRoom);
+        }
+    }
+
+    /**
+     * Returns User chosen name from drop-down list
      * @param chosenUserName
      * @return User
      */
@@ -198,27 +222,113 @@ public class PopUp{
         for (int i = 0; i < User.CHARACTER_NAME.length; i++) {
             if (User.CHARACTER_NAME[i] == chosenUserName) {
                 index = i;
+                System.out.print(true);
                 break;
             }
         }
-        User chosen = _current.get(index);
+        User chosen = _currentAList.get(index);
         return chosen;
     }
 
     /**
+     * Edited copy of "checkPassage()" method from UserClass
      *
-     * @param user
+     * Checks if current user is at a door leading to a specific room,
+     * then selects a random tile from the room and sets the suspects current tile to the new tile
+     * @param playersCurrentTile
+     * @param suspectCurrentTile
+     * @param playersCurrentRoom
      */
-    public void moveUserHere(User user) {
-
+    public void checkPassage(Tile playersCurrentTile, Tile suspectCurrentTile, int playersCurrentRoom){
+        if (playersCurrentTile.get_isDoor()) {
+            if (playersCurrentRoom == 0) {
+                Tile newPosition = (_board.getRoomByID(0).getRandomTile());
+                if (newPosition != null) {
+                    setNewLocation(suspectCurrentTile, newPosition);
+                }
+            } else if (playersCurrentRoom == 1) {
+                Tile newPosition = (_board.getRoomByID(1).getRandomTile());
+                if (newPosition != null) {
+                    setNewLocation(suspectCurrentTile, newPosition);
+                }
+            } else if (playersCurrentRoom == 2) {
+                Tile newPosition = (_board.getRoomByID(2).getRandomTile());
+                if (newPosition != null) {
+                    setNewLocation(suspectCurrentTile, newPosition);
+                }
+            } else if (playersCurrentRoom == 3) {
+                Tile newPosition = (_board.getRoomByID(3).getRandomTile());
+                if (newPosition != null) {
+                    setNewLocation(suspectCurrentTile, newPosition);
+                }
+            } else if (playersCurrentRoom == 4) {
+                Tile newPosition = (_board.getRoomByID(4).getRandomTile());
+                if (newPosition != null) {
+                    setNewLocation(suspectCurrentTile, newPosition);
+                }
+            } else if (playersCurrentRoom == 5) {
+                Tile newPosition = (_board.getRoomByID(5).getRandomTile());
+                if (newPosition != null) {
+                    setNewLocation(suspectCurrentTile, newPosition);
+                }
+            } else if (playersCurrentRoom == 6) {
+                Tile newPosition = (_board.getRoomByID(6).getRandomTile());
+                if (newPosition != null) {
+                    setNewLocation(suspectCurrentTile, newPosition);
+                }
+            } else if (playersCurrentRoom == 7) {
+                Tile newPosition = (_board.getRoomByID(7).getRandomTile());
+                if (newPosition != null) {
+                    setNewLocation(suspectCurrentTile, newPosition);
+                }
+            } else if (playersCurrentRoom == 8) {
+                Tile newPosition = (_board.getRoomByID(8).getRandomTile());
+                if (newPosition != null) {
+                    setNewLocation(suspectCurrentTile, newPosition);
+                }
+            }
+        }
     }
 
     /**
-     * Gets
+     * Edited copy of "useSecretPassage()" method from User Class
+     *
+     * Sets new location of the desired CurrentTile and the new Tile position
+     * @param desiredCurrentTile
+     * @param newPosition
+     */
+    public void setNewLocation(Tile desiredCurrentTile, Tile newPosition){
+        desiredCurrentTile.set_isOccupied(false);
+        _sus_posX = newPosition.get_xCoor();
+        _sus_posY = newPosition.get_yCoor();
+        newPosition.set_isOccupied(true);
+        _board.resetRoll();
+    }
+
+    ///////// ACCUSATION ///////////
+
+    /**
+     * Gets value from drop-down list and checks if it matches with the envelope cards
      */
     public void accusation() {
-
+        int correctCounter = 0;
+        ArrayList<Card> envelope = _board.get_envelope();
+        for (int i = 0; i < envelope.size(); i++) {
+            Card c = envelope.get(i);
+            String correct = c.get_title().toLowerCase();
+            if (correct == _suspectChosen.toLowerCase() || correct == _weaponChosen.toLowerCase() || correct == _roomChosen.toLowerCase()) {
+                correctCounter = correctCounter + 1;
+            }
+        }
+        if (correctCounter == 3) {
+            System.out.println("YOU WIN! GAME OVER");
+        } else {
+            System.out.println("YOU LOSE!");
+            _board.getTurnQueue().dequeue();
+        }
     }
+
+    /////////// DROP DOWN LIST METHODS ///////////
 
     /**
      * Displays a array of names of current players in the game

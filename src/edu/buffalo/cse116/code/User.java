@@ -12,8 +12,7 @@ public class User {
     private int _userTurn;
     private int _posX, _posY;
     private Board _board;
-    private int[] _startTurnCoor, _endTurnCoor, _currentCoor; // stores coordinates {int x, int y}
-    private boolean _trigger;// Holds value to set off suggestion
+    private int[] _startTurnCoor, _endTurnCoor, _currentCoor; // stores coordinates in array {int x, int y}
 
     /**
      * Creates a User on the game board and assigns it a characterName from the CHARACTER_NAME Array.
@@ -75,12 +74,6 @@ public class User {
         }
         return false;
     }
-
-/*    public boolean makeAccusation(){
-    return false;
-    }
-*/
-
 
     //Player Position
     public int get_posX() {
@@ -160,24 +153,6 @@ public class User {
     
 
     /**
-     * If you entered new room or were moved to a new room from previous,
-     * return room name
-     * @return String roomName
-     */
-    public String whatRoom() {
-    	String roomName = "";
-    	if (_trigger == true) {
-    		// get location of your coordinates and compare with room coordinates
-    	}
-    	if (userMoved()) {
-    		// get location of your coordinates and compare with room coordinates
-    	}
-    	
-    	return roomName;
-    }
-    
-
-    /**
      * Lets the player try to move to another tile
      * @param desiredX the x coor of Tile to travel to
      * @param desiredY the y coor of Tile to travel to
@@ -228,9 +203,8 @@ public class User {
                 _board.getGui().updateInfoPanel();
                 _board.getGui().updateBoard();
 
-                _trigger = true;
-
-                PopUp popUp = new PopUp(_board.getListOfPlayers(), _board.getCurrentPlayer());
+                PopUp popUp = new PopUp(_board.getTile(get_posX(), get_posY()), _board);
+                _board.getGui().updateBoard();
 
                 return true;
             }
@@ -265,8 +239,8 @@ public class User {
 
         return false;
     }
-    //TODO Since users' turn ends when a user uses a secret passage, set int[] _endTurn to grab coordinates before user decides to use secret passage and int[] _startTurn coordinates after user uses secret passage. This way we can tell if the user can make a suggestion on next turn.
-    /**
+
+     /**
      * Allows a player to use a secret passage once their are in the room and the new position in the new room is not occupied.
      * When a secret passage is used, the User's previously occupied tile is set to be unoccupied and a new position is set in the new room the User is in.
      * _board.resetRoll() ends the User's turn.
