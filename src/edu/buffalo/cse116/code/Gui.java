@@ -1,5 +1,6 @@
 package edu.buffalo.cse116.code;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
@@ -7,6 +8,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -29,26 +32,9 @@ public class Gui {
     private Color _room = new Color(1, 99, 122);
 
     private JLabel _currentPlayer, _currentRoll;
-    private JButton _roll, _suggestion, _accusation;
     private ArrayList<JButton> _buttons;
     private ArrayList<User> _listOfPlayers;
     private ImageIcon _hallwayIcon;
-
-    public JFrame get_window() {
-        return _window;
-    }
-
-    public JPanel get_boardGui() {
-        return _boardGui;
-    }
-
-    public JPanel get_currentCards() {
-        return _currentCards;
-    }
-
-    public JPanel get_infoPanel() {
-        return _infoPanel;
-    }
 
     public Gui(int numberOfPlayers) {
         _window = new JFrame();
@@ -60,6 +46,11 @@ public class Gui {
         _buttons = new ArrayList<JButton>();
         _listOfPlayers = _board.getListOfPlayers();
         _board.rollDice();
+        JLabel listOfRooms = new JLabel();
+        listOfRooms.setText("1: Kitchen | 2: Ballroom | 3: Conservatory | 4. Dining Room | 5: Lounge | 6: Hall | 7: Study | 8: Billard Room");
+        JPanel rooms = new JPanel();
+        rooms.add(listOfRooms);
+        _window.add(rooms, BorderLayout.NORTH);
         generateGameBoard();
         generateInfoPanel();
         generateCardPanel();
@@ -88,7 +79,19 @@ public class Gui {
 
             _hallwayIcon = new ImageIcon(img);
 
+
             JButton space = new JButton(new ImageIcon(img));
+            if(t.get_parentRoom() != -1 && t.get_parentRoom() != 9 && !t.is_isDoor() && !t.is_isPassage()){
+                int roomID = t.get_parentRoom();
+                String room = "" + (roomID + 1);
+                space = new JButton(room , new ImageIcon(img));
+
+            }else{
+                space = new JButton(new ImageIcon(img));
+            }
+
+            space.setHorizontalTextPosition(JButton.CENTER);
+            space.setVerticalTextPosition(JButton.CENTER);
             c.insets = new Insets(0, 0, 0, 0);
             space.setMargin(new Insets(0, 0, 0, 0));
             space.setContentAreaFilled(false);
