@@ -12,18 +12,8 @@ public class User {
     private int _userTurn;
     private int _posX, _posY;
     private Board _board;
-    //  stores users' current coordinates {int x, int y}
-    private int[] _currentCoor;
-    //  stores users coordinates at beginning of turn {int x, int y}, for comparison
-    private int[] _startTurn;
-    //  stores users coordinates at end of turn {int x, int y}
-    private int[] _endTurn;
-    // holds value if user decides to end turn, prompts: continue: yes or no (OPTIONAL)
-    private boolean _decision;
- // Holds value to set off suggestion
-    private boolean _trigger;
-    // Hold value if the user wants to make a suggestion under certain circumstances
-    private boolean _makeSuggestion;
+    private int[] _startTurnCoor, _endTurnCoor, _currentCoor; // stores coordinates {int x, int y}
+    private boolean _trigger;// Holds value to set off suggestion
 
     /**
      * Creates a User on the game board and assigns it a characterName from the CHARACTER_NAME Array.
@@ -140,8 +130,8 @@ public class User {
      * @return int[] _startTurn;
      */
     public int[] startTurnCoordinates() {
-    	_startTurn = get_userCoor();
-    	return _startTurn;
+    	_startTurnCoor = get_userCoor();
+    	return _startTurnCoor;
     }
     
     /**
@@ -149,8 +139,8 @@ public class User {
      * @return int[] _endTurn;
      */
     public int[] endTurnCoordinates() {
-    	_endTurn = get_userCoor();
-    	return _endTurn;
+    	_endTurnCoor = get_userCoor();
+    	return _endTurnCoor;
     }
     /**
      * At the start of every turn call this method.
@@ -160,80 +150,11 @@ public class User {
      */
     public boolean userMoved() {
     	// if coordinates are then same then false,
-    	if ( _endTurn == _startTurn) {
+    	if ( _endTurnCoor == _startTurnCoor) {
     		return false;
     	} else {
     		// user moved to a new room! Call suggestion
     		return true;
-    	}
-    }
-    
-    /**
-     * This method returns boolean if the user coordinates {x,y} is equal to the doors coordinates {x,y},
-     *  which means that the user is entering a room.
-     *  This will be used to trigger a the suggestion method if true.
-     * @param  userCoor
-     * @return _trigger if true, user at door coordinates, false if otherwise
-     */
-    public boolean enterDoor(int[] userCoor) {
-    	int x = 0;
-    	int y = 1;
-    	boolean xBool = false;
-    	boolean yBool = false;
-    	
-    	// Iterates through every array in 2Darray
-    	for(int[] coor : Board.DOORCOOR) {
-    			// checks if first value (x) in the array matches
-    			if (coor[x] == userCoor[x]) {
-    				xBool = true;
-    			} 
-    			// checks if second value (y) in the array matches
-    			if (coor[y] == userCoor[y]) {
-    				yBool = true;
-    			}
-    	}
-    	// returns true if coordinates match
-    	_trigger = (xBool && yBool);
-    	return _trigger;
-    }
-    
-
-    /**
-     * if user entered new room, fire suggestion method
-     * if ended up in new room, fire option for suggestion
-     */
-    public void suggestion() {
-    	// if entered through door
-    	if (_trigger == true) {
-    		/**
-    		 * Prompts user for:
-    		 * What User to move? Excluding yourself
-    		 * User u1 or u2 etc..
-    		 * What weapon to move?
-    		 * Object weapon [1-6]
-    		 * this.location (current room)
-    		 */
-    		
-    		// if user was moved before start of turn, provide option to make suggestion
-    	} else if (userMoved()) {
-    		
-    		/**
-    		 * Prompt user to make a suggestion or not
-    		 * _makeSuggestion = yes or no
-    		 */
-    		// if yes
-    		if (_makeSuggestion == true) {
-    			/**
-        		 * Prompts user for:
-        		 * What User to move?
-        		 * What weapon to move?
-        		 * this.location
-        		 */
-    		} else {
-    			// check if can leave room
-    			// if you can continue with turn
-    			// otherwise: cry/end turn
-    		}
     	}
     }
     
@@ -253,18 +174,6 @@ public class User {
     	}
     	
     	return roomName;
-    }
-    
-    //TODO Finish method to move otheruser because of suggestion
-    /**
-     * Moves a user to current Room because of suggestion 
-     * @param otherUser
-     */
-    public void moveUserToRoom(User otherUser) {
-    	// Get current users location
-    	// Get otherUsers coordinates
-    	// Get room location
-    	// Change otherUsers location to room location
     }
     
 
@@ -318,6 +227,11 @@ public class User {
                 _board.useRoll();
                 _board.getGui().updateInfoPanel();
                 _board.getGui().updateBoard();
+
+                _trigger = true;
+
+                PopUp popUp = new PopUp(_board.getListOfPlayers(), _board.getCurrentPlayer());
+
                 return true;
             }
             //room -> room && room -> door
