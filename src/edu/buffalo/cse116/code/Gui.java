@@ -22,6 +22,7 @@ public class Gui {
     private JFrame _window;
     private JPanel _boardGui, _currentCards, _infoPanel;
     private Board _board;
+    private JLabel _cardLabel;
 
     private Color _hallway = new Color(24, 189, 156);
     private Color _door = new Color(186, 184, 184);
@@ -129,12 +130,16 @@ public class Gui {
 
     public void generateCardPanel() {
         _currentCards = new JPanel();
-        JLabel cardLabel = new JLabel();
-        String cards = "";
-        //for (Card : _board.getCurrentPlayer())
-         cardLabel.setText(cards + "THESE WILL BE THE CURRENT CARDS");
-        _currentCards.add(cardLabel);
+        _cardLabel = new JLabel();
+        String cards = new String();
+        for(Card c: _board.getCurrentPlayer().get_userCards()){
+            cards += c.get_title().toLowerCase() + ", ";
+        }
+
+         _cardLabel.setText(cards);
+        _currentCards.add(_cardLabel);
         _window.add(_currentCards, BorderLayout.SOUTH);
+        _window.pack();
 
     }
 
@@ -218,6 +223,15 @@ public class Gui {
         _window.pack();
     }
 
+    public void updateCardPanel(){
+        String cards = new String();
+        for(Card c: _board.getCurrentPlayer().get_userCards()){
+            cards += c.get_title().toLowerCase() + ", ";
+        }
+        _cardLabel.setText(cards);
+
+    }
+
     public Color selectPlayerColor(String name) {
         switch (name) {
             case "Miss Scarlett":
@@ -257,4 +271,10 @@ public class Gui {
         }
 
     }
+
+    public ArrayList<User> get_listOfPlayers(){
+        return _listOfPlayers;
+    }
+
+
 }

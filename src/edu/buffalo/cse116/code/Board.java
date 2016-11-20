@@ -14,7 +14,8 @@ public class Board {
     private int _currentRoll;
     private TurnQueue _playerQueue;
     private Gui _gui;
-
+    private ArrayList<Card> _envelope;
+    private Deck _deck;
 
     public Board(int numberOfPlayers, Gui gui){
         _tiles = generateBoard(25,25);
@@ -24,9 +25,10 @@ public class Board {
         this.addSecretPassages();
         _playerQueue = new TurnQueue(numberOfPlayers, this);
         _gui = gui;
-        Deck deck = new Deck();
-        ArrayList<Card> envelope = deck.get_envelopeCards();
-        ArrayList<Card> deal = deck.get_deck();
+        _deck = new Deck();
+        _envelope = _deck.get_envelopeCards();
+        dealCardsToPlayers();
+
 
     }
 
@@ -196,6 +198,17 @@ public class Board {
 
     public TurnQueue getTurnQueue(){
         return _playerQueue;
+    }
+
+    public void dealCardsToPlayers(){
+        ArrayList<User> players = getListOfPlayers();
+        while(_deck.size() > 0){
+            for(User player : players){
+                if(_deck.size() > 0) {
+                    player.get_userCards().add(_deck.dealFirstCard());
+                }
+            }
+        }
     }
 
 

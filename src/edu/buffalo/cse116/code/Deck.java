@@ -142,7 +142,12 @@ public class Deck{
                 deck.remove(0);
                 return firstCard;
         }
-        
+
+		public Card dealFirstCard(){
+		Card firstCard = _mainDeck.get(0);
+		_mainDeck.remove(0);
+		return firstCard;
+		}
         /**
          * Separates one random card from each deck and returns selected cards.
          */
