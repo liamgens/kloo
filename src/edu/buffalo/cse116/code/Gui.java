@@ -36,6 +36,7 @@ public class Gui {
     private ArrayList<User> _listOfPlayers;
     private ImageIcon _hallwayIcon;
 
+
     public Gui(int numberOfPlayers) {
         _window = new JFrame();
         _window.setTitle("Kloo");
