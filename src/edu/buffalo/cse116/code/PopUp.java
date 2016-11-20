@@ -43,6 +43,8 @@ public class PopUp{
         _window.pack();
     }
 
+    ////////// Gui ////////////
+
     public void generateSuggestionPopUp() {
         _popupGui = new JPanel();
             _headerPanel = new JPanel();
