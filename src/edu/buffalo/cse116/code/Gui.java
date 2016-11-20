@@ -132,8 +132,16 @@ public class Gui {
         _currentCards = new JPanel();
         _cardLabel = new JLabel();
         String cards = new String();
-        for(Card c: _board.getCurrentPlayer().get_userCards()){
-            cards += c.get_title().toLowerCase() + ", ";
+//        for(Card c: _board.getCurrentPlayer().get_userCards()){
+//            cards += c.get_title().toLowerCase() + ", ";
+//        }
+
+        for(int i = 0; i < _board.getCurrentPlayer().get_userCards().size(); i++){
+            if(i + 1 == _board.getCurrentPlayer().get_userCards().size()){
+                cards += _board.getCurrentPlayer().get_userCards().get(i).get_title();
+            }else{
+                cards += _board.getCurrentPlayer().get_userCards().get(i).get_title() + ", ";
+            }
         }
 
          _cardLabel.setText(cards);
@@ -225,8 +233,16 @@ public class Gui {
 
     public void updateCardPanel(){
         String cards = new String();
-        for(Card c: _board.getCurrentPlayer().get_userCards()){
-            cards += c.get_title().toLowerCase() + ", ";
+//        for(Card c: _board.getCurrentPlayer().get_userCards()){
+//            cards += c.get_title().toLowerCase() + ", ";
+//        }
+
+        for(int i = 0; i < _board.getCurrentPlayer().get_userCards().size(); i++){
+            if(i + 1 == _board.getCurrentPlayer().get_userCards().size()){
+                cards += _board.getCurrentPlayer().get_userCards().get(i).get_title();
+            }else{
+                cards += _board.getCurrentPlayer().get_userCards().get(i).get_title() + ", ";
+            }
         }
         _cardLabel.setText(cards);
 
