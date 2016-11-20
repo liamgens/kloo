@@ -143,12 +143,7 @@ public class User {
      */
     public boolean userMoved() {
     	// if coordinates are then same then false,
-    	if ( _endTurnCoor == _startTurnCoor) {
-    		return false;
-    	} else {
-    		// user moved to a new room! Call suggestion
-    		return true;
-    	}
+        return _endTurnCoor != _startTurnCoor;
     }
     
 
@@ -203,7 +198,7 @@ public class User {
                 _board.getGui().updateInfoPanel();
                 _board.getGui().updateBoard();
 
-                PopUp popUp = new PopUp(_board.getTile(get_posX(), get_posY()), _board);
+                SuggestionPopUp popUp = new SuggestionPopUp(_board.getTile(get_posX(), get_posY()), _board);
                 _board.getGui().updateBoard();
 
                 return true;
