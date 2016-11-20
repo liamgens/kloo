@@ -68,7 +68,7 @@ public class PopUp{
                 suspectTitle = BorderFactory.createTitledBorder(blackline, "Suspect");
                 suspectTitle.setTitleJustification(TitledBorder.CENTER);
                 _suspectPanel.setBorder(suspectTitle);
-                JComboBox<String> suspectNames = new JComboBox<String>(currentList(_currentAList));
+                JComboBox<String> suspectNames = new JComboBox<String>(currentListMinusOne(_currentAList));
                     _suspectChosen = String.valueOf(suspectNames.getSelectedItem());
                 _suspectPanel.add(suspectNames);
             _bodyPanel.add(_weaponPanel);
@@ -333,18 +333,35 @@ public class PopUp{
     /////////// DROP DOWN LIST METHODS ///////////
 
     /**
-     * Displays a array of names of current players in the game
-     * @param currentPlayers
+     * Displays a array of names of current players in the game minus current player
+     * @param currentAList
      * @return array of names of current players
      */
-    public String[] currentList(ArrayList<User> currentPlayers) {
-        String[] retVal = new String[currentPlayers.size()];
-        for (int j = 0; j < currentPlayers.size(); j++) {
+    public String[] currentListMinusOne(ArrayList<User> currentAList) {
+        String cur = _currentPlayer.getCharacterName();
+        ArrayList<String> temp = new ArrayList<String>();
+        for (User u : currentAList) {
+            if (u.getCharacterName() != cur) {
+                String name = u.getCharacterName();
+                temp.add(name);
+            }
+        }
+        String[] stored = temp.toArray(new String[temp.size()]);
+        return stored;
+    }
+
+    /**
+     * Displays a array of names of current players in the game
+     * @param currentAList
+     * @return array of names of current players
+     */
+    public String[] currentList(ArrayList<User> currentAList) {
+        String[] retVal = new String[currentAList.size()];
+        for (int j = 0; j < currentAList.size(); j++) {
             retVal[j] = User.CHARACTER_NAME[j];
         }
         return retVal;
     }
-
 
 
 
