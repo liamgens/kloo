@@ -186,7 +186,6 @@ public class SuggestionPopUp {
      * @return User
      */
     public User returnUser(String chosenUserName) {
-        //TurnQueue temp = _board.getTurnQueue();
         ArrayList<User> test = _board.getListOfPlayers();
         for (User u : test) {
             if (u.getCharacterName() == chosenUserName) {
