@@ -99,11 +99,7 @@ public class User {
                 _posX = desiredX;
                 _posY = desiredY;
                 _board.useRoll();
-                _board.getGui().updateInfoPanel();
-                _board.getGui().updateBoard();
-                _board.getGui().updateCardPanel();
-
-                System.out.print("true");
+                updateAll();
                 //return true;
             }
             //hallway -> door
@@ -114,15 +110,9 @@ public class User {
                 _posX = desiredX;
                 _posY = desiredY;
                 _board.useRoll();
-                _board.getGui().updateInfoPanel();
-                _board.getGui().updateBoard();
-                _board.getGui().updateCardPanel();
-
+                updateAll();
                 SuggestionPopUp popUp = new SuggestionPopUp(_board.getTile(get_posX(), get_posY()), _board);
-                //popUp.moveChoseUser(popUp.get_chosenSuspect(), popUp.get_newposX(), popUp.get_newposY(), _board);
-                _board.getGui().updateBoard();
-
-
+                updateAll();
                 //return true;
             }
             //room -> room && room -> door
@@ -133,9 +123,7 @@ public class User {
                 _posY = desiredY;
                 playersCurrentTile = _board.getTile(_posX, _posY);
                 checkPassage(playersCurrentTile, playersCurrentRoom);
-                _board.getGui().updateInfoPanel();
-                _board.getGui().updateBoard();
-                _board.getGui().updateCardPanel();
+                updateAll();
 
 
                 //return true;
@@ -148,9 +136,7 @@ public class User {
                 _posX = desiredX;
                 _posY = desiredY;
                 _board.useRoll();
-                _board.getGui().updateInfoPanel();
-                _board.getGui().updateBoard();
-                _board.getGui().updateCardPanel();
+                updateAll();
 
 
                 //return true;
@@ -170,6 +156,12 @@ public class User {
         }
 
         return false;
+    }
+
+    public void updateAll(){
+        _board.getGui().updateInfoPanel();
+        _board.getGui().updateBoard();
+        _board.getGui().updateCardPanel();
     }
 
      /**

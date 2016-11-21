@@ -34,7 +34,6 @@ public class Gui {
     private JLabel _currentPlayer, _currentRoll;
     private ArrayList<JButton> _buttons;
     private ArrayList<User> _listOfPlayers;
-    private ImageIcon _hallwayIcon;
 
     public Gui(int numberOfPlayers) {
         _window = new JFrame();
@@ -71,14 +70,9 @@ public class Gui {
             BufferedImage img = new BufferedImage(25, 25, BufferedImage.TYPE_INT_RGB);
             Graphics2D g2d = img.createGraphics();
             g2d.setColor(_hallway);
-
             changeColor(g2d, t);
-
             g2d.fillRect(0, 0, 25, 25);
             g2d.dispose();
-
-            _hallwayIcon = new ImageIcon(img);
-
 
             JButton space = new JButton(new ImageIcon(img));
             if(t.get_parentRoom() != -1 && t.get_parentRoom() != 9 && !t.is_isDoor() && !t.is_isPassage()){
@@ -107,7 +101,6 @@ public class Gui {
             space.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    System.out.println("x: " + t.get_xCoor() + " y: " + t.get_yCoor());
                     //call the user and make the move here
                     _board.getCurrentPlayer().makeMove(t.get_xCoor(), t.get_yCoor());
                 }
@@ -146,10 +139,6 @@ public class Gui {
         _currentCards = new JPanel();
         _cardLabel = new JLabel();
         String cards = new String();
-//        for(Card c: _board.getCurrentPlayer().get_userCards()){
-//            cards += c.get_title().toLowerCase() + ", ";
-//        }
-
         for(int i = 0; i < _board.getCurrentPlayer().get_userCards().size(); i++){
             if(i + 1 == _board.getCurrentPlayer().get_userCards().size()){
                 cards += _board.getCurrentPlayer().get_userCards().get(i).get_title();
@@ -157,7 +146,6 @@ public class Gui {
                 cards += _board.getCurrentPlayer().get_userCards().get(i).get_title() + ", ";
             }
         }
-
          _cardLabel.setText(cards);
         _currentCards.add(_cardLabel);
         _window.add(_currentCards, BorderLayout.SOUTH);
@@ -204,8 +192,6 @@ public class Gui {
                     return c;
                 }
             }
-            //selectPlayerColor(_board.getCurrentPlayerName(), g2d);
-
 
         return Color.GRAY;
     }
@@ -229,8 +215,6 @@ public class Gui {
 
         }
 
-        //System.out.println(_board.getCurrentPlayerName());
-
         if (t.is_isOccupied()) {
             g2d.setColor(changePlayerColor(t, g2d));
         }
@@ -247,10 +231,6 @@ public class Gui {
 
     public void updateCardPanel(){
         String cards = new String();
-//        for(Card c: _board.getCurrentPlayer().get_userCards()){
-//            cards += c.get_title().toLowerCase() + ", ";
-//        }
-
         for(int i = 0; i < _board.getCurrentPlayer().get_userCards().size(); i++){
             if(i + 1 == _board.getCurrentPlayer().get_userCards().size()){
                 cards += _board.getCurrentPlayer().get_userCards().get(i).get_title();
@@ -266,37 +246,24 @@ public class Gui {
         switch (name) {
             case "Miss Scarlett":
                return Color.red;
-            //break;
 
             case "Colonel Mustard":
                 return Color.yellow;
 
-            //break;
-
             case "Mrs. Peacock":
                 return Color.cyan;
-
-            //break;
 
             case "Mrs. White":
                 return Color.white;
 
-            //break;
-
             case "Mr. Green":
                 return Color.green;
-
-            //break;
 
             case "Professor Plum":
                 return Color.magenta;
 
-            //break;
-
             default:
                 return Color.black;
-
-            //break;
 
         }
 
