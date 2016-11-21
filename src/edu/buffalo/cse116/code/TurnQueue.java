@@ -11,6 +11,7 @@ import java.util.Scanner;
 public class TurnQueue {
     private LinkedList<User> _playersQueue;
     private ArrayList<User> _listOfPlayers;
+    private ArrayList<User> _playersInQueue;
     private Board _board;
     
     /**
@@ -23,10 +24,12 @@ public class TurnQueue {
         if (numberOfPlayers >= 3 && numberOfPlayers <= 6) {
             _playersQueue = new LinkedList<User>();
             _listOfPlayers = new ArrayList<User>();
+            _playersInQueue = new ArrayList<User>();
             for (int i = 0; i < 6; i++) {
                 User u = new User(_board, i);
                 if(i < numberOfPlayers){
                     _playersQueue.add(u);
+                    _playersInQueue.add(u);
                 }
                 _listOfPlayers.add(u);
             }
@@ -86,5 +89,8 @@ public class TurnQueue {
     public ArrayList<User> get_listOfPlayers(){
         return _listOfPlayers;
     }
-    
+
+    public ArrayList<User> get_playersInQueue() {
+        return _playersInQueue;
+    }
 }

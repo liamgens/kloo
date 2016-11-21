@@ -203,7 +203,7 @@ public class Board {
     public ArrayList<Card> get_envelope() {return _envelope; }
 
     public void dealCardsToPlayers(){
-        ArrayList<User> players = getListOfPlayers();
+        ArrayList<User> players = _playerQueue.get_playersInQueue();
         while(_deck.size() > 0){
             for(User player : players){
                 if(_deck.size() > 0) {
