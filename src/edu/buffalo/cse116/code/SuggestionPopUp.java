@@ -107,9 +107,8 @@ public class SuggestionPopUp {
 
     public void suggestion() {
         _chosenSuspect = returnUser(_suspectChosen);
-        _sus_posX = _chosenSuspect.get_posX();
-        _sus_posY = _chosenSuspect.get_posY();
         moveUserHere(_chosenSuspect, _currentPlayer);
+        checkAllCards(_currentAList, _board, _currentPlayer);
     }
 
     /**
@@ -223,6 +222,20 @@ public class SuggestionPopUp {
         _sus_posY = newPosition.get_yCoor();
         newPosition.set_isOccupied(true);
         _board.resetRoll();
+    }
+
+    public void checkAllCards(ArrayList<User> currentAList, Board board, User current) {
+        String user = "";
+
+        for (User u : currentAList) {
+            if (current.checkCards(u.get_userCards(), _suspectChosen, _weaponChosen, Room.ROOMS[_currentTile.get_parentRoom()])) {
+
+                for (Card c : u.get_userCards()) {
+                    System.out.println(c.get_title());
+                }
+                break;
+            }
+        }
     }
 
     /////////// DROP DOWN LIST METHODS ///////////
