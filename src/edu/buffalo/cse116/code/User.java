@@ -105,7 +105,7 @@ public class User {
                 set_posX_posY(desiredX, desiredY);
                 updateAll();
                 SuggestionPopUp popUp = new SuggestionPopUp(_board.getTile(get_posX(), get_posY()), _board);
-                _board.useRoll();
+                //_board.useRoll();
                 updateAll();
                 retVal = true;
             }

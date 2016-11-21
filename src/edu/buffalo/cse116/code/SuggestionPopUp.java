@@ -154,6 +154,11 @@ public class SuggestionPopUp {
         _chosenSuspect = returnUser(_suspectChosen);
         moveUserHere(_chosenSuspect, _currentPlayer);
         checkAllCards(_currentAList, _board, _currentPlayer);
+        _board.get_playerQueue().endTurn();
+        _board.rollDice();
+        _board.getGui().updateBoard();
+        _board.getGui().updateCardPanel();
+        _board.getGui().updateInfoPanel();
     }
 
     /**
