@@ -9,12 +9,14 @@ import java.awt.event.ActionListener;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
+import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
+
 /**
  * Created by dromsoft on 11/20/2016.
  */
 public class SuggestionPopUp {
 
-    private JFrame _window, _prompt;
+    private JFrame _window, _prompt, _showCard;
     private JPanel _popupGui, _headerPanel, _bodyPanel, _suspectPanel, _weaponPanel, _roomPanel, _submitPanel;
 
     private User _chosenSuspect, _currentPlayer;
@@ -37,8 +39,11 @@ public class SuggestionPopUp {
         _currentAList = board.getListOfPlayers();
         _currentTile = currentTile;
         _window = new JFrame();
-        _window.setVisible(true);
         _window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        _window.setSize(200, 100);
+        _window.setLocationRelativeTo(null);
+        _window.setUndecorated(true);
+        _window.setVisible(true);
         _window.setLayout(new BorderLayout());
         _window.setTitle("Menu");
         generateSuggestionPopUp(); // Triggers Suggestion Menu or Accusation Menu
@@ -111,42 +116,90 @@ public class SuggestionPopUp {
 
     public void displayCards(String[] cards, String s) {
         _prompt = new JFrame();
-        _prompt.setVisible(true);
-        _prompt.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        _prompt.setLayout(new BorderLayout());
-        _prompt.setTitle("Select Card to show:");
-        JComboBox choose = new JComboBox(cards);
-        String selected = String.valueOf(choose.getSelectedItem());
         JPanel show = new JPanel();
+        JPanel top = new JPanel();
+        JPanel title = new JPanel();
+        JPanel body = new JPanel();
+        JPanel action = new JPanel();
+        JList choose = new JList(cards);
+        JLabel intro = new JLabel("Please select which card to show:");
         JLabel gotem = new JLabel("Current User: " + s);
         JLabel instructions = new JLabel("Select Cards:");
         JButton submit = new JButton("Submit");
-
-
-        JLabel ins = new JLabel("Showing: ");
-        JLabel display = new JLabel(selected);
-
-
         submit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                show.add(ins);
-                show.add(display);
-                show.remove(instructions);
-                show.remove(choose);
-                _prompt.dispose();
+                String selected = "";
+                if (choose.getSelectedValue() != null) {
+                    selected = choose.getSelectedValue().toString();
+                    showCard(selected);
+                } else {
+                    choose.setSelectedIndex(0);
+                    selected = choose.getSelectedValue().toString();
+                    showCard(selected);
+                }
+                    show.remove(instructions);
+                    show.remove(choose);
+                    _prompt.dispose();
+
+
+            }
+        });
+        _prompt.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        _prompt.setBounds(250, 250, 300, 300);
+        _prompt.setUndecorated(true);
+        _prompt.setVisible(true);
+        _prompt.setLayout(new BorderLayout());
+        _prompt.setTitle("Select Card to show:");
+        _prompt.add(show);
+        show.add(top);
+        show.add(title);
+        show.add(body);
+        show.add(action);
+        show.setLayout(new BoxLayout(show,BoxLayout.Y_AXIS));
+        top.add(gotem);
+        title.add(intro);
+        body.add(instructions);
+        body.add(choose);
+        action.add(submit);
+        _prompt.pack();
+    }
+
+    public void showCard(String s) {
+        _showCard = new JFrame();
+        JPanel display = new JPanel();
+        JPanel top = new JPanel();
+        JPanel body = new JPanel();
+        JPanel storeButton = new JPanel();
+        JLabel showing = new JLabel("Showing:");
+        JLabel result = new JLabel(s + " Card");
+        JButton close = new JButton("Close");
+        close.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                _showCard.dispose();
             }
         });
 
+        _showCard.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        _showCard.setBounds(250, 250, 300, 300);
+        _showCard.setSize(200, 100);
+        _showCard.setUndecorated(true);
+        _showCard.setVisible(true);
 
-        _prompt.add(show);
-        show.setLayout(new BoxLayout(show,BoxLayout.Y_AXIS));
-        show.add(gotem);
-        show.add(instructions);
-        show.add(choose);
-        show.add(submit);
-        _prompt.pack();
+        _showCard.add(display);
+        display.add(top);
+        display.add(body);
+        display.add(storeButton);
+
+        top.add(showing);
+        body.add(result);
+        storeButton.add(close);
+
+        showing.setForeground(Color.BLUE);
+        result.setForeground(Color.red);
     }
+
 
     /////////// SUGGESTION //////////
 
