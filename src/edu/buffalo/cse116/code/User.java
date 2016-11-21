@@ -202,6 +202,10 @@ public class User {
                 _board.getGui().updateBoard();
                 _board.getGui().updateCardPanel();
 
+                SuggestionPopUp popUp = new SuggestionPopUp(_board.getTile(get_posX(), get_posY()), _board);
+                _board.getGui().updateBoard();
+
+
                 //return true;
             }
             //room -> room && room -> door
