@@ -127,23 +127,16 @@ public class SuggestionPopUp {
 
         JLabel ins = new JLabel("Showing: ");
         JLabel display = new JLabel(selected);
-        JButton close = new JButton("Close");
 
-        close.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                _prompt.dispose();
-            }
-        });
 
         submit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 show.add(ins);
                 show.add(display);
-                show.add(close);
                 show.remove(instructions);
                 show.remove(choose);
+                _prompt.dispose();
             }
         });
 
@@ -154,7 +147,6 @@ public class SuggestionPopUp {
         show.add(instructions);
         show.add(choose);
         show.add(submit);
-        show.add(close);
         _prompt.pack();
     }
 
