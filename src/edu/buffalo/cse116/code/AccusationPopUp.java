@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public class AccusationPopUp {
 
-    private JFrame _window;
+    private JFrame _window, _prompt;
     private JPanel _popupGui, _headerPanel, _bodyPanel, _suspectPanel, _weaponPanel, _roomPanel, _submitPanel;
     private JButton _suggestionButton, _accusationButton;
     private User _chosenSuspect, _currentPlayer;
@@ -111,11 +111,30 @@ public class AccusationPopUp {
             }
         }
         if (correctCounter == 3) {
-            System.out.println("YOU WIN! GAME OVER");
+            generateWinner();
         } else {
-            System.out.println("YOU LOSE!");
+            generateLoser();
             _board.getTurnQueue().dequeue();
+
+
         }
+    }
+
+    public void checkBlocking(Tile currentTile, int currentRoom) {
+        if (_currentTile.get_isDoor()) {
+            if (_currentTile.get_parentRoom() == 0) {
+                Tile newPosition = (_board.getRoomByID(0).getRandomTile());
+                if (newPosition != null) {
+                    setNewLocation(currentTile, newPosition);
+                }
+            }
+        }
+    }
+
+    public void setNewLocation(Tile currentTile, Tile newPosition) {
+        currentTile.set_isOccupied(false);
+        newPosition.set_isOccupied(true);
+        _board.resetRoll();
     }
 
     /////////// DROP DOWN LIST METHODS ///////////
@@ -132,7 +151,54 @@ public class AccusationPopUp {
         }
         return retVal;
     }
+    public void generateWinner() {
+        _prompt = new JFrame();
+        _prompt.setVisible(true);
+        _prompt.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        _prompt.setLayout(new BorderLayout());
+        _prompt.setTitle("Winner!");
 
+        JPanel show = new JPanel();
+        JLabel winner = new JLabel("YOU WIN!");
+        JButton endGame = new JButton("END GAME");
+        endGame.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
+        _prompt.add(show);
+        show.setLayout(new BoxLayout(show,BoxLayout.X_AXIS));
+        show.add(winner);
+        show.add(endGame);
+        _prompt.pack();
+
+    }
+
+    public void generateLoser() {
+        _prompt = new JFrame();
+        _prompt.setVisible(true);
+        _prompt.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        _prompt.setLayout(new BorderLayout());
+        _prompt.setTitle("Loser!");
+        JPanel show = new JPanel();
+        JLabel loser = new JLabel("YOU LOSE", JLabel.CENTER);
+        JButton close = new JButton("Close");
+        close.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                _prompt.setVisible(false);
+                _window.revalidate();
+                _window.repaint();
+                _window.pack();
+            }
+        });
+        _prompt.add(show);
+        show.setLayout(new BoxLayout(show,BoxLayout.X_AXIS));
+        show.add(loser);
+        show.add(close);
+        _prompt.pack();
+    }
 
 
 }
