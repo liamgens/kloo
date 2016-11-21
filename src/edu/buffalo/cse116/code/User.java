@@ -266,8 +266,7 @@ public class User {
 
     public int get_posY() { return _posY; }
 
+    public void set_posX(int x) { _posX = x; }
 
-
-
-
+    public void set_posY(int y) { _posY = y; }
 }
