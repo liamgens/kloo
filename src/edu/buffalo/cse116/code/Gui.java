@@ -153,37 +153,6 @@ public class Gui {
 
     }
 
-    public void updateBoard() {
-
-        for (int i = 0; i < _buttons.size(); i++) {
-            Tile t = _board.get_tiles().get(i);
-            if (t.is_isOccupied()) {
-
-                BufferedImage img = new BufferedImage(25, 25, BufferedImage.TYPE_INT_RGB);
-                Graphics2D g2d = img.createGraphics();
-                g2d.setColor(_hallway);
-
-                changeColor(g2d, t);
-
-                g2d.fillRect(0, 0, 25, 25);
-                g2d.dispose();
-
-                _buttons.get(i).setIcon(new ImageIcon(img));
-
-            } else {
-                BufferedImage img = new BufferedImage(25, 25, BufferedImage.TYPE_INT_RGB);
-                Graphics2D g2d = img.createGraphics();
-
-                g2d = changeColor(g2d, t);
-                g2d.fillRect(0, 0, 25, 25);
-                g2d.dispose();
-
-
-                _buttons.get(i).setIcon(new ImageIcon(img));
-            }
-        }
-
-    }
 
     public Color changePlayerColor(Tile t, Graphics2D g2d){
             for(User player : _listOfPlayers){
@@ -220,6 +189,38 @@ public class Gui {
         }
 
         return g2d;
+
+    }
+
+    public void updateBoard() {
+
+        for (int i = 0; i < _buttons.size(); i++) {
+            Tile t = _board.get_tiles().get(i);
+            if (t.is_isOccupied()) {
+
+                BufferedImage img = new BufferedImage(25, 25, BufferedImage.TYPE_INT_RGB);
+                Graphics2D g2d = img.createGraphics();
+                g2d.setColor(_hallway);
+
+                changeColor(g2d, t);
+
+                g2d.fillRect(0, 0, 25, 25);
+                g2d.dispose();
+
+                _buttons.get(i).setIcon(new ImageIcon(img));
+
+            } else {
+                BufferedImage img = new BufferedImage(25, 25, BufferedImage.TYPE_INT_RGB);
+                Graphics2D g2d = img.createGraphics();
+
+                g2d = changeColor(g2d, t);
+                g2d.fillRect(0, 0, 25, 25);
+                g2d.dispose();
+
+
+                _buttons.get(i).setIcon(new ImageIcon(img));
+            }
+        }
 
     }
 
