@@ -23,7 +23,7 @@ public class Card {
 
     /** 2D Array of Card Values */
     private String[][] cardArray = {
-            {"RED", "WHITE", "GREEN", "BLUE", "PURPLE", "YELLOW"}, // 6 PLAYERS CARDS
+            {"Miss Scarlett", "Professor Plum", "Mr. Green", "Mrs. Peacock", "Mrs. White", "Colonel Mustard"}, // 6 PLAYERS CARDS
             {"WRENCH", "CANDLESTICK", "LEAD PIPE", "ROPE", "REVOLVER", "KNIFE"}, // 6 WEAPONS CARDS
             {"KITCHEN", "BALLROOM", "CONSERVATORY", "DINING ROOM", "LOUNGE", "HALL", "STUDY", "LIBRARY", "BILLARD ROOM"} // 9 ROOMS CARDS
     };

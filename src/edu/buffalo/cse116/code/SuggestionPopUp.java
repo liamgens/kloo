@@ -6,6 +6,7 @@ import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -139,7 +140,9 @@ public class SuggestionPopUp {
      * @return User
      */
     public User returnUser(String chosenUserName) {
-        for (User u : _board.getListOfPlayers()) {
+        TurnQueue temp = _board.getTurnQueue();
+        ArrayList<User> test = temp.get_listOfPlayers();
+        for (User u : test) {
             if (u.getCharacterName() == chosenUserName) {
                 return u;
             }
