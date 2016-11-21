@@ -168,6 +168,11 @@ public class User {
         _board.resetRoll();
     }
 
+    /**
+     * Checks to see if the players current tile is a secret passage
+     * @param playersCurrentTile The tile the User is currently at.
+     * @param playersCurrentRoom The User's new position.
+     */
     public void checkPassage(Tile playersCurrentTile, int playersCurrentRoom){
         if (playersCurrentTile.is_isPassage()) {
             if (playersCurrentRoom == 6) {
