@@ -15,17 +15,20 @@ public class SuggestionPopUp {
 
     private JFrame _window;
     private JPanel _popupGui, _headerPanel, _bodyPanel, _suspectPanel, _weaponPanel, _roomPanel, _submitPanel;
-    private JButton _suggestionButton, _accusationButton;
+
     private User _chosenSuspect, _currentPlayer;
-    private String _suspectChosen, _weaponChosen, _roomChosen;
+    private String _suspectChosen, _weaponChosen;
     private ArrayList<User> _currentAList;
     private Tile _currentTile;
     private Board _board;
     private int _sus_posX, _sus_posY;
 
+    //////// GETTERS /////////
     public String get_suspectChosen(){ return _suspectChosen; }
     public String get_weaponChosen(){ return _weaponChosen; }
-    public String get_roomChosen(){ return _roomChosen; }
+    public int get_newposX() { return _sus_posX; }
+    public int get_newposY() { return _sus_posY; }
+    public User get_chosenSuspect() { return _chosenSuspect;}
 
     public SuggestionPopUp(Tile currentTile, Board board) {
         _board = board;

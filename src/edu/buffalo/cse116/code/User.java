@@ -12,7 +12,6 @@ public class User {
     private int _userTurn;
     private int _posX, _posY;
     private Board _board;
-    private int[] _startTurnCoor, _endTurnCoor, _currentCoor; // stores coordinates in array {int x, int y}
 
     /**
      * Creates a User on the game board and assigns it a characterName from the CHARACTER_NAME Array.
@@ -91,61 +90,6 @@ public class User {
     public void set_posY(int _posY) {
         this._posY = _posY;
     }
-
-    /**
-     * Uses two methods:
-     * - get_posX();
-     * - get_posY();
-     * to create an array {x, y} of the current players coordinates
-     * @return int[] of user coordinates {x,y}
-     */
-    public int[] get_userCoor() {
-        int x = get_posX();
-        int y = get_posX();
-        int[] coordinates = new int[2];
-        coordinates[0] = x;
-        coordinates[1] = y;
-        return coordinates;
-    }
-
-    /**
-     * Call while user is moving to see if user coordinates lands on any special coordinates (i.e. door coordinates)
-     * @return int[] _endTurn;
-     */
-    public int[] currentCoordinates() {
-        _currentCoor = get_userCoor();
-        return _currentCoor;
-    }
-
-    /**
-     * After then Users first turn,
-     * Call at the beginning of a user turn, stores coordinates {x, y} for comparison
-     * @return int[] _startTurn;
-     */
-    public int[] startTurnCoordinates() {
-        _startTurnCoor = get_userCoor();
-        return _startTurnCoor;
-    }
-
-    /**
-     * Call at the end of a user turn to stores coordinates {x, y} for comparison
-     * @return int[] _endTurn;
-     */
-    public int[] endTurnCoordinates() {
-        _endTurnCoor = get_userCoor();
-        return _endTurnCoor;
-    }
-    /**
-     * At the start of every turn call this method.
-     * If users endTurn coordinate is different from users startTurn coordinate,
-     * then user has been moved! This could be because of: suggestion or secret passage
-     * @return true if user did move, false if user is at the same location
-     */
-    public boolean userMoved() {
-        // if coordinates are then same then false,
-        return _endTurnCoor != _startTurnCoor;
-    }
-
 
     /**
      * Lets the player try to move to another tile
@@ -255,7 +199,7 @@ public class User {
         return false;
     }
 
-    /**
+     /**
      * Allows a player to use a secret passage once their are in the room and the new position in the new room is not occupied.
      * When a secret passage is used, the User's previously occupied tile is set to be unoccupied and a new position is set in the new room the User is in.
      * _board.resetRoll() ends the User's turn.

@@ -29,9 +29,8 @@ public class Board {
         _deck = new Deck();
         _envelope = _deck.get_envelopeCards();
         dealCardsToPlayers();
-
-
     }
+
 
 
     /**
@@ -200,6 +199,8 @@ public class Board {
     public TurnQueue getTurnQueue(){
         return _playerQueue;
     }
+
+    public ArrayList<Card> get_envelope() {return _envelope; }
 
     public void dealCardsToPlayers(){
         ArrayList<User> players = getListOfPlayers();
