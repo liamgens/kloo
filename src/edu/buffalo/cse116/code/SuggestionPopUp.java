@@ -139,16 +139,12 @@ public class SuggestionPopUp {
      * @return User
      */
     public User returnUser(String chosenUserName) {
-        int index = 0;
-        for (int i = 0; i < User.CHARACTER_NAME.length; i++) {
-            if (User.CHARACTER_NAME[i] == chosenUserName) {
-                index = i;
-                System.out.print(true);
-                break;
+        for (User u : _board.getListOfPlayers()) {
+            if (u.getCharacterName() == chosenUserName) {
+                return u;
             }
         }
-        User chosen = _currentAList.get(index);
-        return chosen;
+        return null;
     }
 
     /**
