@@ -125,6 +125,11 @@ public class SuggestionPopUp {
 
         if (playersCurrentRoom != suspectCurrentRoom) {
             checkPassage(currentTile, suspectTile, playersCurrentRoom);
+            _chosenSuspect.set_posX(_sus_posX);
+            _chosenSuspect.set_posY(_sus_posY);
+            _board.getGui().updateInfoPanel();
+            _board.getGui().updateBoard();
+            _board.getGui().updateCardPanel();
         }
     }
 
@@ -240,5 +245,7 @@ public class SuggestionPopUp {
         String[] stored = temp.toArray(new String[temp.size()]);
         return stored;
     }
+
+
 }
 

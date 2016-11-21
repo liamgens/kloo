@@ -147,6 +147,7 @@ public class User {
                 _board.getGui().updateCardPanel();
 
                 SuggestionPopUp popUp = new SuggestionPopUp(_board.getTile(get_posX(), get_posY()), _board);
+                //popUp.moveChoseUser(popUp.get_chosenSuspect(), popUp.get_newposX(), popUp.get_newposY(), _board);
                 _board.getGui().updateBoard();
 
 
@@ -291,6 +292,8 @@ public class User {
     public ArrayList<Card> get_userCards(){
         return _userCards;
     }
+
+
 
 
 }
