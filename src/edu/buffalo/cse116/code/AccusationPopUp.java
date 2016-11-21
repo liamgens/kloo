@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public class AccusationPopUp {
 
-    private JFrame _window, _prompt;
+    private JFrame _window, _winPrompt, _losPrompt;
     private JPanel _popupGui, _headerPanel, _bodyPanel, _suspectPanel, _weaponPanel, _roomPanel, _submitPanel;
     private JButton _suggestionButton, _accusationButton;
     private User _chosenSuspect, _currentPlayer;
@@ -63,7 +63,6 @@ public class AccusationPopUp {
         suspectTitle.setTitleJustification(TitledBorder.CENTER);
         _suspectPanel.setBorder(suspectTitle);
         JComboBox<String> suspectNames = new JComboBox<String>(currentList(_currentAList));
-        _suspectChosen = String.valueOf(suspectNames.getSelectedItem());
         _suspectPanel.add(suspectNames);
         _bodyPanel.add(_weaponPanel);
         TitledBorder weaponTitle;
@@ -71,7 +70,6 @@ public class AccusationPopUp {
         weaponTitle.setTitleJustification(TitledBorder.CENTER);
         _weaponPanel.setBorder(weaponTitle);
         JComboBox<String> weaponNames = new JComboBox<String>(Board.WEAPONS);
-        _weaponChosen = String.valueOf(weaponNames.getSelectedItem());
         _weaponPanel.add(weaponNames);
         _bodyPanel.add(_roomPanel);
         TitledBorder roomTitle;
@@ -79,30 +77,32 @@ public class AccusationPopUp {
         roomTitle.setTitleJustification(TitledBorder.CENTER);
         _roomPanel.setBorder(roomTitle);
         JComboBox<String> roomNames = new JComboBox<String>(Room.ROOMS);
-        _roomChosen = String.valueOf(roomNames.getSelectedItem());
-        _roomPanel.add(roomNames);
-        _bodyPanel.add(_submitPanel);
         JButton submitButton = new JButton("GO");
         submitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-                accusation();
+                _suspectChosen = String.valueOf(suspectNames.getSelectedItem());
+                _weaponChosen = String.valueOf(weaponNames.getSelectedItem());
+                _roomChosen = String.valueOf(roomNames.getSelectedItem());
+                accusation(_suspectChosen, _weaponChosen, _roomChosen);
                 _window.dispose();
             }
         });
+        _roomPanel.add(roomNames);
+        _bodyPanel.add(_submitPanel);
         _submitPanel.add(submitButton);
         _window.add(_popupGui);
     }
-    public void generateWinner() {
-        _prompt = new JFrame();
-        _prompt.setVisible(true);
-        _prompt.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        _prompt.setLayout(new BorderLayout());
-        _prompt.setTitle("Winner!");
-
+    public void generateWinner(String s) {
+        _winPrompt = new JFrame();
         JPanel show = new JPanel();
-        JLabel winner = new JLabel("YOU WIN!");
+        JPanel top = new JPanel();
+        JPanel player = new JPanel();
+        JPanel message = new JPanel();
+        JPanel bottom = new JPanel();
+        JLabel winner = new JLabel("Congratulations:");
+        JLabel playerWin = new JLabel(s);
+        JLabel youWin = new JLabel("YOU WIN!");
         JButton endGame = new JButton("END GAME");
         endGame.addActionListener(new ActionListener() {
             @Override
@@ -110,37 +110,78 @@ public class AccusationPopUp {
                 System.exit(0);
             }
         });
-        _prompt.add(show);
-        show.setLayout(new BoxLayout(show,BoxLayout.X_AXIS));
-        show.add(winner);
-        show.add(endGame);
-        _prompt.pack();
 
+        _winPrompt.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        _winPrompt.setBounds(250, 250, 300, 300);
+        _winPrompt.setUndecorated(true);
+        _winPrompt.setVisible(true);
+        _winPrompt.setLayout(new BorderLayout());
+        _winPrompt.add(show);
+        show.setLayout(new BoxLayout(show,BoxLayout.Y_AXIS));
+        show.add(top);
+        show.add(player);
+        show.add(message);
+        show.add(bottom);
+
+        top.add(winner);
+        player.add(playerWin);
+        message.add(youWin);
+        bottom.add(endGame);
+
+        winner.setForeground(Color.BLUE);
+        player.setForeground(Color.BLACK);
+        youWin.setForeground(Color.MAGENTA);
+
+        _winPrompt.pack();
     }
 
-    public void generateLoser() {
-        _prompt = new JFrame();
-        _prompt.setVisible(true);
-        _prompt.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        _prompt.setLayout(new BorderLayout());
-        _prompt.setTitle("Loser!");
+    public void generateLoser(String s) {
+        String[] winningCards = new String[3];
+        for (int i = 0; i < _board.get_envelope().size(); i++) {
+            winningCards[i] = _board.get_envelope().get(i).get_title().toString();
+        }
+        _losPrompt = new JFrame();
         JPanel show = new JPanel();
-        JLabel loser = new JLabel("YOU LOSE", JLabel.CENTER);
+        JPanel top = new JPanel();
+        JPanel chin = new JPanel();
+        JPanel title = new JPanel();
+        JPanel body = new JPanel();
+        JPanel bottom = new JPanel();
+        JList list = new JList(winningCards);
+
+        _losPrompt.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        _losPrompt.setBounds(250, 250, 300, 300);
+        _losPrompt.setUndecorated(true);
+        _losPrompt.setVisible(true);
+        _losPrompt.setLayout(new BorderLayout());
+
+        JLabel loser = new JLabel(s + " has chosen incorrectly", JLabel.CENTER);
+        JLabel sentence = new JLabel("Correct Cards:");
+        JLabel caption = new JLabel("YOU LOSE");
         JButton close = new JButton("Close");
         close.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                _prompt.setVisible(false);
-                _window.revalidate();
-                _window.repaint();
-                _window.pack();
+                _losPrompt.dispose();
             }
         });
-        _prompt.add(show);
-        show.setLayout(new BoxLayout(show,BoxLayout.X_AXIS));
-        show.add(loser);
-        show.add(close);
-        _prompt.pack();
+        _losPrompt.add(show);
+        show.setLayout(new BoxLayout(show,BoxLayout.Y_AXIS));
+        show.add(top);
+        show.add(chin);
+        show.add(title);
+        show.add(body);
+        show.add(bottom);
+
+        top.add(loser);
+        loser.setForeground(Color.BLUE);
+        chin.add(caption);
+        caption.setForeground(Color.red);
+        title.add(sentence);
+        body.add(list);
+        bottom.add(close);
+
+        _losPrompt.pack();
     }
 
     ///////// ACCUSATION ///////////
@@ -148,23 +189,20 @@ public class AccusationPopUp {
     /**
      * Gets value from drop-down list and checks if it matches with the envelope cards
      */
-    public void accusation() {
+    public void accusation(String sus, String wep, String room) {
         int correctCounter = 0;
         ArrayList<Card> envelope = _board.get_envelope();
-        for (int i = 0; i < envelope.size(); i++) {
-            Card c = envelope.get(i);
-            String correct = c.get_title().toLowerCase();
-            if (correct == _suspectChosen.toLowerCase() || correct == _weaponChosen.toLowerCase() || correct == _roomChosen.toLowerCase()) {
+        for (Card c : envelope) {
+            if (c.get_title().toString() == sus || c.get_title().toString() == wep || c.get_title().toString() == room) {
                 correctCounter = correctCounter + 1;
             }
         }
+
         if (correctCounter == 3) {
-            generateWinner();
+            generateWinner(_currentPlayer.getCharacterName().toString());
         } else {
-            generateLoser();
+            generateLoser(_currentPlayer.getCharacterName().toString());
             _board.getTurnQueue().dequeue();
-
-
         }
     }
 
@@ -199,7 +237,5 @@ public class AccusationPopUp {
         }
         return retVal;
     }
-
-
 
 }

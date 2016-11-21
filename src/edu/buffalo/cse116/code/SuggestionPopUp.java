@@ -102,7 +102,6 @@ public class SuggestionPopUp {
                 _suspectChosen = String.valueOf(suspectNames.getSelectedItem());
                 _weaponChosen = String.valueOf(weaponNames.getSelectedItem());
 
-
                 System.out.println(_suspectChosen);
                 System.out.println(_weaponChosen);
 
@@ -141,8 +140,6 @@ public class SuggestionPopUp {
                     show.remove(instructions);
                     show.remove(choose);
                     _prompt.dispose();
-
-
             }
         });
         _prompt.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -152,11 +149,13 @@ public class SuggestionPopUp {
         _prompt.setLayout(new BorderLayout());
         _prompt.setTitle("Select Card to show:");
         _prompt.add(show);
+
         show.add(top);
         show.add(title);
         show.add(body);
         show.add(action);
         show.setLayout(new BoxLayout(show,BoxLayout.Y_AXIS));
+
         top.add(gotem);
         title.add(intro);
         body.add(instructions);
@@ -387,7 +386,6 @@ public class SuggestionPopUp {
         String[] stored = temp.toArray(new String[temp.size()]);
         return stored;
     }
-
 
 }
 
