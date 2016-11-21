@@ -1,6 +1,5 @@
 package edu.buffalo.cse116.code;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
@@ -8,16 +7,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * These GUI requirements specify that you display:
- * the board, 
- * "die roll", 
- * player pieces, 
- * and cards.
  * Created by liamgens on 10/24/16.
  */
 public class Gui {
@@ -35,6 +27,11 @@ public class Gui {
     private ArrayList<JButton> _buttons;
     private ArrayList<User> _listOfPlayers;
 
+
+    /**
+     * Takes in the number of players and creates a game board GUI
+     * @param numberOfPlayers
+     */
     public Gui(int numberOfPlayers) {
         _window = new JFrame();
         _window.setTitle("Kloo");
@@ -56,10 +53,9 @@ public class Gui {
         _window.pack();
     }
 
-    public Board get_board() {
-        return _board;
-    }
-
+    /**
+     * Generates the game board with all of the required tiles
+     */
     public void generateGameBoard() {
 
         _boardGui = new JPanel();
@@ -113,6 +109,9 @@ public class Gui {
         _window.add(_boardGui, BorderLayout.WEST);
     }
 
+    /**
+     * Generates the information panel with the current player, roll and a button to make an accusation
+     */
     public void generateInfoPanel() {
         JButton accusationButton = new JButton("Accusation");
         accusationButton.addActionListener(new ActionListener() {
@@ -135,6 +134,9 @@ public class Gui {
 
     }
 
+    /**
+     * Generates the initial panel with the current player's cards
+     */
     public void generateCardPanel() {
         _currentCards = new JPanel();
         _cardLabel = new JLabel();
@@ -154,7 +156,12 @@ public class Gui {
     }
 
 
-    public Color changePlayerColor(Tile t, Graphics2D g2d){
+    /**
+     * Returns the correct color for each player if they are on the tile
+     * @param t tile to be checked
+     * @return
+     */
+    public Color changePlayerColor(Tile t){
             for(User player : _listOfPlayers){
                 if(player.get_posX() == t.get_xCoor() && player.get_posY() == t.get_yCoor()){
                     Color c = selectPlayerColor(player.getCharacterName());
@@ -165,6 +172,12 @@ public class Gui {
         return Color.GRAY;
     }
 
+    /**
+     * Changes the color of the image that is placed on each JButton, according to it's location status
+     * @param g2d graphics image
+     * @param t tile that determines the color of the image
+     * @return image returned with correct color
+     */
     public Graphics2D changeColor(Graphics2D g2d, Tile t) {
         if (t.get_parentRoom() == -1) {
             g2d.setColor(_hallway);
@@ -185,21 +198,22 @@ public class Gui {
         }
 
         if (t.is_isOccupied()) {
-            g2d.setColor(changePlayerColor(t, g2d));
+            g2d.setColor(changePlayerColor(t));
         }
 
         return g2d;
 
     }
 
+    /**
+     * Repaints the tiles on the board to have the correct colors
+     */
     public void updateBoard() {
         for (int i = 0; i < _buttons.size(); i++) {
             Tile t = _board.get_tiles().get(i);
             if (t.is_isOccupied()) {
                 BufferedImage img = new BufferedImage(25, 25, BufferedImage.TYPE_INT_RGB);
                 Graphics2D g2d = img.createGraphics();
-
-//                g2d.setColor(_hallway);
 
                 changeColor(g2d, t);
 
@@ -223,12 +237,18 @@ public class Gui {
 
     }
 
+    /**
+     * Updates the info panel information with the correct player and roll
+     */
     public void updateInfoPanel() {
         _currentPlayer.setText("Current Player: " + _board.getCurrentPlayerName());
         _currentRoll.setText("Current Roll: " + _board.get_currentRoll());
         _window.pack();
     }
 
+    /**
+     * Updates the card panel to have the current players cards
+     */
     public void updateCardPanel(){
         String cards = new String();
         for(int i = 0; i < _board.getCurrentPlayer().get_userCards().size(); i++){
@@ -242,6 +262,11 @@ public class Gui {
 
     }
 
+    /**
+     * Switch that returns the correct color based on the player name that is passed in
+     * @param name
+     * @return
+     */
     public Color selectPlayerColor(String name) {
         switch (name) {
             case "Miss Scarlett":
@@ -267,6 +292,14 @@ public class Gui {
 
         }
 
+
+
+    }
+
+
+    //Accessor and Mutator Methods
+    public Board get_board() {
+        return _board;
     }
 
     public ArrayList<User> get_listOfPlayers(){
