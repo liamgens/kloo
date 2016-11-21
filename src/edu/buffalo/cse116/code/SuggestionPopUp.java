@@ -14,7 +14,7 @@ import java.util.ArrayList;
  */
 public class SuggestionPopUp {
 
-    private JFrame _window;
+    private JFrame _window, _prompt;
     private JPanel _popupGui, _headerPanel, _bodyPanel, _suspectPanel, _weaponPanel, _roomPanel, _submitPanel;
 
     private User _chosenSuspect, _currentPlayer;
@@ -109,6 +109,53 @@ public class SuggestionPopUp {
         });
         _submitPanel.add(submitButton);
         _window.add(_popupGui);
+    }
+
+    public void displayCards(String[] cards, String s) {
+        _prompt = new JFrame();
+        _prompt.setVisible(true);
+        _prompt.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        _prompt.setLayout(new BorderLayout());
+        _prompt.setTitle("Select Card to show:");
+        JComboBox choose = new JComboBox(cards);
+        String selected = String.valueOf(choose.getSelectedItem());
+        JPanel show = new JPanel();
+        JLabel gotem = new JLabel("Current User: " + s);
+        JLabel instructions = new JLabel("Select Cards:");
+        JButton submit = new JButton("Submit");
+
+
+        JLabel ins = new JLabel("Showing: ");
+        JLabel display = new JLabel(selected);
+        JButton close = new JButton("Close");
+
+        close.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                _prompt.dispose();
+            }
+        });
+
+        submit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                show.add(ins);
+                show.add(display);
+                show.add(close);
+                show.remove(instructions);
+                show.remove(choose);
+            }
+        });
+
+
+        _prompt.add(show);
+        show.setLayout(new BoxLayout(show,BoxLayout.Y_AXIS));
+        show.add(gotem);
+        show.add(instructions);
+        show.add(choose);
+        show.add(submit);
+        show.add(close);
+        _prompt.pack();
     }
 
     /////////// SUGGESTION //////////
@@ -237,16 +284,40 @@ public class SuggestionPopUp {
 
     public void checkAllCards(ArrayList<User> currentAList, Board board, User current) {
         String user = "";
+        ArrayList<Card> show = new ArrayList<Card>();
+
 
         for (User u : currentAList) {
             if (current.checkCards(u.get_userCards(), _suspectChosen, _weaponChosen, Room.ROOMS[_currentTile.get_parentRoom()])) {
+                user = u.getCharacterName();
 
                 for (Card c : u.get_userCards()) {
-                    System.out.println(c.get_title());
+                    if (c.get_title() == _suspectChosen) {
+                        show.add(c);
+                    }
+                    if (c.get_title() == _weaponChosen) {
+                        show.add(c);
+                    }
+                    if (c.get_title() == Room.ROOMS[_currentTile.get_parentRoom()]) {
+                        show.add(c);
+                    }
                 }
+
+                System.out.println("Breaking");
                 break;
+            } else {
+                System.out.println("false");
             }
+
         }
+
+        String[] array = new String[show.size()];
+        for (int i = 0; i < show.size(); i++) {
+            array[i] = show.get(i).get_title();
+        }
+
+
+        displayCards(array, user);
     }
 
     /////////// DROP DOWN LIST METHODS ///////////
