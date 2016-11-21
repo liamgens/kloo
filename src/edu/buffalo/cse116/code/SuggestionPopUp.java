@@ -142,6 +142,7 @@ public class SuggestionPopUp {
     }
 
 
+
     /**
      * Returns User chosen name from drop-down list
      * @param chosenUserName
