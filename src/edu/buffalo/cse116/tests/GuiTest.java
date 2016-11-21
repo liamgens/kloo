@@ -18,14 +18,8 @@ public class GuiTest {
         System.out.print("Enter number of players (3-6; there is no error handling here): ");
         int numberOfPlayers = scan.nextInt();
 
-
-
         Gui gui = new Gui(numberOfPlayers);
         Board b = gui.get_board();
-        
-
-//        b.rollDice();
-//        gui.updateInfoPanel();
 
     }
 
