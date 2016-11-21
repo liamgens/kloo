@@ -1,12 +1,7 @@
 package edu.buffalo.cse116.code;
 
-import sun.util.resources.cldr.st.CalendarData_st_LS;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Scanner;
 
 public class TurnQueue {
     private LinkedList<User> _playersQueue;
@@ -81,5 +76,18 @@ public class TurnQueue {
     public ArrayList<User> get_listOfPlayers(){
         return _listOfPlayers;
     }
+
+    /**
+     * If only one player is left in the Queue, he/she is declared the winner.
+     * @return
+     */
+ /*   public User soleSurvivor(){
+        User winner = null;
+        if(get_listOfPlayers().size()== 1){
+            winner = _listOfPlayers.get(0);
+            return winner;
+        }
+        return winner;
+    }*/
     
 }
