@@ -71,7 +71,7 @@ public class SuggestionPopUp {
         suspectTitle.setTitleJustification(TitledBorder.CENTER);
         _suspectPanel.setBorder(suspectTitle);
         JComboBox<String> suspectNames = new JComboBox<String>(currentListMinusOne(_currentAList));
-        _suspectChosen = String.valueOf(suspectNames.getSelectedItem());
+        //_suspectChosen = String.valueOf(suspectNames.getSelectedItem());
         _suspectPanel.add(suspectNames);
         _bodyPanel.add(_weaponPanel);
         TitledBorder weaponTitle;
@@ -79,7 +79,7 @@ public class SuggestionPopUp {
         weaponTitle.setTitleJustification(TitledBorder.CENTER);
         _weaponPanel.setBorder(weaponTitle);
         JComboBox<String> weaponNames = new JComboBox<String>(Board.WEAPONS);
-        _weaponChosen = String.valueOf(weaponNames.getSelectedItem());
+        //_weaponChosen = String.valueOf(weaponNames.getSelectedItem());
         _weaponPanel.add(weaponNames);
         _bodyPanel.add(_roomPanel);
         TitledBorder roomTitle;
@@ -95,6 +95,13 @@ public class SuggestionPopUp {
         submitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
+                _suspectChosen = String.valueOf(suspectNames.getSelectedItem());
+                _weaponChosen = String.valueOf(weaponNames.getSelectedItem());
+
+                System.out.println(_suspectChosen);
+                System.out.println(_weaponChosen);
+
                 suggestion();
                 _window.dispose();
             }
@@ -140,10 +147,11 @@ public class SuggestionPopUp {
      * @return User
      */
     public User returnUser(String chosenUserName) {
-        TurnQueue temp = _board.getTurnQueue();
-        ArrayList<User> test = temp.get_listOfPlayers();
+        //TurnQueue temp = _board.getTurnQueue();
+        ArrayList<User> test = _board.getListOfPlayers();
         for (User u : test) {
             if (u.getCharacterName() == chosenUserName) {
+                //System.out.print(u.getCharacterName());
                 return u;
             }
         }
