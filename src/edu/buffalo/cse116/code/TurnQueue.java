@@ -23,9 +23,11 @@ public class TurnQueue {
         if (numberOfPlayers >= 3 && numberOfPlayers <= 6) {
             _playersQueue = new LinkedList<User>();
             _listOfPlayers = new ArrayList<User>();
-            for (int i = 0; i < numberOfPlayers; i++) {
+            for (int i = 0; i < 6; i++) {
                 User u = new User(_board, i);
-                _playersQueue.add(u);
+                if(i < numberOfPlayers){
+                    _playersQueue.add(u);
+                }
                 _listOfPlayers.add(u);
             }
         }else{

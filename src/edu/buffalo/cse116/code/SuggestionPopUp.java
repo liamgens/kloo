@@ -71,7 +71,6 @@ public class SuggestionPopUp {
         suspectTitle.setTitleJustification(TitledBorder.CENTER);
         _suspectPanel.setBorder(suspectTitle);
         JComboBox<String> suspectNames = new JComboBox<String>(currentListMinusOne(_currentAList));
-        //_suspectChosen = String.valueOf(suspectNames.getSelectedItem());
         _suspectPanel.add(suspectNames);
         _bodyPanel.add(_weaponPanel);
         TitledBorder weaponTitle;
@@ -79,7 +78,6 @@ public class SuggestionPopUp {
         weaponTitle.setTitleJustification(TitledBorder.CENTER);
         _weaponPanel.setBorder(weaponTitle);
         JComboBox<String> weaponNames = new JComboBox<String>(Board.WEAPONS);
-        //_weaponChosen = String.valueOf(weaponNames.getSelectedItem());
         _weaponPanel.add(weaponNames);
         _bodyPanel.add(_roomPanel);
         TitledBorder roomTitle;

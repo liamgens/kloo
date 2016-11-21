@@ -24,8 +24,8 @@ public class Card {
     /** 2D Array of Card Values */
     private String[][] cardArray = {
             {"Miss Scarlett", "Professor Plum", "Mr. Green", "Mrs. Peacock", "Mrs. White", "Colonel Mustard"}, // 6 PLAYERS CARDS
-            {"WRENCH", "CANDLESTICK", "LEAD PIPE", "ROPE", "REVOLVER", "KNIFE"}, // 6 WEAPONS CARDS
-            {"KITCHEN", "BALLROOM", "CONSERVATORY", "DINING ROOM", "LOUNGE", "HALL", "STUDY", "LIBRARY", "BILLARD ROOM"} // 9 ROOMS CARDS
+            {"Wrench", "Candlestick", "Lead Pipe", "Rope", "Revolver", "Knife"}, // 6 WEAPONS CARDS
+            {"Kitchen", "Ballroom", "Conservatory", "Dining Room", "Lounge", "Hall", "Study", "Library", "Billard Room"} // 9 ROOMS CARDS
     };
 
     /** Represent Card Types in String form */
