@@ -27,6 +27,10 @@ public class AccusationPopUp {
     public String get_weaponChosen(){ return _weaponChosen; }
     public String get_roomChosen(){ return _roomChosen; }
 
+    /**
+     * Creates a window that lets the player know whether they can make an accusation or not.
+     * @param board
+     */
     public AccusationPopUp(Board board) {
         _board = board;
         _currentPlayer = board.getCurrentPlayer();

@@ -27,7 +27,12 @@ public class SuggestionPopUp {
         public String get_weaponChosen(){ return _weaponChosen; }
         public String get_roomChosen(){ return _roomChosen; }
 
-        public SuggestionPopUp(Tile currentTile, Board board) {
+    /**
+     * Creates a window that lets the players know they can make a suggestion.
+     * @param currentTile
+     * @param board
+     */
+    public SuggestionPopUp(Tile currentTile, Board board) {
             _board = board;
             _currentPlayer = board.getCurrentPlayer();
             _currentAList = board.getListOfPlayers();

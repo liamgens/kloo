@@ -45,6 +45,10 @@ public class Gui {
         return _infoPanel;
     }
 
+    /**
+     * Creates the GUI for the game.  The constructor creates a window with a BorderLayout, has an ArrayList of JButtons for movement.  In the window a Game board is generated along with an info panel. Exits the game when closed.
+     * @param numberOfPlayers the number of people playing the game.
+     */
     public Gui(int numberOfPlayers){
         _window = new JFrame();
         _window.setVisible(true);
@@ -63,6 +67,9 @@ public class Gui {
         return _board;
     }
 
+    /**
+     * Creates an instance of the GameBoard.
+     */
     public void generateGameBoard(){
 
         _boardGui = new JPanel();
@@ -112,6 +119,9 @@ public class Gui {
         _window.add(_boardGui, BorderLayout.WEST);
     }
 
+    /**
+     * Creates an info panel that allows the player to know what moves the player is allowed to make.
+     */
     public void generateInfoPanel(){
         JButton accusationButton = new JButton("Accusation");
         accusationButton.addActionListener(new ActionListener() {
@@ -133,6 +143,9 @@ public class Gui {
         _window.add(_infoPanel, BorderLayout.EAST);
     }
 
+    /**
+     * Updates the game board after a move is made.
+     */
     public void updateBoard(){
 
         for(int i = 0; i < _buttons.size(); i++){
@@ -186,6 +199,9 @@ public class Gui {
 
     }
 
+    /**
+     * updates the information panel to let the players know who's turn it is and how many moves they have left according to the number they rolled on the die.
+     */
     public void updateInfoPanel(){
         _currentPlayer.setText("Current Player: " + _board.getCurrentPlayerName());
         _currentRoll.setText("Current Roll: " + _board.get_currentRoll());
