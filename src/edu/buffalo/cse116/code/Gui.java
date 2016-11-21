@@ -193,14 +193,13 @@ public class Gui {
     }
 
     public void updateBoard() {
-
         for (int i = 0; i < _buttons.size(); i++) {
             Tile t = _board.get_tiles().get(i);
             if (t.is_isOccupied()) {
-
                 BufferedImage img = new BufferedImage(25, 25, BufferedImage.TYPE_INT_RGB);
                 Graphics2D g2d = img.createGraphics();
-                g2d.setColor(_hallway);
+
+//                g2d.setColor(_hallway);
 
                 changeColor(g2d, t);
 

@@ -70,14 +70,11 @@ public class User {
      * @return true if the player moves, false otherwise
      */
     public boolean makeMove(int desiredX, int desiredY) {
-        if(_board.get_currentRoll() <= 0){
-            _board.getTurnQueue().endTurn();
-            _board.rollDice();
-            _board.getGui().updateInfoPanel();
-            _board.getGui().updateCardPanel();
 
-            return false;
-        }
+        boolean retVal = false;
+
+        if(checkCurrentRoll() == false){ return false; }
+
         Tile playersCurrentTile = _board.getTile(_posX, _posY);
         Tile desiredTile = _board.getTile(desiredX, desiredY);
 
@@ -92,77 +89,69 @@ public class User {
             int desiredTileRoom = desiredTile.get_parentRoom();
             int playersCurrentRoom = playersCurrentTile.get_parentRoom();
 
-            //hallway -> hallway
-            if (desiredTileRoom == -1 && playersCurrentRoom == -1 && !desiredTile.is_isOccupied()) {
-                desiredTile.set_isOccupied(true);
-                playersCurrentTile.set_isOccupied(false);
-                _posX = desiredX;
-                _posY = desiredY;
+            //hallway -> hallway && door -> hallway
+            if ((desiredTileRoom == -1 && playersCurrentRoom == -1 && !desiredTile.is_isOccupied() || (playersCurrentRoom >= 0 && playersCurrentRoom < 9 && desiredTileRoom == -1 && playersCurrentTile.get_isDoor() &&
+                    !desiredTile.is_isOccupied()))){
+                setOccupiedTiles(desiredTile, playersCurrentTile);
+                set_posX_posY(desiredX, desiredY);
                 _board.useRoll();
                 updateAll();
-                //return true;
+                retVal = true;
             }
             //hallway -> door
             else if (desiredTileRoom >= 0 && desiredTileRoom < 9 && desiredTile.get_isDoor() && playersCurrentRoom == -1 &&
                     !desiredTile.is_isOccupied()) {
-                desiredTile.set_isOccupied(true);
-                playersCurrentTile.set_isOccupied(false);
-                _posX = desiredX;
-                _posY = desiredY;
+                setOccupiedTiles(desiredTile, playersCurrentTile);
+                set_posX_posY(desiredX, desiredY);
                 _board.useRoll();
                 updateAll();
                 SuggestionPopUp popUp = new SuggestionPopUp(_board.getTile(get_posX(), get_posY()), _board);
                 updateAll();
-                //return true;
+                retVal = true;
             }
             //room -> room && room -> door
             else if (desiredTileRoom == playersCurrentRoom && playersCurrentRoom >= 0 && playersCurrentRoom < 9 && !desiredTile.is_isOccupied()) {
-                desiredTile.set_isOccupied(true);
-                playersCurrentTile.set_isOccupied(false);
-                _posX = desiredX;
-                _posY = desiredY;
+                setOccupiedTiles(desiredTile, playersCurrentTile);
+                set_posX_posY(desiredX, desiredY);
                 playersCurrentTile = _board.getTile(_posX, _posY);
                 checkPassage(playersCurrentTile, playersCurrentRoom);
                 updateAll();
-
-
-                //return true;
+                retVal = true;
             }
-            //door -> hallway
-            else if (playersCurrentRoom >= 0 && playersCurrentRoom < 9 && desiredTileRoom == -1 && playersCurrentTile.get_isDoor() &&
-                    !desiredTile.is_isOccupied()) {
-                desiredTile.set_isOccupied(true);
-                playersCurrentTile.set_isOccupied(false);
-                _posX = desiredX;
-                _posY = desiredY;
-                _board.useRoll();
-                updateAll();
-
-
-                //return true;
-            }
-
-
-
         }
 
+        checkCurrentRoll();
+
+        return retVal;
+    }
+
+    //Helper method for makeMove that checks if the currentRoll is vaild
+    public boolean checkCurrentRoll(){
         if(_board.get_currentRoll() <= 0){
             _board.getTurnQueue().endTurn();
             _board.rollDice();
             _board.getGui().updateInfoPanel();
             _board.getGui().updateCardPanel();
-
             return false;
         }
-
-        return false;
+        return true;
     }
 
+    //Helper method for MakeMove that changes tiles occupancy status
+    public void setOccupiedTiles(Tile desiredTile, Tile playersCurrentTile){
+        desiredTile.set_isOccupied(true);
+        playersCurrentTile.set_isOccupied(false);
+    }
+
+    /**
+     * Updates all components of the GUI at once
+     */
     public void updateAll(){
         _board.getGui().updateInfoPanel();
         _board.getGui().updateBoard();
         _board.getGui().updateCardPanel();
     }
+
 
      /**
      * Allows a player to use a secret passage once their are in the room and the new position in the new room is not occupied.
@@ -261,4 +250,9 @@ public class User {
     public void set_posX(int x) { _posX = x; }
 
     public void set_posY(int y) { _posY = y; }
+
+    public void set_posX_posY(int x, int y){
+        _posX = x;
+        _posY = y;
+    }
 }
