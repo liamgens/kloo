@@ -11,7 +11,7 @@ public class Room {
 
     private int _topLx, _topLy, _width, _height, _idx;
     private String _roomName;
-    private final String[] listOfRooms= {"Kitchen", "Ballroom", "Conservatory", "Dining Room",
+    static final String[] ROOMS = {"Kitchen", "Ballroom", "Conservatory", "Dining Room",
             "Lounge", "Hall", "Study", "Library", "Billard Room", "Cellar"};
     private ArrayList<Tile> _tilesOfBoard;
     private ArrayList<Tile> _tilesOfRoom;
@@ -32,7 +32,7 @@ public class Room {
         _topLx = topLx;
         _topLy = topLy;
         _idx = idx;
-        _roomName = listOfRooms[idx];
+        _roomName = ROOMS[idx];
         _tilesOfRoom = tellTilesWhereTheyAre();
 
     }

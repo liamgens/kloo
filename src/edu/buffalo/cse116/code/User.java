@@ -1,6 +1,5 @@
 package edu.buffalo.cse116.code;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -9,10 +8,11 @@ import java.util.ArrayList;
 public class User {
 
     private ArrayList<Card> _userCards; // Used to return cards
-    private String[] CHARACTER_NAME = {"Miss Scarlett", "Professor Plum", "Mr. Green", "Mrs. White", "Mrs. Peacock", "Colonel Mustard"};
+    public static String[] CHARACTER_NAME = {"Miss Scarlett", "Professor Plum", "Mr. Green", "Mrs. Peacock", "Mrs. White", "Colonel Mustard"};
     private int _userTurn;
     private int _posX, _posY;
     private Board _board;
+    private int[] _startTurnCoor, _endTurnCoor, _currentCoor; // stores coordinates in array {int x, int y}
 
     /**
      * Creates a User on the game board and assigns it a characterName from the CHARACTER_NAME Array.
@@ -30,7 +30,7 @@ public class User {
         _userTurn = characterName;
         _board.getTile(get_posX(),get_posY()).set_isOccupied(true);
     }
-    
+
 //    public Card showCard(Card show) { return show; }
 //    public ArrayList<Card> get_userCards() { return _userCards; }
 
@@ -53,29 +53,27 @@ public class User {
      * @param loc
      * @return
      */
-    public boolean makeSuggestion(ArrayList<Card> opponent, String sus, String wep, String loc) {
+    public boolean checkCards(ArrayList<Card> opponent, String sus, String wep, String loc) {
         for (Card c : opponent) {
             if (c.get_title() == sus) {
-            	if (c.get_title() == wep || c.get_title() == loc) {
-            		return true;
-            	}
+                if (c.get_title() == wep || c.get_title() == loc) {
+                    return true;
+                }
                 return true;
             } else if (c.get_title() == wep) {
-            	if (c.get_title() == sus || c.get_title() == loc) {
-            		return true;
-            	}
+                if (c.get_title() == sus || c.get_title() == loc) {
+                    return true;
+                }
                 return true;
             } else if (c.get_title() == loc) {
-            	if (c.get_title() == sus || c.get_title() == wep) {
-            		return true;
-            	}
+                if (c.get_title() == sus || c.get_title() == wep) {
+                    return true;
+                }
                 return true;
             }
         }
         return false;
     }
-
-
 
     //Player Position
     public int get_posX() {
@@ -95,6 +93,61 @@ public class User {
     }
 
     /**
+     * Uses two methods:
+     * - get_posX();
+     * - get_posY();
+     * to create an array {x, y} of the current players coordinates
+     * @return int[] of user coordinates {x,y}
+     */
+    public int[] get_userCoor() {
+        int x = get_posX();
+        int y = get_posX();
+        int[] coordinates = new int[2];
+        coordinates[0] = x;
+        coordinates[1] = y;
+        return coordinates;
+    }
+
+    /**
+     * Call while user is moving to see if user coordinates lands on any special coordinates (i.e. door coordinates)
+     * @return int[] _endTurn;
+     */
+    public int[] currentCoordinates() {
+        _currentCoor = get_userCoor();
+        return _currentCoor;
+    }
+
+    /**
+     * After then Users first turn,
+     * Call at the beginning of a user turn, stores coordinates {x, y} for comparison
+     * @return int[] _startTurn;
+     */
+    public int[] startTurnCoordinates() {
+        _startTurnCoor = get_userCoor();
+        return _startTurnCoor;
+    }
+
+    /**
+     * Call at the end of a user turn to stores coordinates {x, y} for comparison
+     * @return int[] _endTurn;
+     */
+    public int[] endTurnCoordinates() {
+        _endTurnCoor = get_userCoor();
+        return _endTurnCoor;
+    }
+    /**
+     * At the start of every turn call this method.
+     * If users endTurn coordinate is different from users startTurn coordinate,
+     * then user has been moved! This could be because of: suggestion or secret passage
+     * @return true if user did move, false if user is at the same location
+     */
+    public boolean userMoved() {
+        // if coordinates are then same then false,
+        return _endTurnCoor != _startTurnCoor;
+    }
+
+
+    /**
      * Lets the player try to move to another tile
      * @param desiredX the x coor of Tile to travel to
      * @param desiredY the y coor of Tile to travel to
@@ -105,8 +158,6 @@ public class User {
             _board.getTurnQueue().endTurn();
             _board.rollDice();
             _board.getGui().updateInfoPanel();
-            _board.getGui().updateCardPanel();
-
             return false;
         }
         Tile playersCurrentTile = _board.getTile(_posX, _posY);
@@ -132,10 +183,9 @@ public class User {
                 _board.useRoll();
                 _board.getGui().updateInfoPanel();
                 _board.getGui().updateBoard();
-                _board.getGui().updateCardPanel();
 
                 System.out.print("true");
-                //return true;
+                return true;
             }
             //hallway -> door
             else if (desiredTileRoom >= 0 && desiredTileRoom < 9 && desiredTile.get_isDoor() && playersCurrentRoom == -1 &&
@@ -147,9 +197,11 @@ public class User {
                 _board.useRoll();
                 _board.getGui().updateInfoPanel();
                 _board.getGui().updateBoard();
-                _board.getGui().updateCardPanel();
 
-                //return true;
+                SuggestionPopUp popUp = new SuggestionPopUp(_board.getTile(get_posX(), get_posY()), _board);
+                _board.getGui().updateBoard();
+
+                return true;
             }
             //room -> room && room -> door
             else if (desiredTileRoom == playersCurrentRoom && playersCurrentRoom >= 0 && playersCurrentRoom < 9 && !desiredTile.is_isOccupied()) {
@@ -161,10 +213,8 @@ public class User {
                 checkPassage(playersCurrentTile, playersCurrentRoom);
                 _board.getGui().updateInfoPanel();
                 _board.getGui().updateBoard();
-                _board.getGui().updateCardPanel();
 
-
-                //return true;
+                return true;
             }
             //door -> hallway
             else if (playersCurrentRoom >= 0 && playersCurrentRoom < 9 && desiredTileRoom == -1 && playersCurrentTile.get_isDoor() &&
@@ -176,23 +226,10 @@ public class User {
                 _board.useRoll();
                 _board.getGui().updateInfoPanel();
                 _board.getGui().updateBoard();
-                _board.getGui().updateCardPanel();
 
-
-                //return true;
+                return true;
             }
 
-
-
-        }
-
-        if(_board.get_currentRoll() <= 0){
-            _board.getTurnQueue().endTurn();
-            _board.rollDice();
-            _board.getGui().updateInfoPanel();
-            _board.getGui().updateCardPanel();
-
-            return false;
         }
 
         return false;

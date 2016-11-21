@@ -16,6 +16,7 @@ public class Board {
     private Gui _gui;
     private ArrayList<Card> _envelope;
     private Deck _deck;
+    static final String[] WEAPONS = {"WRENCH", "CANDLESTICK", "LEAD PIPE", "ROPE", "REVOLVER", "KNIFE"};
 
     public Board(int numberOfPlayers, Gui gui){
         _tiles = generateBoard(25,25);
