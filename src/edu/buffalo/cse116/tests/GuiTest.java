@@ -1,6 +1,7 @@
 package edu.buffalo.cse116.tests;
 
 import edu.buffalo.cse116.code.Board;
+import edu.buffalo.cse116.code.Card;
 import edu.buffalo.cse116.code.Gui;
 
 import java.util.Scanner;
@@ -20,6 +21,10 @@ public class GuiTest {
 
         Gui gui = new Gui(numberOfPlayers);
         Board b = gui.get_board();
+
+        for(Card c : b.get_envelope()){
+            System.out.println(c.get_title());
+        }
 
     }
 
