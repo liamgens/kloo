@@ -7,7 +7,7 @@ import java.util.ArrayList;
  */
 public class User {
 
-    private ArrayList<Card> _userCards; // Used to return cards
+    private ArrayList<Card> _userCards;
     public static String[] CHARACTER_NAME = {"Miss Scarlett", "Professor Plum", "Mr. Green", "Mrs. Peacock", "Mrs. White", "Colonel Mustard"};
     private int _userTurn;
     private int _posX, _posY;
@@ -28,18 +28,6 @@ public class User {
         setStartingPosition(CHARACTER_NAME[characterName]);
         _userTurn = characterName;
         _board.getTile(get_posX(),get_posY()).set_isOccupied(true);
-    }
-
-//    public Card showCard(Card show) { return show; }
-//    public ArrayList<Card> get_userCards() { return _userCards; }
-
-    // Getter
-    public int get_userTurn() {
-        return _userTurn;
-    }
-    /** Assigns hands to users*/
-    public void set_userCards(ArrayList<Card> _userCards) {
-        this._userCards = _userCards;
     }
 
     /**
@@ -74,22 +62,6 @@ public class User {
         return false;
     }
 
-    //Player Position
-    public int get_posX() {
-        return _posX;
-    }
-
-    public void set_posX(int _posX) {
-        this._posX = _posX;
-    }
-
-    public int get_posY() {
-        return _posY;
-    }
-
-    public void set_posY(int _posY) {
-        this._posY = _posY;
-    }
 
     /**
      * Lets the player try to move to another tile
@@ -285,13 +257,15 @@ public class User {
         }
     }
 
-    public String getCharacterName(){
-        return CHARACTER_NAME[_userTurn];
-    }
+    //Accessor and Mutator Methods
+    public String getCharacterName(){ return CHARACTER_NAME[_userTurn]; }
 
-    public ArrayList<Card> get_userCards(){
-        return _userCards;
-    }
+    public ArrayList<Card> get_userCards(){ return _userCards; }
+
+    public int get_posX() { return _posX; }
+
+    public int get_posY() { return _posY; }
+
 
 
 
