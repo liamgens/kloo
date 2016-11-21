@@ -52,6 +52,9 @@ public class SuggestionPopUp {
 
     ////////// Gui ////////////
 
+    /**
+     * When entering a room, this generates the PopUp that will display options to make a suggestion
+     */
     public void generateSuggestionPopUp() {
         _popupGui = new JPanel();
         _headerPanel = new JPanel();
@@ -113,7 +116,15 @@ public class SuggestionPopUp {
         _window.add(_popupGui);
     }
 
+    /**
+     * After the Suggestion is entered, if a player in the game has one or more of the cards in hers/his "hand" then
+     * this PopUp will be generated and will ask the user what card to show the player. If the player does not select one,
+     * it is defaulted to select the first Card at the first index;
+     * @param cards
+     * @param s
+     */
     public void displayCards(String[] cards, String s) {
+        ////// GUI //////
         _prompt = new JFrame();
         JPanel show = new JPanel();
         JPanel top = new JPanel();
@@ -125,17 +136,23 @@ public class SuggestionPopUp {
         JLabel gotem = new JLabel("Current User: " + s);
         JLabel instructions = new JLabel("Select Cards:");
         JButton submit = new JButton("Submit");
+
         submit.addActionListener(new ActionListener() {
+            /**
+             * When the submit button is pressed, whatever value the player has chosen is used in the showCard(String s)
+             * method. Also avoids the null pointed exception
+             * @param e
+             */
             @Override
             public void actionPerformed(ActionEvent e) {
                 String selected = "";
                 if (choose.getSelectedValue() != null) {
                     selected = choose.getSelectedValue().toString();
-                    showCard(selected);
+                    showCard(selected); // Method Call
                 } else {
                     choose.setSelectedIndex(0);
                     selected = choose.getSelectedValue().toString();
-                    showCard(selected);
+                    showCard(selected); // Method Call
                 }
                     show.remove(instructions);
                     show.remove(choose);
@@ -164,7 +181,13 @@ public class SuggestionPopUp {
         _prompt.pack();
     }
 
+    /**
+     * Takes the string value from the selected displayCard() PopUp Gui List and displays another prompt that "shows"
+     * the card to the player.
+     * @param s
+     */
     public void showCard(String s) {
+        //// GUI /////
         _showCard = new JFrame();
         JPanel display = new JPanel();
         JPanel top = new JPanel();
@@ -202,6 +225,9 @@ public class SuggestionPopUp {
 
     /////////// SUGGESTION //////////
 
+    /**
+     *  Takes the value from suggestion prompt and matches it with the User...
+     */
     public void suggestion() {
         _chosenSuspect = returnUser(_suspectChosen);
         moveUserHere(_chosenSuspect, _currentPlayer);
@@ -234,8 +260,6 @@ public class SuggestionPopUp {
             _board.getGui().updateCardPanel();
         }
     }
-
-
 
     /**
      * Returns User chosen name from drop-down list
@@ -332,7 +356,6 @@ public class SuggestionPopUp {
     public void checkAllCards(ArrayList<User> currentAList, Board board, User current) {
         String user = "";
         ArrayList<Card> show = new ArrayList<Card>();
-
 
         for (User u : currentAList) {
             if (current.checkCards(u.get_userCards(), _suspectChosen, _weaponChosen, Room.ROOMS[_currentTile.get_parentRoom()])) {
