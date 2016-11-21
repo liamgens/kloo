@@ -16,7 +16,7 @@ public class Board {
     private Gui _gui;
     private ArrayList<Card> _envelope;
     private Deck _deck;
-    static final String[] WEAPONS = {"WRENCH", "CANDLESTICK", "LEAD PIPE", "ROPE", "REVOLVER", "KNIFE"};
+    static final String[] WEAPONS = {"Wrench", "Candlestick", "Lead Pipe", "Rope", "Revolver", "Knife"};
 
     public Board(int numberOfPlayers, Gui gui){
         _tiles = generateBoard(25,25);
@@ -29,9 +29,8 @@ public class Board {
         _deck = new Deck();
         _envelope = _deck.get_envelopeCards();
         dealCardsToPlayers();
-
-
     }
+
 
 
     /**
@@ -201,8 +200,10 @@ public class Board {
         return _playerQueue;
     }
 
+    public ArrayList<Card> get_envelope() {return _envelope; }
+
     public void dealCardsToPlayers(){
-        ArrayList<User> players = getListOfPlayers();
+        ArrayList<User> players = _playerQueue.get_playersInQueue();
         while(_deck.size() > 0){
             for(User player : players){
                 if(_deck.size() > 0) {
@@ -212,5 +213,7 @@ public class Board {
         }
     }
 
-
+    public TurnQueue get_playerQueue() {
+        return _playerQueue;
+    }
 }
