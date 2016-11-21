@@ -213,5 +213,7 @@ public class Board {
         }
     }
 
-
+    public TurnQueue get_playerQueue() {
+        return _playerQueue;
+    }
 }

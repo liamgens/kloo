@@ -268,6 +268,7 @@ public class SuggestionPopUp {
         _sus_posX = newPosition.get_xCoor();
         _sus_posY = newPosition.get_yCoor();
         newPosition.set_isOccupied(true);
+        //_board.get_playerQueue().endTurn();
         _board.resetRoll();
     }
 

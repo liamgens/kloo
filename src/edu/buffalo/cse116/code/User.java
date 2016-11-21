@@ -103,9 +103,9 @@ public class User {
                     !desiredTile.is_isOccupied()) {
                 setOccupiedTiles(desiredTile, playersCurrentTile);
                 set_posX_posY(desiredX, desiredY);
-                _board.useRoll();
                 updateAll();
                 SuggestionPopUp popUp = new SuggestionPopUp(_board.getTile(get_posX(), get_posY()), _board);
+                _board.useRoll();
                 updateAll();
                 retVal = true;
             }
