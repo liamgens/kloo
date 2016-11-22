@@ -1,0 +1,16 @@
+﻿# File: proof.txt
+Explain how to see the name of the next player and the card disproving a suggestion when the next player holds a card disproving suggestion:
+* When a player makes a suggestion, a prompt will appear only if a player can prove the suggestion false. On the prompt it will display the player who has the card(s) and they will be allowed to show the current player who called the suggestion one of the cards that proves their suggestion false. If no prompt is given, then your suggestion is true and your turn ends and the game moves on.
+
+Explain how to see the name of the player-after-next and the card disproving a suggestion when the next player cannot disprove a suggestion, but the player-after-next can:
+* In order to activate the suggestion prompt, please enter a room with any player. Once you are on a gray tile, a prompt will be launched for the current player. After the player makes a suggestion with the prompt, the algorithm we created will sift through each Player and their cards to check if any match with the suggestion values. A second prompt will only appear if a player in the current list of players has the first instance of the card that matches a suggestion value. The second prompt will include the name of the player who can prove it false and the information about their cards. The prompt will also allow the player who can prove the suggestion false to choose which card to show the player who called the suggestion. That player will then show the card to the current player who made the suggestion and the current player’s turn will end.
+
+Explain how to see the name of the player BEFORE the player making the suggestion and the card disproving a suggestion when only they have a card disproving a suggestion:
+* The suggestion prompt will have an algorithm that checks all of the players’ cards except for the current player.  If any of the players have any cards disproving the current player’s suggestion then a prompt will pop up showing the card disproving their suggestion and who holds this card.
+
+
+Explain how to see that nobody could disprove the suggestion when only the suggesting player can disprove the suggestion:
+* If there is no prompt that appears after the suggestion prompt then the suggestion is not false and the user can check their hand if they contain the card from the suggestion that they themselves called.
+
+Explain how to see that nobody could disprove the suggestion when nobody can disprove the suggestion:
+* If there is no prompt that appears after the suggestion prompt then the suggestion is not false.

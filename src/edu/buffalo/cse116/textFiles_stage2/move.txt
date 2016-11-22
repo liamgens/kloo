@@ -1,0 +1,14 @@
+﻿#
+Explain how to enter a move and see that a legal movement that stays within the hallway updates the player's location
+* The tiles within the Board are JButtons and the player can only move towards tiles that are around him/her and are horizontal or vertical to the player on the board.  If you click on the tiles that are not doors into or out a room, the player will not go through the walls or make any other invalid movements such as moving diagonally or outside of the board.
+
+Explain how to enter a move and see that a legal movement that goes through a doorway and ends in a room updates the player's location
+* Click around the Colored Tile that represents the player until you reach a gray tile that represents a doorway and stand on it. It will launch a prompt to make a suggestion and after that is made then your turn will end. No other player will be able to move through a player because it is impossible.
+
+
+
+Explain how to enter a move which uses a secret passageway updates the player's location
+* Traverse through the board and click your way to the corner rooms of the board. Here you will find an orange tile that will represent the secret passageway that a player can take. Moving to the orange tile will move the player to a different corner room.  The player’s colored tile move diagonally to the other side of the board.
+
+Explain how illegal moves are prevented (including showing an error message if your program allows a user to try this).
+* Illegal moves are prevented by checking if the current player’s tile does not represent an invalid movement. For example, a player cannot walk through walls because the tiles are different and will not allow the movement to execute.  Only doorways allow access to rooms and if you try to make a move diagonally the UI will not allow the player to move.

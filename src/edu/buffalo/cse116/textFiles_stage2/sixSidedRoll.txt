@@ -1,0 +1,10 @@
+﻿# File
+Explain how to see you have code which correctly generate a die/dice roll.
+* After the number of players are set and the Gui has been created, the panel to the right of the board will display the amount of spaces a player can make.. This is the “current roll: #” that will display how many spaces you can move. The dice roll is rolled automatically at the start of every turn and can display a random value from: 1 - 6.
+
+Explain where the die/dice roll for Miss Scarlet (the first player) is displayed when the program begins
+   * After the number of players are set and the Gui has been created, the panel to the left of the board will display the amount of spaces a player can make.. This is the “current roll: #” that will display how many spaces you can move. The dice roll is rolled automatically at the start of every turn. Miss Scarlett will be located on the left upper side of the board. Clicking at a distance of 1 around the red tile (assuming valid location) will move that red tile representing Miss Scarlett to a new space.
+
+
+Explain where the updated die/dice roll for another player is displayed when their turn begins program begins.
+   * Once the Current Roll is exhausted the next player, in the correct order, will have their name displayed on the information panel to the left and underneath their name a number representing their die roll will be displayed.  This player will be able to make their move(s) on the board until their Current Roll is exhausted as well. Then the cycle continues.

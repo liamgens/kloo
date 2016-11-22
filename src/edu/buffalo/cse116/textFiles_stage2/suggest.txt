@@ -1,0 +1,12 @@
+﻿# File: suggest.txt
+Explain how to see that a player can enter a suggestion:
+* Once a player, enters a room by standing on a gray tile, that player will be prompted to  make a suggestion at that point in time. A player cannot make a suggestion while in the room. It is only triggered when the current player walks into a room.
+
+Explain how to see that a suggestion will have to include a weapon & person and forces the player to use the room they are in:
+* When the suggestion prompt is triggered, there will appear three combo boxes that represent options that the current player can choose. The first labeled: Suspect, and it displays all of the available suspects to make a suggestion. The second is Weapon which displays all of the weapons. The Third is grayed out so that it will only show the current players room location since you can only use the current location of the player that triggered the suggestion call.
+
+
+
+
+Explain how to see that a suggestion can only be made when a player is in a room.
+* The suggestion prompt can only be triggered when a player is entering a room through a door from the hallway. Once a player is on the door, the player will be prompted to make a suggestion.

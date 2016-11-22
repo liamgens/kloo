@@ -1,0 +1,11 @@
+﻿# File: cardsInHand.txt
+Explain how to see the cards in Miss Scarlet (the first player) hand when the program begins
+* After the board gui is created, the current player will be assigned a hand of cards. These cards can be seen at the bottom of the board gui. Here it will display the values of the cards that the current player has.
+
+Explain how to see the cards in another player's hand when their turn begins
+* At the start of every turn, on the bottom of the board gui, there will be space that displays text that represents the card values in the current player's hand.
+
+
+
+Explain how to verify each card (other than those in the solution) appear in exactly one player's hand.
+* Cycle through the game by exhausting the current roll and clicking around a current player's tile until it is the next player’s turn. You will notice that the values at the bottom of the board gui changes for each player but will be FINAL throughout the game.

@@ -1,0 +1,20 @@
+# File: takeTurns.txt
+Explain how to verify your program defines all 6 players:
+* At the start of game, there will be a command prompt the will ask you to: “Enter number of players (3-6):“ At this point, you will enter the number 6 in the command prompt and it will generate 6 players on the board based on their color representation. On the board you should see a wide range of different colored tiles. The player color representations are listed below:
+   * “Miss Scarlett” = Red Tile, 
+   * "Professor Plum" = Pink Tile,
+   * "Mr. Green"= Green Tile,
+   * "Mrs. Peacock" =  Cyan Tile,
+   * "Mrs. White" = White Tile,
+   * "Colonel Mustard" = Yellow Tile
+
+
+Explain how to see that turns rotate between all 6 players in the correct order:
+* To see how the turns are rotated among the 6 players, find the Red Tile on the left side of the board. Once you found it, click on any tile at a distance of 1 around the Red Tile to move the Red Tile (“Miss Scarlett”) to that location. After you have moved the player to a valid location, on the right panel you should see the  “Current Roll:” statement followed by a number. This number represents the number of spaces a player can move. Click around the tile, at a distance of one around the Red Tile until the the number goes 0. Once the current roll is exhausted, you should notice that you can no longer move the Red Tile further. Above the “Current Roll: “ on the right side of the board, there is a “Current Player: “ statement followed by a name. This name indicates whose turn it is and at the beginning of the game, the Current Player will always starts with “Miss Scarlett” then proceeds in this order:
+   * “Miss Scarlett” = Red Tile (Starts Game), 
+   * "Professor Plum" = Pink Tile,
+   * "Mr. Green"= Green Tile,
+   * "Mrs. Peacock" =  Cyan Tile,
+   * "Mrs. White" = White Tile,
+   * "Colonel Mustard" = Yellow Tile)
+* Try moving through the hallways with colored tiles and you should see the “Current Player: “ cycle in this order.
