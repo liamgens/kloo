@@ -32,8 +32,8 @@ public class Card {
     /**
      * CONSTRUCTOR
      * Uses cardArray to assign individual & valid values and types to one card.
-     * @param cardType
-     * @param cardVal
+     * @param cardType The type of the card (Player, Weapon, Location)
+     * @param cardVal The value of the card.
      */
     public Card(int cardType, int cardVal){
         if (cardType != PLAYER && cardType != WEAPON && cardType != ROOM) {

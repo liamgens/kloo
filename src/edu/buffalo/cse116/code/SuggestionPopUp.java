@@ -33,6 +33,12 @@ public class SuggestionPopUp {
     public int get_newposY() { return _sus_posY; }
     public User get_chosenSuspect() { return _chosenSuspect;}
 
+    /**
+     * Creates a Suggestion window.
+     *
+     * @param currentTile Checks to see if a player is currently on a doorway.
+     * @param board The current instance of the game board.
+     */
     public SuggestionPopUp(Tile currentTile, Board board) {
         _board = board;
         _currentPlayer = board.getCurrentPlayer();
@@ -120,8 +126,8 @@ public class SuggestionPopUp {
      * After the Suggestion is entered, if a player in the game has one or more of the cards in hers/his "hand" then
      * this PopUp will be generated and will ask the user what card to show the player. If the player does not select one,
      * it is defaulted to select the first Card at the first index;
-     * @param cards
-     * @param s
+     * @param cards The list of cards.
+     * @param s The individual cards.
      */
     public void displayCards(String[] cards, String s) {
         ////// GUI //////
@@ -184,7 +190,7 @@ public class SuggestionPopUp {
     /**
      * Takes the string value from the selected displayCard() PopUp Gui List and displays another prompt that "shows"
      * the card to the player.
-     * @param s
+     * @param s The name of the card that is being shown.
      */
     public void showCard(String s) {
         //// GUI /////
@@ -241,8 +247,8 @@ public class SuggestionPopUp {
 
     /**
      * Method that moves suspect to the current players room.
-     * @param suspect
-     * @param currentPlayer
+     * @param suspect The player that the current user is making a suggestion of.
+     * @param currentPlayer The player making the suggestion.
      */
     public void moveUserHere(User suspect, User currentPlayer) {
         Tile currentTile = _board.getTile(currentPlayer.get_posX(), currentPlayer.get_posY());
@@ -263,7 +269,7 @@ public class SuggestionPopUp {
 
     /**
      * Returns User chosen name from drop-down list
-     * @param chosenUserName
+     * @param chosenUserName A string of the username.
      * @return User
      */
     public User returnUser(String chosenUserName) {
@@ -282,9 +288,9 @@ public class SuggestionPopUp {
      *
      * Checks if current user is at a door leading to a specific room,
      * then selects a random tile from the room and sets the suspects current tile to the new tile
-     * @param playersCurrentTile
-     * @param suspectCurrentTile
-     * @param playersCurrentRoom
+     * @param playersCurrentTile The current location of the player.
+     * @param suspectCurrentTile The new intended location of the player.
+     * @param playersCurrentRoom The room that the player is currently in.
      */
     public void checkPassage(Tile playersCurrentTile, Tile suspectCurrentTile, int playersCurrentRoom){
         if (playersCurrentTile.get_isDoor()) {
@@ -353,6 +359,12 @@ public class SuggestionPopUp {
         _board.resetRoll();
     }
 
+    /**
+     * Sifts through each player's hands and sees if any of the cards match any of the suggestion values.  If a player can prove the suggestion false then the loop stops.  If none of the players can prove the suggestion false, then another GUI pops up.
+     * @param currentAList The list of all of the users.
+     * @param board The current instance of the board.
+     * @param current The current user making the suggestion or accusation.
+     */
     public void checkAllCards(ArrayList<User> currentAList, Board board, User current) {
         String user = "";
         ArrayList<Card> show = new ArrayList<Card>();
@@ -394,7 +406,7 @@ public class SuggestionPopUp {
 
     /**
      * Displays a array of names of current players in the game minus current player
-     * @param currentAList
+     * @param currentAList The ArrayList of names.
      * @return array of names of current players
      */
     public String[] currentListMinusOne(ArrayList<User> currentAList) {

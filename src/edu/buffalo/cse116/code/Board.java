@@ -18,6 +18,11 @@ public class Board {
     private Deck _deck;
     static final String[] WEAPONS = {"Wrench", "Candlestick", "Lead Pipe", "Rope", "Revolver", "Knife"};
 
+    /**
+     * Creates an instance of the Game board.
+     * @param numberOfPlayers The number of players playing the game.
+     * @param gui
+     */
     public Board(int numberOfPlayers, Gui gui){
         _tiles = generateBoard(25,25);
         _rooms = new ArrayList<Room>();

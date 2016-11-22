@@ -34,10 +34,10 @@ public class User {
      *A method that takes in opponent, suspect, weapon, and location as parameters.
      * Goes through every card in the opponent's hand to see if any of the suggested cards are in their hand.
      * Returns false if none of the cards are in their hands.
-     * @param opponent
-     * @param sus
-     * @param wep
-     * @param loc
+     * @param opponent A list of all the players.
+     * @param sus The name of the suspect.
+     * @param wep The name of the weapon used in the murder.
+     * @param loc The name of the suspected location.
      * @return
      */
     public boolean checkCards(ArrayList<Card> opponent, String sus, String wep, String loc) {

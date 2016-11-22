@@ -27,6 +27,10 @@ public class AccusationPopUp {
     public String get_weaponChosen(){ return _weaponChosen; }
     public String get_roomChosen(){ return _roomChosen; }
 
+    /**
+     * Creates a JFrame that enables a player to make an accusation.  The JFrame will have three drop down menus, one for each player, one for each weapon, and one for each location available in the game.  This JFrame will exit on close.
+     * @param board The current instance of the board in the game.
+     */
     public AccusationPopUp(Board board) {
         _board = board;
         _currentPlayer = board.getCurrentPlayer();
@@ -93,6 +97,11 @@ public class AccusationPopUp {
         _submitPanel.add(submitButton);
         _window.add(_popupGui);
     }
+
+    /**
+     * Creates a window once a player has won the game.  This window will have a JButton that will close the game once clicked.
+     * @param s The name of the winner.
+     */
     public void generateWinner(String s) {
         _winPrompt = new JFrame();
         JPanel show = new JPanel();
@@ -135,6 +144,10 @@ public class AccusationPopUp {
         _winPrompt.pack();
     }
 
+    /**
+     * Creates a window once a player makes an Accusation and is proven false. The window will have a JButton that closes the window once clicked.  The player will not be allowed to make any more moves and will be dequeued from the TurnQueue.
+     * @param s The name of the player whose accusation was proven false and can no longer play.
+     */
     public void generateLoser(String s) {
         String[] winningCards = new String[3];
         for (int i = 0; i < _board.get_envelope().size(); i++) {

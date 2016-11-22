@@ -12,7 +12,7 @@ public class Room {
     private int _topLx, _topLy, _width, _height, _idx;
     private String _roomName;
     static final String[] ROOMS = {"Kitchen", "Ballroom", "Conservatory", "Dining Room",
-            "Lounge", "Hall", "Study", "Library", "Billard Room", "Cellar"};
+            "Lounge", "Hall", "Study", "Library", "Billiard Room", "Cellar"};
     private ArrayList<Tile> _tilesOfBoard;
     private ArrayList<Tile> _tilesOfRoom;
 
@@ -109,7 +109,7 @@ public class Room {
 
     /**
      * Gets a random tile from a corner room.
-     * @return
+     * @return Returns a random tile in a corner room.
      */
     public Tile getRandomTile(){
         ArrayList<Tile> validRoomTilesToTeleportTo = new ArrayList<Tile>();
@@ -127,6 +127,11 @@ public class Room {
         return null;
     }
 
+    /**
+     * Checks to see if a tile is a border between a room and a hallway.
+     * @param t The tile being checked to see if it's a border or not.
+     * @return Returns true if the tile is a border.
+     */
     public boolean isRoomBorder(Tile t){
         int x = t.get_xCoor();
         int y = t.get_yCoor();

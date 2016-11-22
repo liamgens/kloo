@@ -39,8 +39,6 @@ public class TurnQueue {
         }
 
 
-    //TODO if Queue is empty, then gameover because no other players are left in the game
-
     /**
      * Tests to see if the Queue is empty.
      * @return true if the Queue is empty, else it's false.
@@ -59,7 +57,7 @@ public class TurnQueue {
 
     /**
      * Removes an element from the front of the Queue.
-     * @return
+     * @return Returns the next player.
      */
     public User dequeue(){
         User next = _playersQueue.get(1);
@@ -69,7 +67,7 @@ public class TurnQueue {
 
     /**
      * Returns the value of the first item in the TurnQueue.
-     * @return
+     * @return Returns the player at the front of the Queue.
      */
     public User peek(){
         return _playersQueue.get(0);
