@@ -37,7 +37,7 @@ public class AccusationPopUp {
         _currentAList = board.getListOfPlayers();
         _window = new JFrame();
         _window.setVisible(true);
-        _window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        _window.setDefaultCloseOperation(_window.EXIT_ON_CLOSE);
         _window.setLayout(new BorderLayout());
         _window.setTitle("Menu");
         generateAccusationPopUp(); // Triggers Suggestion Menu or Accusation Menu
@@ -120,7 +120,7 @@ public class AccusationPopUp {
             }
         });
 
-        _winPrompt.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        _winPrompt.setDefaultCloseOperation(_winPrompt.EXIT_ON_CLOSE);
         _winPrompt.setBounds(250, 250, 300, 300);
         _winPrompt.setUndecorated(true);
         _winPrompt.setVisible(true);
@@ -162,7 +162,7 @@ public class AccusationPopUp {
         JPanel bottom = new JPanel();
         JList list = new JList(winningCards);
 
-        _losPrompt.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        _losPrompt.setDefaultCloseOperation(_losPrompt.EXIT_ON_CLOSE);
         _losPrompt.setBounds(250, 250, 300, 300);
         _losPrompt.setUndecorated(true);
         _losPrompt.setVisible(true);

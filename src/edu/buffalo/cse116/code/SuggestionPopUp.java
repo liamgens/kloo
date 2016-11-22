@@ -16,7 +16,7 @@ import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
  */
 public class SuggestionPopUp {
 
-    private JFrame _window, _prompt, _showCard;
+    private JFrame _window, _prompt, _showCard, _sugTrue;
     private JPanel _popupGui, _headerPanel, _bodyPanel, _suspectPanel, _weaponPanel, _roomPanel, _submitPanel;
 
     private User _chosenSuspect, _currentPlayer;
@@ -45,7 +45,7 @@ public class SuggestionPopUp {
         _currentAList = board.getListOfPlayers();
         _currentTile = currentTile;
         _window = new JFrame();
-        _window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        _window.setDefaultCloseOperation(_window.EXIT_ON_CLOSE);
         _window.setSize(200, 100);
         _window.setLocationRelativeTo(null);
         _window.setUndecorated(true);
@@ -160,12 +160,12 @@ public class SuggestionPopUp {
                     selected = choose.getSelectedValue().toString();
                     showCard(selected); // Method Call
                 }
-                    show.remove(instructions);
-                    show.remove(choose);
-                    _prompt.dispose();
+                show.remove(instructions);
+                show.remove(choose);
+                _prompt.dispose();
             }
         });
-        _prompt.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        _prompt.setDefaultCloseOperation(_prompt.EXIT_ON_CLOSE);
         _prompt.setBounds(250, 250, 300, 300);
         _prompt.setUndecorated(true);
         _prompt.setVisible(true);
@@ -209,7 +209,7 @@ public class SuggestionPopUp {
             }
         });
 
-        _showCard.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        _showCard.setDefaultCloseOperation(_showCard.EXIT_ON_CLOSE);
         _showCard.setBounds(250, 250, 300, 300);
         _showCard.setSize(200, 100);
         _showCard.setUndecorated(true);
@@ -228,6 +228,33 @@ public class SuggestionPopUp {
         result.setForeground(Color.red);
     }
 
+    public void suggestionTrue(){
+        _sugTrue = new JFrame();
+        JPanel display = new JPanel();
+        JPanel top = new JPanel();
+        JPanel bottom = new JPanel();
+        JLabel message = new JLabel("No cards found, suggestion true!");
+        JButton close = new JButton("CLOSE");
+        close.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                _sugTrue.dispose();
+            }
+        });
+        _sugTrue.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        _sugTrue.setSize(300, 100);
+        _sugTrue.setVisible(true);
+
+        message.setForeground(Color.BLUE);
+
+        _sugTrue.add(display);
+        display.add(top);
+        display.add(bottom);
+
+        top.add(message);
+        bottom.add(close);
+        display.setLayout(new BoxLayout(display, BoxLayout.Y_AXIS));
+    }
 
     /////////// SUGGESTION //////////
 
@@ -388,7 +415,7 @@ public class SuggestionPopUp {
                 System.out.println("Breaking");
                 break;
             } else {
-                System.out.println("false");
+                System.out.println("Player: " + u.getCharacterName().toString() + " cannot prove suggestion false.");
             }
 
         }
@@ -397,30 +424,34 @@ public class SuggestionPopUp {
         for (int i = 0; i < show.size(); i++) {
             array[i] = show.get(i).get_title();
         }
-
-
-        displayCards(array, user);
-    }
-
-    /////////// DROP DOWN LIST METHODS ///////////
-
-    /**
-     * Displays a array of names of current players in the game minus current player
-     * @param currentAList The ArrayList of names.
-     * @return array of names of current players
-     */
-    public String[] currentListMinusOne(ArrayList<User> currentAList) {
-        String cur = _currentPlayer.getCharacterName();
-        ArrayList<String> temp = new ArrayList<String>();
-        for (User u : currentAList) {
-            if (u.getCharacterName() != cur) {
-                String name = u.getCharacterName();
-                temp.add(name);
-            }
+        // Suggestion is True!
+        if(show.size()==0){
+            suggestionTrue();
+        } else {
+            //Suggestion is False;
+            displayCards(array, user);
         }
-        String[] stored = temp.toArray(new String[temp.size()]);
-        return stored;
     }
 
-}
+        /////////// DROP DOWN LIST METHODS ///////////
+
+        /**
+         * Displays a array of names of current players in the game minus current player
+         * @param currentAList The ArrayList of names.
+         * @return array of names of current players
+         */
+        public String[] currentListMinusOne(ArrayList<User> currentAList) {
+            String cur = _currentPlayer.getCharacterName();
+            ArrayList<String> temp = new ArrayList<String>();
+            for (User u : currentAList) {
+                if (u.getCharacterName() != cur) {
+                    String name = u.getCharacterName();
+                    temp.add(name);
+                }
+            }
+            String[] stored = temp.toArray(new String[temp.size()]);
+            return stored;
+        }
+
+    }
 
