@@ -43,7 +43,7 @@ public class Gui {
         _listOfPlayers = _board.getListOfPlayers();
         _board.rollDice();
         JLabel listOfRooms = new JLabel();
-        listOfRooms.setText("1: Kitchen | 2: Ballroom | 3: Conservatory | 4. Dining Room | 5: Lounge | 6: Hall | 7: Study | 8: Billard Room");
+        listOfRooms.setText("1: Kitchen | 2: Ballroom | 3: Conservatory | 4. Dining Room | 5: Lounge | 6: Hall | 7: Study | 8: Library | 9: Billiard Room");
         JPanel rooms = new JPanel();
         rooms.add(listOfRooms);
         _window.add(rooms, BorderLayout.NORTH);
