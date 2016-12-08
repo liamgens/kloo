@@ -111,8 +111,8 @@ public class SuggestionPopUp {
                 _suspectChosen = String.valueOf(suspectNames.getSelectedItem());
                 _weaponChosen = String.valueOf(weaponNames.getSelectedItem());
 
-                System.out.println(_suspectChosen);
-                System.out.println(_weaponChosen);
+//                System.out.println(_suspectChosen);
+//                System.out.println(_weaponChosen);
 
                 suggestion();
                 _window.dispose();

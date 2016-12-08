@@ -15,9 +15,12 @@ public class Driver {
         Gui gui = new Gui(numberOfPlayers);
         Board b = gui.get_board();
 
+        String winningHand = new String();
         for(Card c : b.get_envelope()){
-            System.out.println(c.get_title());
+            winningHand += c.get_title() + ", ";
         }
+
+        System.out.println("The winning hand is: " + winningHand.substring(0,winningHand.length()-2));
 
     }
 }
