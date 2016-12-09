@@ -216,6 +216,10 @@ public class AccusationPopUp {
         } else {
             generateLoser(_currentPlayer.getCharacterName().toString());
             _board.getTurnQueue().dequeue();
+            _board.rollDice();
+            _board.getGui().updateBoard();
+            _board.getGui().updateCardPanel();
+            _board.getGui().updateInfoPanel();
         }
     }
 

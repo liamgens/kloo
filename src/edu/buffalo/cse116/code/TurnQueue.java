@@ -60,9 +60,12 @@ public class TurnQueue {
      * @return Returns the next player.
      */
     public User dequeue(){
-        User next = _playersQueue.get(1);
-        _playersQueue.remove(0);
-        return next;
+        User player =  _playersQueue.remove(0);
+        if (_playersQueue.size() == 0){
+                System.out.println("WINNER: " + player.getCharacterName());
+                throw new RuntimeException();
+        }
+        return player;
     }
 
     /**
@@ -80,6 +83,10 @@ public class TurnQueue {
 //		if(user.Accusation() == false){
 //			dequeue();
 //		}
+        if (_playersQueue.size() == 1){
+            System.out.println("WINNER: " + _playersQueue.peek().getCharacterName());
+            throw new RuntimeException();
+        }
         enqueue(peek());
         dequeue();
     }
